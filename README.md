@@ -637,164 +637,51 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ## 8a. Agentic Workflows Comparison
 
-Microsoft offers multiple agentic workflow technologies for automating business processes and orchestrating AI agents. Understanding the differences helps you choose the right tool based on your development approach, team skills, integration requirements, and governance needs.
+**Agentic workflows** automate business processes and orchestrate AI agents through deterministic sequences with AI integration. Microsoft provides three primary technologies for different development approaches and team skills.
 
-### ⚠️ Important: Logic Apps AI Agent Workflows Are Fundamentally Different
+### Technology Options
 
-**Logic Apps AI Agent Workflows** (Preview, October 2025) represent a **new paradigm** that is NOT the same as "agent flows" in Copilot Studio or Power Automate capabilities:
+| Feature | **Agent Framework Workflows** | **Logic Apps AI Agent Workflows** | **Copilot Studio Agent Flows** |
+|---------|------------------------------|-----------------------------------|--------------------------------|
+| **Approach** | Pro-code (C#, Python) | Visual designer + code | Low-code (natural language/visual) |
+| **Architecture** | Graph-based (Executors + Edges) | Workflow designer + connectors | Drag-and-drop canvas |
+| **Checkpointing** | ✅ Yes (built-in) | ✅ Yes (state management) | ❌ No |
+| **Type Safety** | ✅ Yes (compile-time) | ⚠️ Partial (schema validation) | ⚠️ Partial (schema validation) |
+| **AI Integration** | Native (`IChatClient`) | Azure OpenAI, Azure AI Foundry | Native (flows as agent tools) |
+| **Connectors** | Custom code (any API) | 1,400+ enterprise connectors | 1,000+ (Power Platform) |
+| **Hosting** | Self-managed (Azure) | Azure Portal | Microsoft SaaS (managed) |
+| **Licensing** | Open-source (free SDK) | Azure consumption/Standard | Copilot Studio Credits |
+| **DevOps** | ✅ Yes (code-based CI/CD) | ✅ Yes (Azure DevOps, GitHub) | ✅ Yes (Pipelines, Azure DevOps) |
+| **MCP Server** | ⚠️ Custom | ✅ Yes (Preview) | ❌ No |
+| **Status** | Public Preview | Preview (Agents), GA (core) | GA |
+| **Best For** | Multi-agent orchestration + checkpointing | Enterprise integration + AI agents | Fast automation within Studio agents |
 
-**What Makes Logic Apps Agent Workflows Unique:**
-- 🤖 **Built-in Agent Action with LLM Integration:** Workflows contain Agent actions that use an iterative Think - Act - Learn loop powered by Azure OpenAI or Azure AI Foundry
-- 💬 **Conversational Agent Workflows:** Built-in chat UI (external client via Easy Auth) for human interaction with agents
-- 🚀 **Autonomous Agent Workflows:** Agents operate without human intervention, making dynamic decisions based on LLM reasoning
-- 🧠 **Agent-Driven Tool Selection:** The LLM-powered agent **decides which tools to invoke** at runtime (not predefined sequences)
-- 🔄 **Adaptive Behavior:** Agents can handle unpredictable scenarios and adapt to changing conditions
-- 🛠️ **1,400+ Connectors as Agent Tools:** Any Logic Apps connector can become a tool the agent chooses to use
+### When to Use Each
 
-**Why This Is Different from Copilot Studio/Power Automate "Agent Flows":**
+**Agent Framework Workflows:**
+- Type-safe workflow orchestration with compile-time validation
+- Checkpointing for long-running/human-in-loop processes
+- Multi-agent patterns (Sequential/Concurrent/Handoff/Magentic)
+- Pro-code development (C#, Python) with M365 Agents SDK integration
+- [Documentation](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/overview)
 
-| Capability | Logic Apps Agent Workflows | Copilot Studio/Power Automate Flows |
-|-----------|---------------------------|-------------------------------------|
-| **Flow Type** | LLM-powered agent makes decisions | Deterministic automation (same input = same output) |
-| **Tool Selection** | Agent dynamically chooses tools via LLM reasoning | Pre-configured fixed sequence of actions |
-| **Conversational UI** | Built-in chat interface (Azure portal + external client) | Not applicable (flows are invoked BY agents, they're not agents themselves) |
-| **Human Interaction Model** | Autonomous (no human) OR Conversational (integrated chat) | Approval actions (traditional workflows) |
-| **Execution Pattern** | Iterative loop (Think - Act - Learn) until goal achieved | Linear/conditional flow with branches |
-| **Adaptability** | Can handle undefined/unpredictable scenarios | Best for stable, predictable processes |
+**Logic Apps AI Agent Workflows:**
+- Enterprise integration with 1,400+ connectors (cloud + on-premises)
+- Visual designer + code for pro-developers
+- Azure-native hosting with DevOps deployments
+- MCP server capabilities (expose workflows as AI tools)
+- Autonomous/conversational agent workflows with Azure OpenAI
+- [Documentation](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
 
-**Common Misconception:** "I can do the same thing in Power Automate that Logic Apps Agent Workflows can do."  
-**Reality:** Power Automate Cloud Flows and Copilot Studio Agent Flows are **automation tools** that agents can invoke. Logic Apps Agent Workflows are **agent-powered workflows** where the LLM makes runtime decisions about which tools to use and how to respond. These are fundamentally different architectures.
+**Copilot Studio Agent Flows:**
+- Native automation within Copilot Studio agents (no separate license)
+- Fastest time-to-value with low-code/natural language
+- Managed SaaS (no infrastructure management)
+- Business process automation for Studio agents
+- [Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) | [Agent Flows vs Cloud Flows FAQ](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-faqs)
 
-**Source:** [Logic Apps Agent Workflows Concepts](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (Updated: October 2025)
-
----
-
-### What Are Agentic Workflows?
-
-**Agentic workflows** are deterministic, predefined sequences of operations designed to automate business processes with AI agent integration. Unlike pure AI agents (which make dynamic decisions via LLMs), agentic workflows provide explicit control flow with conditional logic, parallel processing, and integration with external systems.
-
-**Key Characteristics:**
-- **Deterministic Execution:** Same input → Same output (predictable and reliable)
-- **Defined Flow:** Explicit sequence of operations with conditions and routing
-- **AI Integration:** Can invoke AI agents as components within the workflow
-- **Business Process Focus:** Optimized for automating repetitive tasks and complex business logic
-
-**Note:** Logic Apps AI Agent Workflows blur this distinction—they ARE agent-powered (non-deterministic) but also provide workflow structure (state management, connectors, tools).
-
----
-
-### Technology Comparison Matrix
-
-| Feature | **Agent Framework Workflows** | **Logic Apps AI Agent Workflows** | **Copilot Studio Agent Flows** | **Power Automate Cloud Flows** |
-|---------|------------------------------|-----------------------------------|--------------------------------|-------------------------------|
-| **Approach** | Pro-code (C#, Python) | Visual designer + code | Low-code (natural language/visual) | Low-code (visual) |
-| **Architecture** | Graph-based (Executors + Edges) | Workflow designer + connectors | Drag-and-drop canvas | Drag-and-drop canvas |
-| **Checkpointing** | ✅ Yes (built-in) | ✅ Yes (state management) | ❌ No | ❌ No |
-| **Type Safety** | ✅ Yes (compile-time validation) | ⚠️ Partial (schema validation) | ⚠️ Partial (schema validation) | ⚠️ Partial (schema validation) |
-| **Orchestration Patterns** | Sequential, Concurrent, Handoff, Magentic | Workflow types: Conversational, Autonomous (uses handoff execution) | Custom via visual designer | Custom via visual designer |
-| **AI Agent Integration** | Native (`IChatClient`, AI agents as executors) | Azure OpenAI, Azure AI Foundry | Native (agents invoke flows as tools) | AI Builder prompts + models |
-| **Connectors** | Custom code (any API) | 1,400+ enterprise connectors | 1,000+ connectors (via Power Platform) | 1,000+ connectors |
-| **Execution Model** | Pregel-style supersteps | Event-driven triggers | Event-driven triggers | Event-driven triggers |
-| **Human-in-the-Loop** | ✅ Yes (checkpointing + resume) | ✅ Yes (approval workflows) | ✅ Yes (approval actions) | ✅ Yes (approval actions) |
-| **Licensing** | Open-source (free SDK) | Azure consumption or Standard | Copilot Studio Copilot Credits | Power Automate license + AI Builder credits (transitioning to Copilot Credits Nov 2025) |
-| **Hosting** | Self-managed (Azure Functions, AKS, ACA, App Service) | Azure Portal (self-managed Azure) | Microsoft SaaS (managed) | Microsoft SaaS (managed) |
-| **Admin Center** | Application-level | Azure RBAC | Power Platform admin | Power Platform admin |
-| **Target Audience** | Pro-developers (C#/Python) | Pro-developers (enterprise integration) | Makers OR developers | Makers OR developers |
-| **DevOps Integration** | ✅ Yes (code-based CI/CD) | ✅ Yes (Azure DevOps, GitHub Actions) | ✅ Yes (Pipelines, Azure DevOps, GitHub Actions) | ✅ Yes (Pipelines, Azure DevOps, GitHub Actions) |
-| **Multi-Agent Orchestration** | ✅ Yes (built-in patterns) | ⚠️ Custom (via Azure AI Foundry) | ✅ Yes (connected agents) | ⚠️ Custom (via agent invocation) |
-| **Long-Running Processes** | ✅ Yes (checkpointing) | ✅ Yes (state management) | ❌ No (timeouts apply) | ❌ No (timeouts apply) |
-| **Timeout Limits** | Developer-controlled | Developer-controlled | 100 seconds (agent response limit) | 120 seconds (2 min synchronous requests) |
-| **MCP Server Support** | ⚠️ Custom implementation | ✅ Yes (Preview) | ❌ No | ❌ No |
-| **Status** | Public Preview | Preview (Agent Workflows), GA (core) | GA | GA |
-| **Best For** | Workflow-based multi-agent orchestration with checkpointing | Enterprise integration + AI agents (1,400+ connectors) | Fast time-to-value automation within Copilot Studio agents | General automation scenarios with longer timeouts, external systems |
-
-**Sources:**
-- [Agent Framework Workflows Overview](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/overview) (Updated: 2025)
-- [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (Updated: October 2025)
-- [Copilot Studio Agent Flows Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) (Updated: 2025)
-- [Agent Flows vs Cloud Flows FAQ](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-faqs) (Updated: 2025)
-- [Copilot Credits Licensing](https://learn.microsoft.com/en-us/ai-builder/dual-mode-licensing) (Updated: November 2025)
-
----
-
-### Decision Guidance: When to Use Each Technology
-
-#### Use **Agent Framework Workflows** when:
-- ✅ You need **type-safe, workflow-based orchestration** with compile-time validation
-- ✅ You require **checkpointing** for long-running processes or human-in-the-loop scenarios
-- ✅ You want **multi-agent orchestration patterns** (Sequential/Concurrent/Handoff/Magentic)
-- ✅ Your team prefers **pro-code development** (C#, Python) with full control
-- ✅ You need to integrate with **M365 Agents SDK** for multi-channel deployment
-- ✅ You're building **complex, stateful workflows** with resume capability
-- ❌ **Avoid if:** Team lacks pro-code skills, need fastest time-to-value, or prefer managed SaaS
-
-#### Use **Logic Apps AI Agent Workflows** when:
-- ✅ You need **enterprise integration** with 1,400+ connectors across cloud and on-premises
-- ✅ You want **visual designer + code** flexibility for pro-developers
-- ✅ You require **Azure-native hosting** with DevOps-ready deployments (Azure DevOps, GitHub Actions)
-- ✅ You need **MCP server** capabilities (Preview) to expose workflows as AI agent tools
-- ✅ You want **autonomous or conversational agent workflows** (Preview) with Azure OpenAI
-- ✅ Your team is familiar with **Logic Apps** and Azure ecosystem
-- ❌ **Avoid if:** Need M365 tenant-integrated governance, prefer Power Platform SaaS, or need fastest time-to-value
-
-#### Use **Copilot Studio Agent Flows** when:
-- ✅ You need **native automation** within Copilot Studio agents (no separate license)
-- ✅ You want **fastest time-to-value** with low-code/natural language creation
-- ✅ You prefer **managed SaaS** with no infrastructure management
-- ✅ You're building **business process automation** for Copilot Studio agents
-- ✅ Your team includes **makers** or developers comfortable with low-code tools
-- ✅ You need **Copilot Credits-based licensing** (unified with Copilot Studio capacity)
-- ❌ **Avoid if:** Need checkpointing, long-running processes (>timeout limits), or DevOps-first workflows
-
-#### Use **Power Automate Cloud Flows** when:
-- ✅ You need **general automation scenarios** across Microsoft ecosystem (Teams, SharePoint, Dynamics 365)
-- ✅ You require **longer timeout limits** (~100 seconds per action vs agent flows)
-- ✅ You want **flexible low-code** approach with 1,000+ connectors
-- ✅ You need **AI Builder integration** for document processing, vision, predictions
-- ✅ Your workflows are **independent** or work with agent flows for end-to-end automation
-- ✅ You prefer **Power Platform admin** governance and existing Power Automate investments
-- ❌ **Avoid if:** Building workflows exclusively for Copilot Studio agents (use Agent Flows instead), or need checkpointing
-
----
-
-### Licensing Comparison
-
-| Technology | Licensing Model | What's Included | Notes |
-|------------|----------------|-----------------|-------|
-| **Agent Framework** | Open-source (free SDK) | SDK usage is free | Hosting costs apply (Azure Functions, AKS, ACA, App Service) |
-| **Logic Apps** | Azure consumption or Standard | Workflow executions, connector actions | Consumption: pay-per-execution; Standard: fixed monthly cost + usage |
-| **Copilot Studio Agent Flows** | Copilot Studio Copilot Credits | Agent flow actions (per action execution) | No separate license needed; billed via Copilot Studio capacity |
-| **Power Automate Cloud Flows** | Power Automate license + AI Builder credits (transitioning to Copilot Credits Nov 2025) | Cloud flow runs, connector actions | AI Builder features transitioning to Copilot Credits for new customers |
-
-**Key Licensing Notes:**
-- **Agent Framework:** SDK is free (open-source), but you pay for Azure hosting (Functions, AKS, ACA, App Service)
-- **Logic Apps:** Enterprise-grade pricing with consumption or Standard plans
-- **Agent Flows vs Cloud Flows:** Agent Flows billed via Copilot Studio Copilot Credits (no separate license), Cloud Flows require Power Automate license
-- **AI Builder:** Transitioning from AI Builder credits to Copilot Credits (November 2025) for Power Automate/Power Apps context
-
----
-
-### Integration Patterns
-
-**1. Agent Framework + M365 Agents SDK:**
-- Use Agent Framework for workflow orchestration (Executor/Edge patterns)
-- Deploy via M365 Agents SDK to Copilot/Teams/Web/Mobile
-- Best for: Multi-channel agents with checkpointing and workflow-based logic
-
-**2. Logic Apps + Azure AI Foundry:**
-- Use Logic Apps workflows as agent actions (function calling)
-- Integrate Azure OpenAI for LLM reasoning
-- Best for: Enterprise integration scenarios with AI agents
-
-**3. Copilot Studio Agent Flows + Agents:**
-- Agent flows run as tools invoked by Copilot Studio agents
-- Deterministic automation behind conversational AI
-- Best for: Business process automation within agent conversations
-
-**4. Power Automate + Copilot Studio:**
-- Cloud flows handle external system integration with longer timeouts
-- Agent flows handle fast, in-agent automation
-- Best for: Hybrid scenarios requiring both capabilities
+**Sources:**  
+[Agent Framework Workflows](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/overview) | [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (October 2025) | [Copilot Studio Agent Flows](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) (2025)
 
 ---
 
