@@ -22,25 +22,23 @@ This guide helps you navigate Microsoft's AI technology portfolio to make inform
 
 ## Table of Contents
 
-- [1. Technology Definitions](#1-technology-definitions)
-- [2. Microsoft AI Ecosystem Architecture](#2-microsoft-ai-ecosystem-architecture)
-- [3. Decision Framework: When to Use What](#3-decision-framework-when-to-use-what)
-- [4. Technology Selection Matrix](#4-technology-selection-matrix)
-- [4a. When to Choose Each Agent Development Approach](#4a-when-to-choose-each-agent-development-approach)
-- [5. Architecture Patterns](#5-architecture-patterns)
-- [6. Governance & Operations Checkpoints](#6-governance--operations-checkpoints)
-- [7. Decision Criteria Summary](#7-decision-criteria-summary)
-- [8. Technology Comparison Matrix](#8-technology-comparison-matrix)
-- [8a. Agentic Workflows Comparison](#8a-agentic-workflows-comparison)
-- [9. Quick Start Recommendations](#9-quick-start-recommendations)
+- [1. Microsoft AI Technologies Reference](#1-microsoft-ai-technologies-reference)
+- [2. Five-Layer Capability Model](#2-five-layer-capability-model)
+- [3. Three-Phase Decision Methodology](#3-three-phase-decision-methodology)
+- [4. Quick Reference: Technology by Need](#4-quick-reference-technology-by-need)
+- [5. Common Implementation Patterns](#5-common-implementation-patterns)
+- [6. Governance Decision Considerations](#6-governance-decision-considerations)
+- [7. Evaluation Criteria Reference](#7-evaluation-criteria-reference)
+- [8. Comprehensive Feature Comparison](#8-comprehensive-feature-comparison)
+- [9. Scenario-Based Quick Starts](#9-scenario-based-quick-starts)
 - [10. Key Takeaways](#10-key-takeaways)
 - [11. Resources & Next Steps](#11-resources--next-steps)
-- [12. Triaging Intake Process: Complete Decision Framework](#12-triaging-intake-process-complete-decision-framework)
+- [12. Visual Decision Framework](#12-visual-decision-framework)
 - [Glossary](#glossary)
 
 ---
 
-## 1. Technology Definitions
+## 1. Microsoft AI Technologies Reference
 
 ### Microsoft 365 Copilot
 **Description:** Integrated AI assistant across M365 apps (Word, Excel, Teams, Outlook) with tenant context and Graph security.  
@@ -103,7 +101,7 @@ Managed service for agent orchestration within Azure AI Foundry. GA. Use for: Ma
 
 ---
 
-## 2. Microsoft AI Ecosystem Architecture
+## 2. Five-Layer Capability Model
 
 Microsoft's AI portfolio is organized into **five capability layers**. Understanding this structure helps you select the right technology for your requirements.
 
@@ -204,7 +202,7 @@ Purpose-built AI assistants for specific workflows and industries.
 
 ---
 
-## 3. Decision Framework: When to Use What
+## 3. Three-Phase Decision Methodology
 
 **Source:** This framework integrates Microsoft's [Business-Experience-Technology (BXT) Framework](https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/business-envisioning), [Cloud Adoption Framework AI Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy), and [M365 Copilot Extensibility Decision Guidance](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview)
 
@@ -245,106 +243,289 @@ Before evaluating technology options, validate the use case through three dimens
 
 ---
 
-### Phase 2: Technology Selection (Six Critical Questions)
+### Phase 2: Technology Groupings (Six Critical Questions)
 
-Apply these questions **sequentially** after passing the BXT assessment.
+Apply these questions **sequentially** after passing the BXT assessment. Each question creates **technology groupings** rather than jumping to specific recommendations. The groupings feed into Phase 3 for final selection.
+
+💡 **Important:** These questions create buckets/categories. Final technology selection happens in **Phase 3** based on scenario-specific criteria (time-to-market, complexity, budget, etc.).
+
+---
 
 #### Question 1: User Experience Location
 
-- **Inside M365 (Teams/Outlook/Word) with tenant context?**  
-  → **Microsoft 365 Copilot** + **Copilot Studio** or **Connectors**
+**Where will users interact with the AI?**
 
-- **Custom app, website, or external channel (Web/Mobile/WhatsApp)?**  
-  → **Copilot Studio** (SaaS) or **M365 Agents SDK**
+**Options:**
+- **M365 Apps** (Teams, Outlook, Word, SharePoint) with tenant context
+- **Custom/Multi-Channel** (Web, Mobile, WhatsApp, SMS, Email)
+- **Both** (M365 + External channels)
+- **API/Headless** (Backend services, no UI)
+
+**Resulting Groupings:**
+- **M365-Centric Technologies**: M365 Copilot, Copilot Studio (M365 channels), Graph Connectors, Declarative Agents
+- **Multi-Channel Technologies**: M365 Agents SDK, Copilot Studio (custom channels), Azure AI Foundry, Logic Apps
+- **Hybrid**: Copilot Studio (both M365 + custom), M365 Agents SDK + Azure
+
+💡 **Cross-reference:** See Section 9 "Scenario-Based Quick Starts" for scenario-based examples
 
 ---
 
 #### Question 2: Build Style & Control Level
 
-- **Low-ops, governed, fastest time-to-value (makers can own)**  
-  → **Copilot Studio** (low-code to pro-code)
+**What development approach fits your team and requirements?**
 
-- **Pro-code, multi-channel, M365-focused**  
-  → **M365 Agents SDK** (BYO orchestrator)
+**Options:**
+- **Low-Code/Visual** (Business users, makers, rapid deployment)
+- **Pro-Code** (Full control, custom orchestration)
+- **Hybrid** (Low-code start, scale to pro-code)
+- **Enterprise Integration** (Workflow automation + AI)
 
-- **Pro-code, enterprise integration, workflow automation + AI agents**  
-  → **Azure Logic Apps** (visual designer + AI agent workflows, MCP server)
+**Resulting Groupings:**
+- **Maker-Accessible**: Copilot Studio, AI Builder, Declarative Agents, Power Platform
+- **Developer-Required**: M365 Agents SDK, Azure AI Foundry, Agent Framework, Teams AI Library
+- **Integration-Focused**: Azure Logic Apps, Power Automate, Copilot Studio Agent Flows
+- **Hybrid Options**: Copilot Studio (low-code → pro-code), Azure AI Foundry + Studio
 
-- **Code-first, deep customization, Azure-native**  
-  → **Azure AI Foundry** + **Azure AI Agent Service**
-
-- **Pro-code, Teams-only, built-in orchestration acceptable**  
-  → **Teams AI Library**
+💡 **Cross-reference:** See Section 4 "Quick Reference: Technology by Need" for Agent Development Approach Comparison subsection
 
 ---
 
 #### Question 3: Data Grounding Pattern
 
-- **M365 + third-party data indexed into Microsoft Graph**  
-  → **Graph/Copilot Connectors** + **M365 Copilot** or **Copilot Studio**
+**How will you ground the AI in organizational knowledge?**
 
-- **Large-scale vector search with hybrid capabilities (keyword + semantic + vector)**  
-  → **Azure AI Search** + **Azure AI Foundry** (optionally BYOK to **Copilot Studio**)
+**Options:**
+- **M365 Graph** (SharePoint, OneDrive, Teams, third-party via connectors)
+- **Azure AI Search** (Large-scale vector + hybrid search)
+- **Database** (PostgreSQL pgvector, Cosmos DB, operational data)
+- **Multiple Sources** (Hybrid RAG patterns)
 
-- **Operational database with real-time vector updates (RAG + transactional data co-located)**  
-  → **Azure Database for PostgreSQL (pgvector)** + **Azure AI Foundry**
+**Resulting Groupings:**
+- **Graph-Based**: M365 Copilot + Graph Connectors, Copilot Studio with M365 data
+- **Vector Search**: Azure AI Search + Azure AI Foundry, BYOK to Copilot Studio
+- **Transactional/Real-time**: PostgreSQL pgvector + Azure AI Foundry
+- **Hybrid**: Combine Graph + Azure Search + Custom connectors
 
----
-
-#### Question 4: Agent Complexity & Orchestration
-
-- **Conversational Q&A + light actions**  
-  → **Copilot Studio** declarative agents or **M365 Agents SDK** with simple orchestration
-
-- **Multi-step workflows with checkpointing**  
-  → **Microsoft Agent Framework** (Executor/Edge patterns, Sequential/Concurrent/Handoff/Magentic workflows)
-
-- **Multi-tool skills, autonomy, multi-agent collaboration**  
-  → **Azure AI Foundry + Agent Service** or **M365 Agents SDK + Agent Framework**
-
-- **Complex business logic, multi-channel**  
-  → **M365 Agents SDK** + custom orchestrator (Agent Framework/LangChain/custom)
-
-- **Multi-agent orchestration across platforms**  
-  → **M365 Agents SDK** (can reference **Copilot Studio agents** as tools)
-
-**Decision Criteria:**
-
-- Workflow orchestration + checkpointing? → Microsoft Agent Framework
-- Multi-channel agents? → M365 Agents SDK
-- Azure-native managed agents? → Azure AI Agent Service
+💡 **Cross-reference:** See Section 5 "Common Implementation Patterns" (Pattern 3: Graph-Centric Grounding)
 
 ---
 
-#### Question 5: Compliance & Boundaries
+#### Question 4: Orchestration Complexity
 
-- **Must stay in M365 trust boundary**  
-  → **M365 Copilot + Copilot Studio + Connectors**
+**What level of agent orchestration and workflow complexity?**
 
-- **Can leverage Azure with governance**  
-  → **Azure AI Foundry** (proper networking/security)
+**Options:**
+- **Simple Q&A** (Conversational, light actions, FAQ-style)
+- **Workflows** (Multi-step, deterministic processes, checkpointing)
+- **Multi-Agent** (Agent collaboration, handoffs, specialized agents)
+- **Custom Logic** (Complex decision trees, business rules)
 
-- **Cross-cutting: Centralized governance, cost control, rate limiting, security**  
-  → **Azure API Management (AI Gateway)** – Works with both M365 and Azure paths to enforce token quotas, chargeback, content safety, monitoring
+**Resulting Groupings:**
+- **Declarative/Simple**: Copilot Studio declarative agents, M365 Copilot built-in agents
+- **Workflow-Based**: Microsoft Agent Framework, Azure Logic Apps, Copilot Studio Agent Flows
+- **Multi-Agent Systems**: Azure AI Agent Service (connected agents), Copilot Studio (child + connected agents)
+- **Custom Orchestration**: M365 Agents SDK + Semantic Kernel/LangChain, Azure AI Foundry custom
 
-![AI Gateway Flow](images/ai-gateway-flow.gif)
-
-**AI Gateway Capabilities:** Protocol normalization, authentication/authorization, token rate limiting & quotas, prompt filtering, model routing policies, chargeback management, observability ([Azure-Samples/AI-Gateway](https://github.com/Azure-Samples/AI-Gateway))
-
----
-
-#### Question 6: Persona & Skills
-
-- **Business maker/Power User driving quick wins**  
-  → **Copilot Studio** + **AI Builder** (for document extraction) or **Engineering team** can also use Azure Documents Intelligence
-
-- **Engineering team delivering programmable agents**  
-  → **Azure AI Foundry + Agent Service** and/or **M365 Agents SDK/Toolkit**
-
+💡 **Cross-reference:** See Section 8 "Comprehensive Feature Comparison" for Workflow Orchestration Platform Comparison subsection
 
 ---
 
-## 4. Technology Selection Matrix
+#### Question 5: Compliance & Trust Boundary
+
+**What are your data governance and compliance requirements?**
+
+**Options:**
+- **M365 Trust Boundary** (Must stay within M365 tenant, use existing compliance posture)
+- **Azure-Native** (Leverage Azure governance, VNet, RBAC, private endpoints)
+- **Hybrid** (M365 + Azure with proper security architecture)
+- **Cross-Cutting Governance** (Need centralized control across all AI deployments)
+
+**Resulting Groupings:**
+- **M365 Trust Boundary**: M365 Copilot, Copilot Studio (M365 channels), Graph Connectors
+- **Azure-Native**: Azure AI Foundry, Azure AI Agent Service, Azure Logic Apps
+- **Hybrid/Flexible**: Copilot Studio (BYOK/BYOM), M365 Agents SDK, API Management AI Gateway
+- **Centralized Governance**: Azure API Management (AI Gateway for token limits, chargeback, safety)
+
+💡 **Cross-reference:** See Section 6 "Governance Decision Considerations"
+
+---
+
+#### Question 6: Team Skills & Ownership
+
+**Who will build and maintain the AI solution?**
+
+**Options:**
+- **Makers/Business Users** (No coding, business domain expertise)
+- **Developers** (C#/Python/TypeScript, API integration)
+- **AI/ML Engineers** (Model fine-tuning, evaluations, prompt engineering)
+- **Enterprise Architects** (Large-scale integration, DevOps)
+
+**Resulting Groupings:**
+- **Maker-Accessible**: Copilot Studio, AI Builder, Power Platform, Declarative Agents
+- **Developer-Required**: M365 Agents SDK, Azure AI Foundry, Agent Framework, Teams AI Library
+- **AI/ML Engineer-Required**: Azure AI Foundry (custom models, evaluations), Azure Machine Learning
+- **Enterprise Integration**: Azure Logic Apps, API Management, Power Automate
+
+💡 **Cross-reference:** See Section 7 "Evaluation Criteria Reference" (Skills Required)
+
+---
+
+### Phase 3: Scenario-Specific Selection (NEW)
+
+**Purpose:** Given the technology groupings from Phase 2, apply scenario-specific criteria to select the optimal tool for your specific requirements.
+
+💡 **This phase answers: "Given my groupings, which specific technology should I choose?"**
+
+**Apply these criteria in order:**
+
+#### 1. Time to Market Urgency
+
+**Days (Immediate):**
+- M365 Copilot (built-in agents, no setup)
+- Copilot Studio templates (declarative agents)
+
+**Weeks (Fast):**
+- Copilot Studio (custom engine agents with low-code)
+- Azure Logic Apps (visual designer + AI agent workflows)
+- M365 Agents SDK (with Teams AI Library for Teams-only)
+
+**Months (Custom):**
+- Azure AI Foundry + custom development
+- M365 Agents SDK + Agent Framework (complex orchestration)
+- Azure AI Agent Service (managed PaaS for enterprise-scale)
+
+💡 **Cross-reference:** Section 9 "Scenario-Based Quick Starts"
+
+---
+
+#### 2. Managed vs. Self-Managed Preference
+
+**Managed (SaaS/PaaS):**
+- Microsoft 365 Copilot (fully managed)
+- Copilot Studio (SaaS platform)
+- Azure AI Agent Service (managed agent runtime)
+
+**Self-Managed (Infrastructure Control):**
+- Azure AI Foundry (you manage compute, networking)
+- M365 Agents SDK (you host and deploy)
+- Azure Logic Apps (Standard plan, self-hosted integration runtime)
+
+**Hybrid:**
+- Copilot Studio with BYOK/BYOM (managed platform + your infrastructure)
+- Azure AI Foundry + Agent Service (code-first + managed runtime)
+
+💡 **Cross-reference:** Section 8 "Comprehensive Feature Comparison" (Deployment row)
+
+---
+
+#### 3. Complexity Level
+
+**Low Complexity (Simple Q&A, basic actions):**
+- Copilot Studio declarative agents
+- M365 Copilot with Graph Connectors
+- AI Builder models (prebuilt document processing)
+
+**Medium Complexity (Multi-step workflows, integrations):**
+- Copilot Studio custom engine agents with BYOK/BYOM
+- M365 Agents SDK with simple orchestration
+- Azure Logic Apps AI agent workflows
+
+**High Complexity (Multi-agent, custom orchestration, advanced evals):**
+- Azure AI Foundry + Azure AI Agent Service
+- M365 Agents SDK + Agent Framework (checkpointing, workflow orchestration)
+- Custom solutions with Semantic Kernel or LangChain
+
+💡 **Cross-reference:** Section 7 "Evaluation Criteria Reference" (Complexity table)
+
+---
+
+#### 4. Budget & Licensing Model
+
+**Predictable Per-User:**
+- M365 Copilot ($30/user/month, included in Microsoft 365 E5)
+
+**Usage-Based (No upfront commitment):**
+- Copilot Studio Pay-As-You-Go ($0.01/Copilot Credit)
+- Azure AI Foundry (serverless, pay-per-token)
+
+**Prepaid Capacity:**
+- Copilot Studio prepaid packs (predictable high-volume)
+- Azure OpenAI provisioned throughput (PTU)
+
+**Azure Consumption:**
+- Azure AI Foundry (token-based pricing)
+- Azure AI Agent Service (compute + storage)
+- Azure Logic Apps (execution-based)
+
+💡 **Cross-reference:** Section 7 "Evaluation Criteria Reference" (Budget Considerations)
+
+---
+
+#### 5. Integration Requirements
+
+**Need Enterprise Connectors (1,400+)?**
+- **Azure Logic Apps** (cloud + on-premises, MCP server, AI agent workflows)
+
+**Need Power Platform Connectors (1,000+)?**
+- **Copilot Studio** + **Power Automate** (Cloud Flows or Agent Flows)
+
+**Need Document Processing?**
+- **AI Builder** (Power Platform scenarios)
+- **Azure Document Intelligence** (custom/advanced scenarios)
+
+**Need Multi-Channel Deployment?**
+- **M365 Agents SDK** (10+ channels: Web, Mobile, SMS, WhatsApp, Teams, M365 Copilot)
+- **Copilot Studio** (M365 + custom channels)
+
+💡 **Cross-reference:** Section 5 "Common Implementation Patterns" (Pattern 4: Multi-Channel Custom Engine Agent)
+
+---
+
+#### 6. Orchestration-Specific Needs
+
+**Need Checkpointing (Long-running, human-in-loop)?**
+- **Microsoft Agent Framework** (Executor/Edge workflows, built-in checkpointing)
+- **Azure Logic Apps** (state management, workflow designer)
+
+**Need Multi-Agent Collaboration?**
+- **Azure AI Agent Service** (connected agents, managed orchestration)
+- **Copilot Studio** (child agents + connected agents, supports Fabric data agents)
+- **Agent Framework** (Handoff/Magentic patterns)
+
+**Need Workflow Automation + AI?**
+- **Azure Logic Apps AI Agent Workflows** (autonomous/conversational, MCP server)
+- **Copilot Studio Agent Flows** (native flows in Studio)
+- **Power Automate Cloud Flows** (1,000+ connectors, long-running)
+
+💡 **Cross-reference:** Section 8 "Comprehensive Feature Comparison" for Workflow Orchestration Platform Comparison subsection
+
+---
+
+### Phase 3 Decision Output Template
+
+After applying all criteria, document your selection:
+
+**Selected Technology:** [Your Choice]
+
+**Rationale:**
+- **Phase 2 Groupings:** [List groupings from 6 questions]
+- **Time to Market:** [Days/Weeks/Months + why this matters]
+- **Managed vs Self-Managed:** [Preference + reasoning]
+- **Complexity Level:** [Low/Medium/High + specific requirements]
+- **Budget Model:** [Per-user/Usage/Consumption + constraints]
+- **Integration Needs:** [Key connectors/systems required]
+- **Orchestration Requirements:** [Checkpointing/Multi-agent/Workflows]
+
+**Architecture Pattern:** [Reference Section 5 Pattern 1-5]
+
+**Trade-offs Accepted:** [What you're giving up, reference Section 7]
+
+**Next Steps:** [Pilot, POC, or full deployment]
+
+
+---
+
+## 4. Quick Reference: Technology by Need
 
 | Primary Need | Choose | Why This First? | Typical Add-ons |
 |--------------|--------|-----------------|-----------------|
@@ -358,9 +539,9 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 ---
 
-## 4a. When to Choose Each Agent Development Approach
+### Agent Development Approach Comparison
 
-### Declarative Agents vs. Custom Engine Agents
+#### Declarative Agents vs. Custom Engine Agents
 
 **Build a Declarative Agent (Copilot Studio or M365 Agents Toolkit) when:**
 - ✅ You want to work within Copilot's orchestration and language models
@@ -428,7 +609,7 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 ---
 
-## 5. Architecture Patterns
+## 5. Common Implementation Patterns
 
 ### Pattern 1: Start in Studio, Scale with Azure
 
@@ -572,7 +753,7 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 ---
 
-## 6. Governance & Operations Checkpoints
+## 6. Governance Decision Considerations
 
 Governance decisions impact technology selection and deployment architecture. Key checkpoints determine boundaries, ownership, extensibility, channels, costing, and compliance posture for AI agent implementations.
 
@@ -586,7 +767,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ---
 
-## 7. Decision Criteria Summary
+## 7. Evaluation Criteria Reference
 
 ### Complexity
 
@@ -633,7 +814,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ---
 
-## 8. Technology Comparison Matrix
+## 8. Comprehensive Feature Comparison
 
 | Feature | M365 Copilot | Copilot Studio | Azure AI Foundry | **Microsoft Agent Framework** | Azure AI Agent Service | M365 Agents SDK | **Azure Logic Apps** |
 |---------|--------------|----------------|------------------|------------------------------|------------------------|-----------------|----------------------|
@@ -655,11 +836,11 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ---
 
-## 8a. Agentic Workflows Comparison
+### Workflow Orchestration Platform Comparison
 
 **Agentic workflows** automate business processes and orchestrate AI agents through deterministic sequences with AI integration. Microsoft provides three primary technologies for different development approaches and team skills.
 
-### Technology Options
+#### Technology Options
 
 | Feature | **Agent Framework Workflows** | **Logic Apps AI Agent Workflows** | **Copilot Studio Agent Flows** |
 |---------|------------------------------|-----------------------------------|--------------------------------|
@@ -676,7 +857,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 | **Status** | Public Preview | Preview (Agents), GA (core) | GA |
 | **Best For** | Multi-agent orchestration + checkpointing | Enterprise integration + AI agents | Fast automation within Studio agents |
 
-### When to Use Each
+#### When to Use Each
 
 **Agent Framework Workflows:**
 - Type-safe workflow orchestration with compile-time validation
@@ -706,7 +887,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ---
 
-## 9. Quick Start Recommendations
+## 9. Scenario-Based Quick Starts
 
 These are common scenarios with recommended technology paths. They represent typical use cases but are not exhaustive—your specific requirements may lead to different technology combinations based on the decision framework in Section 3.
 
@@ -859,17 +1040,20 @@ These are common scenarios with recommended technology paths. They represent typ
 
 ---
 
-## 12. Triaging Intake Process: Complete Decision Framework
+## 12. Visual Decision Framework
 
 **Purpose:** This comprehensive framework guides organizations from initial AI use case through final technology selection, incorporating business viability, user desirability, and technical feasibility assessments.
 
 **Source:** Based on Microsoft's [Business-Experience-Technology (BXT) Framework](https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/business-envisioning) and [Cloud Adoption Framework AI Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy)
 
-**Framework Structure:** This intake process visualizes **Section 3's Decision Framework** as an actionable workflow. The process follows **2 main phases** that correspond directly to Section 3:
+**Framework Structure:** This intake process visualizes **Section 3's Decision Framework** as an actionable workflow. The process follows **3 main phases** that correspond directly to Section 3:
 - **Phase A**: Business Impact Assessment (BXT) — *corresponds to Section 3 Phase 1*
-- **Phase B**: Technology Selection (6 Critical Questions) — *corresponds to Section 3 Phase 2*
+- **Phase B**: Technology Groupings (6 Critical Questions) — *corresponds to Section 3 Phase 2*
+- **Phase C**: Scenario-Specific Selection — *corresponds to Section 3 Phase 3*
 
-💡 **See Section 3 for detailed guidance on each question and decision criteria.**
+💡 **See Section 3 for detailed guidance on each question, groupings, and decision criteria.**
+
+**Key Insight:** Phase B creates **technology buckets/groupings**, not final recommendations. Phase C applies scenario-specific criteria (time-to-market, complexity, budget, integration needs) to select the optimal tool from those groupings.
 
 ---
 
@@ -942,62 +1126,36 @@ graph TD
     style Incubate3 fill:#8764B8,stroke:#5B3F87,stroke-width:2px,color:#FFF
 ```
 
-**Next Step:** If outcome is "✅ ACCELERATE TO MVP", proceed to **Phase B: Technology Selection**
+**Next Step:** If outcome is "✅ ACCELERATE TO MVP", proceed to **Phase B: Technology Groupings**
 
 ---
 
-### Phase B: Technology Selection (Six Critical Questions)
+### Phase B: Technology Groupings (Simplified Six Critical Questions)
 
-**Purpose:** Apply Section 3's 6 Critical Questions sequentially to determine the optimal technology stack based on user experience needs, build style, data patterns, agent complexity, compliance boundaries, and team skills.
+**Purpose:** Apply Section 3's 6 Critical Questions sequentially to create **technology groupings/buckets**. This phase does NOT provide final recommendations—it narrows the field to relevant options.
 
-**Corresponds to:** Section 3 Phase 2 — Technology Selection (Questions 1-6)
+**Corresponds to:** Section 3 Phase 2 — Technology Groupings
 
 **Key Questions from Section 3:**
 
-1. **User Experience Location** (Q1): Where will users interact? (M365 apps vs Custom app)
-2. **Build Style & Control** (Q2): Low-code/governed vs Pro-code/custom?
-3. **Data Grounding Pattern** (Q3): Graph Connectors vs Azure AI Search?
-4. **Agent Complexity** (Q4): Simple Q&A vs Multi-agent orchestration?
-5. **Compliance & Boundaries** (Q5): M365 trust boundary vs Azure?
-6. **Team Skills Available** (Q6): What skills exist to build & maintain?
+1. **User Experience Location** (Q1): Where will users interact? → Creates **M365-Centric** vs **Multi-Channel** groupings
+2. **Build Style & Control** (Q2): What development approach? → Creates **Maker-Accessible** vs **Developer-Required** vs **Integration-Focused** groupings
+3. **Data Grounding Pattern** (Q3): How to ground in knowledge? → Creates **Graph-Based** vs **Vector Search** vs **Transactional** groupings
+4. **Orchestration Complexity** (Q4): What complexity level? → Creates **Declarative/Simple** vs **Workflow-Based** vs **Multi-Agent** vs **Custom** groupings
+5. **Compliance & Boundaries** (Q5): What governance requirements? → Creates **M365 Trust** vs **Azure-Native** vs **Hybrid** groupings
+6. **Team Skills** (Q6): Who will build and maintain? → Creates **Maker-Accessible** vs **Developer-Required** vs **AI/ML Engineer** groupings
 
-**Outcome:** Specific technology recommendation (M365 Copilot, Copilot Studio, M365 Agents SDK, Azure AI Foundry, Azure AI Agent Service) + Hosting decision for custom code
+**Outcome:** A **technology profile** consisting of groupings from each question. This profile feeds into Phase C for final selection.
 
----
+**Example Profile After Phase B:**
+- Q1: Multi-Channel
+- Q2: Developer-Required
+- Q3: Vector Search
+- Q4: Workflow-Based
+- Q5: Azure-Native
+- Q6: Developer-Required
 
-#### 📖 Terminology Clarification
-
-**⚠️ Common Misconception: "Low-Code is Only for Makers, Pro-Code is Only for Developers"**
-
-This is **incorrect** and leads to poor technology choices. Here's the reality:
-
-| Term | What It Actually Means | Who Should Use It |
-|------|------------------------|-------------------|
-| **Low-Code** | Less code to write, visual/declarative approach, managed platform (e.g., Copilot Studio, Power Platform) | **Makers AND Developers** — Use when speed matters and custom orchestration isn't needed |
-| **Pro-Code** | Write code in programming languages (C#, Python, JavaScript), full control, custom orchestration | **Developers only** — Use when you need custom logic beyond low-code capabilities |
-
-**✅ Correct Thinking:**
-- **"We have developers, so we CAN use low-code OR pro-code — let the use case decide"**
-- Low-code is faster for simple/moderate complexity (days/weeks vs months)
-- Pro-code gives full control for complex orchestration needs
-
-**❌ Pitfall to Avoid:**
-- **"We have developers, so we MUST use M365 SDK/Azure AI Foundry"**
-- This wastes time building custom solutions when Copilot Studio (low-code) would suffice
-- Developers should choose the **simplest tool that meets requirements**, not the most complex
-
-**Decision Drivers (in priority order):**
-1. **Use case complexity** — Simple Q&A vs Custom multi-agent workflows?
-2. **Time to market** — Days/weeks (low-code) vs Months (pro-code)?
-3. **Control requirements** — Managed governance OK vs Need custom orchestration?
-4. **Team skills** — Expands options (devs can use both) vs Limits options (makers use low-code only)
-
-**Skill-Based Options Matrix:**
-
-| Team Composition | Can Use Low-Code Tools? | Can Use Pro-Code Tools? | Decision Driver |
-|------------------|-------------------------|-------------------------|-----------------|
-| **Makers only** | ✅ Yes (Copilot Studio, Power Platform) | ❌ No (lack coding skills) | **Limited to low-code** |
-| **Developers available** | ✅ Yes (when appropriate) | ✅ Yes (when needed) | **Use case complexity + time to market** |
+**Next:** Take this profile to **Phase C** and apply scenario-specific criteria (time-to-market, complexity, budget, etc.) to select the optimal technology
 
 ---
 
@@ -1007,185 +1165,247 @@ graph TD
     Start([From Phase A:<br/>✅ ACCELERATE TO MVP]) --> Q1{Q1: User Experience<br/>Location?}
     
     %% Q1: User Experience Location
-    Q1 -->|Inside M365 apps<br/>Teams/Outlook/Word| M365Path[M365 Copilot +<br/>Extensions]
-    Q1 -->|Custom app or<br/>external channels| CustomPath[Custom App<br/>Path]
+    Q1 -->|M365 Apps| G1M365[🟦 M365-Centric Grouping<br/>• M365 Copilot<br/>• Copilot Studio M365<br/>• Graph Connectors<br/>• Declarative Agents]
+    Q1 -->|Custom/Web/Mobile| G1Custom[🟦 Multi-Channel Grouping<br/>• Copilot Studio custom<br/>• M365 Agents SDK<br/>• Azure AI Foundry<br/>• Logic Apps]
+    Q1 -->|Both| G1Hybrid[🟦 Hybrid Grouping<br/>• Copilot Studio both<br/>• M365 SDK + Azure]
+    Q1 -->|API/Headless| G1API[🟦 API Grouping<br/>• Azure AI Foundry<br/>• Logic Apps<br/>• Custom services]
     
-    %% M365 Path Branch
-    M365Path --> M365Q{Need custom<br/>data or actions?}
-    M365Q -->|No| M365OOB[✅ M365 Copilot<br/>Out-of-the-box<br/>🏠 Hosted: Microsoft SaaS]
-    M365Q -->|Yes| M365ExtType{Extension type?}
-    M365ExtType -->|Index external data| GraphConn[✅ Graph Connectors<br/>Q3: Data Pattern<br/>🏠 Hosted: Microsoft SaaS]
-    M365ExtType -->|Custom agent| StudioDecl[Copilot Studio<br/>Declarative Agent]
+    G1M365 --> Q2
+    G1Custom --> Q2
+    G1Hybrid --> Q2
+    G1API --> Q2
     
-    %% Custom App Path → Q2 (USE CASE DRIVEN, NOT PERSONA DRIVEN)
-    CustomPath --> Q2{Q2: Use Case Complexity<br/>& Time to Market?}
-    Q2 -->|Low complexity<br/>Fast TTM Days/Weeks| StudioPath[Copilot Studio<br/>Makers OR Devs]
-    Q2 -->|Enterprise integration<br/>+ AI agent workflows| LogicAppsPath[Azure Logic Apps<br/>Pro-code + Visual<br/>Developers]
-    Q2 -->|Workflow orchestration<br/>+ Checkpointing| AgentFrameworkPath[Agent Framework<br/>SDK-based Workflows<br/>Developers]
-    Q2 -->|Custom orchestration<br/>Multi-channel Months| ProCodePath{Q6: Developer<br/>skills available?}
+    %% Q2: Build Style & Control
+    Q2{Q2: Build Style &<br/>Control Level?} -->|Low-Code/Visual| G2LowCode[🟦 Maker-Accessible<br/>• Copilot Studio<br/>• AI Builder<br/>• Power Platform]
+    Q2 -->|Pro-Code| G2ProCode[🟦 Developer-Required<br/>• M365 Agents SDK<br/>• Azure AI Foundry<br/>• Agent Framework]
+    Q2 -->|Hybrid| G2Hybrid[🟦 Hybrid Options<br/>• Copilot Studio pro-code<br/>• Foundry + Studio]
+    Q2 -->|Enterprise Integration| G2Integration[🟦 Integration-Focused<br/>• Azure Logic Apps<br/>• Power Automate<br/>• Studio Agent Flows]
     
-    %% Logic Apps Path → Direct to Data Grounding (CORRECTED - removed agent workflow pattern decision)
-    LogicAppsPath --> LogicAppsData{Q3: Data<br/>Grounding?}
-    LogicAppsData -->|1,400+ connectors<br/>Enterprise systems| LogicAppsConn[✅ Logic Apps<br/>AI Agent Workflows<br/>🏠 Azure Portal Preview]
-    LogicAppsData -->|Azure OpenAI<br/>+ AI Foundry| LogicAppsLLM[✅ Logic Apps +<br/>Azure AI Foundry<br/>🏠 DevOps-ready]
+    G2LowCode --> Q3
+    G2ProCode --> Q3
+    G2Hybrid --> Q3
+    G2Integration --> Q3
     
-    LogicAppsConn --> FinalRec
-    LogicAppsLLM --> FinalRec
+    %% Q3: Data Grounding Pattern
+    Q3{Q3: Data Grounding<br/>Pattern?} -->|M365 Graph| G3Graph[🟦 Graph-Based<br/>• M365 Copilot + Connectors<br/>• Studio M365 data]
+    Q3 -->|Azure AI Search| G3Vector[🟦 Vector Search<br/>• Azure AI Search<br/>• Foundry RAG<br/>• BYOK to Studio]
+    Q3 -->|Database| G3DB[🟦 Transactional<br/>• PostgreSQL pgvector<br/>• Cosmos DB<br/>• Foundry custom]
+    Q3 -->|Multiple Sources| G3Hybrid[🟦 Hybrid RAG<br/>• Graph + Search<br/>• Multi-source patterns]
     
-    %% Agent Framework Path → Orchestration Patterns
-    AgentFrameworkPath --> AFPattern{Orchestration<br/>Pattern?}
-    AFPattern -->|Sequential/Concurrent<br/>workflows| AFBasic[✅ Agent Framework<br/>Basic Patterns<br/>🏠 Self-managed]
-    AFPattern -->|Handoff/Magentic<br/>multi-agent| AFAdvanced[✅ Agent Framework<br/>Advanced Patterns<br/>🏠 Self-managed]
-    AFPattern -->|Human-in-the-loop<br/>approvals| AFCheckpoint[✅ Agent Framework<br/>+ Checkpointing<br/>🏠 Self-managed]
+    G3Graph --> Q4
+    G3Vector --> Q4
+    G3DB --> Q4
+    G3Hybrid --> Q4
     
-    AFBasic --> AFIntegration{Integration<br/>Needs?}
-    AFAdvanced --> AFIntegration
-    AFCheckpoint --> AFIntegration
-    AFIntegration -->|M365 Copilot/Teams<br/>Multi-channel| AFWithSDK[Agent Framework<br/>+ M365 Agents SDK]
-    AFIntegration -->|Standalone agents<br/>Custom hosting| AFStandalone[Agent Framework<br/>Standalone]
+    %% Q4: Orchestration Complexity
+    Q4{Q4: Orchestration<br/>Complexity?} -->|Simple Q&A| G4Simple[🟦 Declarative/Simple<br/>• Studio declarative<br/>• M365 Copilot agents]
+    Q4 -->|Workflows| G4Workflow[🟦 Workflow-Based<br/>• Agent Framework<br/>• Logic Apps<br/>• Studio Agent Flows]
+    Q4 -->|Multi-Agent| G4Multi[🟦 Multi-Agent Systems<br/>• AI Agent Service<br/>• Studio connected agents<br/>• Agent Framework patterns]
+    Q4 -->|Custom Logic| G4Custom[🟦 Custom Orchestration<br/>• SDK + Semantic Kernel<br/>• SDK + LangChain<br/>• Foundry custom]
     
-    AFWithSDK --> AFHosting{Hosting<br/>Requirements?}
-    AFStandalone --> AFHosting
-    AFHosting -->|Event-driven agents<br/>MCP function calling| AFFunctions[🏠 Azure Functions<br/>🤖 AI-optimized]
-    AFHosting -->|GPU inference<br/>Scale to zero| AFACA[🏠 Container Apps<br/>🔥 GPU + Serverless]
-    AFHosting -->|Always-on web apps<br/>Zero cold start| AFAppSvc[🏠 App Service<br/>📡 Always-on]
-    AFHosting -->|Self-hosted LLMs<br/>GPU training| AFAKS[🏠 AKS<br/>🔥 Full K8s control]
+    G4Simple --> Q5
+    G4Workflow --> Q5
+    G4Multi --> Q5
+    G4Custom --> Q5
     
-    AFFunctions --> FinalRec
-    AFACA --> FinalRec
-    AFAppSvc --> FinalRec
-    AFAKS --> FinalRec
+    %% Q5: Compliance & Boundaries
+    Q5{Q5: Compliance &<br/>Trust Boundary?} -->|M365 Only| G5M365[🟦 M365 Trust Boundary<br/>• M365 Copilot<br/>• Studio M365 channels<br/>• Graph Connectors]
+    Q5 -->|Azure| G5Azure[🟦 Azure-Native<br/>• Azure AI Foundry<br/>• AI Agent Service<br/>• Logic Apps]
+    Q5 -->|Hybrid| G5Hybrid[🟦 Hybrid/Flexible<br/>• Studio BYOK/BYOM<br/>• M365 SDK<br/>• API Management AI Gateway]
+    Q5 -->|Centralized Governance| G5Gov[🟦 Cross-Cutting Governance<br/>• API Management AI Gateway<br/>• token limits, chargeback, safety]
     
-    ProCodePath -->|No devs available| NoDevs[⚠️ Use Copilot Studio<br/>Makers limited to low-code]
-    ProCodePath -->|Yes, devs available| ProCodeOptions{M365-focused or<br/>Azure-native?}
-    ProCodeOptions -->|M365 + Multi-channel| M365SDK[M365 Agents SDK<br/>BYO Orchestrator]
-    ProCodeOptions -->|Azure-native<br/>Deep customization| AzurePath[Azure AI Foundry<br/>+ Agent Service]
+    G5M365 --> Q6
+    G5Azure --> Q6
+    G5Hybrid --> Q6
+    G5Gov --> Q6
     
-    %% Copilot Studio Path (SaaS - No Hosting Needed)
-    StudioPath --> StudioQ{Agent Type?}
-    StudioQ -->|Declarative<br/>Copilot orchestrator| StudioDeclAgent[✅ Copilot Studio<br/>Declarative Agent<br/>🏠 Hosted: Microsoft SaaS]
-    StudioQ -->|Custom engine<br/>BYO orchestrator| StudioCEA[✅ Copilot Studio<br/>Custom Engine Agent<br/>🏠 Hosted: Microsoft SaaS]
+    %% Q6: Team Skills & Ownership
+    Q6{Q6: Team Skills &<br/>Ownership?} -->|Makers/Business Users| G6Makers[🟦 Maker-Accessible<br/>• Copilot Studio<br/>• AI Builder<br/>• Power Platform]
+    Q6 -->|Developers| G6Devs[🟦 Developer-Required<br/>• M365 Agents SDK<br/>• Azure AI Foundry<br/>• Agent Framework]
+    Q6 -->|AI/ML Engineers| G6MLEng[🟦 AI/ML Engineer<br/>• Azure AI Foundry custom<br/>• Model fine-tuning<br/>• Evaluations]
+    Q6 -->|Enterprise Architects| G6Enterprise[🟦 Enterprise Integration<br/>• Logic Apps<br/>• API Management<br/>• Power Automate]
     
-    %% Studio + BYOM Integration (NEW - Corrected)
-    StudioCEA --> ModelChoice{Model Source?}
-    ModelChoice -->|Studio managed| StudioManaged[Use Copilot Studio<br/>Managed Models]
-    ModelChoice -->|Azure AI Foundry| StudioBYOM[✅ BYOM Azure AI<br/>Foundry Models Preview]
+    G6Makers --> Profile
+    G6Devs --> Profile
+    G6MLEng --> Profile
+    G6Enterprise --> Profile
     
-    %% M365 Agents SDK Path → Q4 → HOSTING DECISION (NEW)
-    M365SDK --> Q4SDK{Q4: Agent<br/>Complexity?}
-    Q4SDK -->|Simple Q&A<br/>Light actions| SDKSimple[✅ M365 Agents SDK<br/>Simple orchestration]
-    Q4SDK -->|Multi-step workflows<br/>Checkpointing| SDKWorkflow[✅ M365 Agents SDK<br/>+ Agent Framework]
-    Q4SDK -->|Multi-agent<br/>collaboration| SDKMulti[✅ M365 Agents SDK<br/>+ Custom orchestrator]
+    %% Technology Profile Output
+    Profile[📋 Technology Profile Created<br/>List groupings from Q1-Q6]
+    Profile --> PhaseC[Proceed to Phase C:<br/>Scenario-Specific Selection]
     
-    %% Agent Framework can reference Studio agents (NEW - Corrected)
-    SDKWorkflow --> AgentFrameworkComp{Reuse Studio<br/>agents?}
-    AgentFrameworkComp -->|Yes| AFStudio[Agent Framework +<br/>Studio agents as tools]
-    AgentFrameworkComp -->|No| AFCustom[Agent Framework<br/>Custom agents only]
-    
-    %% HOSTING DECISION for M365 SDK paths (NEW)
-    SDKSimple --> HostingSDK{Hosting<br/>Requirements?}
-    AFStudio --> HostingSDK
-    AFCustom --> HostingSDK
-    SDKMulti --> HostingSDK
-    
-    HostingSDK -->|Event-driven agents<br/>MCP, function calling| AzFunc[🏠 Azure Functions<br/>🤖 AI-optimized]
-    HostingSDK -->|GPU inference<br/>Dynamic sessions<br/>Scale to zero| ACA[🏠 Container Apps<br/>🔥 GPU + Serverless]
-    HostingSDK -->|Agentic web apps<br/>MCP for dev tools<br/>Zero cold start| AppSvc[🏠 App Service<br/>📡 Always-on]
-    HostingSDK -->|Self-hosted LLMs<br/>KAITO 1,600+ models<br/>GPU training| AKS[🏠 AKS<br/>🔥 Full K8s control]
-    
-    %% Azure AI Foundry Path → Q5 → HOSTING DECISION (NEW)
-    AzurePath --> Q5{Q5: Data<br/>Governance?}
-    Q5 -->|Need M365<br/>tenant-integrated| BackToStudio[⚠️ Use Copilot Studio<br/>or M365 SDK instead]
-    Q5 -->|Want workload-<br/>tailored controls| AzureOK[Proceed with<br/>Azure options]
-    
-    AzureOK --> Q4Azure{Q4: Need managed<br/>orchestration?}
-    Q4Azure -->|Yes| AgentService[✅ Azure AI<br/>Agent Service<br/>🏠 Hosted: Microsoft PaaS]
-    Q4Azure -->|No| FoundryCustom[✅ Azure AI Foundry<br/>Custom Implementation]
-    
-    %% HOSTING for Foundry Custom (NEW)
-    FoundryCustom --> HostingFoundry{Hosting<br/>Requirements?}
-    HostingFoundry -->|Event-driven agents<br/>MCP, function calling| AzFuncFoundry[🏠 Azure Functions<br/>🤖 AI-optimized]
-    HostingFoundry -->|GPU inference<br/>Scale to zero| ACAFoundry[🏠 Container Apps<br/>🔥 GPU + Serverless]
-    HostingFoundry -->|Self-hosted LLMs<br/>KAITO, GPU training| AKSFoundry[🏠 AKS<br/>🔥 Full K8s control]
-    
-    %% Q3: Data Grounding (cross-cutting)
-    StudioDeclAgent --> Q3Studio{Q3: Data<br/>Grounding?}
-    StudioManaged --> Q3Studio
-    Q3Studio -->|M365 + Graph data| StudioGraph[Use Graph<br/>Connectors]
-    Q3Studio -->|Large vector stores<br/>Domain RAG| StudioBYOK[✅ BYOK to<br/>Azure AI Search GA]
-    
-    %% Final Recommendations
-    M365OOB --> FinalRec[📋 Document Final<br/>Technology Choice]
-    GraphConn --> FinalRec
-    StudioDecl --> FinalRec
-    StudioDeclAgent --> FinalRec
-    StudioBYOM --> FinalRec
-    StudioBYOK --> FinalRec
-    StudioGraph --> FinalRec
-    StudioSimple --> FinalRec
-    AzFunc --> FinalRec
-    ACA --> FinalRec
-    AppSvc --> FinalRec
-    AKS --> FinalRec
-    AgentService --> FinalRec
-    AzFuncFoundry --> FinalRec
-    ACAFoundry --> FinalRec
-    AKSFoundry --> FinalRec
-    NoDevs --> FinalRec
-    
-    FinalRec --> UIDecision{UI Requirements?<br/>Universal for all techs}
-    UIDecision -->|Conversational UI<br/>Chat interface| UIChat[Deploy with chat UI:<br/>• Copilot Studio chatbot<br/>• SDK with Teams/Web UI<br/>• Foundry with custom UI]
-    UIDecision -->|Autonomous/Headless<br/>API-driven| UIAuto[Deploy as autonomous:<br/>• Proactive/Scheduled agents<br/>• Background processes<br/>• API/Webhook integration]
-    
-    UIChat --> TradeOffs[Document Trade-offs:<br/>Speed vs Control<br/>Cost vs Capability<br/>Simplicity vs Flexibility<br/>Skills vs Time to Value<br/>Hosting: Managed vs Self-Managed<br/>UI: Conversational vs Autonomous]
-    UIAuto --> TradeOffs
-    
-    %% Styling - Accessible colors (WCAG AA compliant)
+    %% Styling
     style Start fill:#0078D4,stroke:#004578,stroke-width:3px,color:#FFF
     style Q1 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
     style Q2 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style Q4SDK fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style Q4Azure fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Q3 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Q4 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
     style Q5 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style Q3Studio fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style ProCodePath fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style ProCodeOptions fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style HostingSDK fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style HostingFoundry fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style ModelChoice fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style AgentFrameworkComp fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Q6 fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
     
-    style FinalRec fill:#107C10,stroke:#004B1C,stroke-width:3px,color:#FFF
-    style TradeOffs fill:#FFB900,stroke:#997000,stroke-width:2px,color:#000
-    style UIDecision fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
-    style UIChat fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style UIAuto fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style G1M365 fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G1Custom fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G1Hybrid fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G1API fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
     
-    style M365OOB fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style GraphConn fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style StudioDeclAgent fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style StudioBYOM fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style StudioBYOK fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style StudioGraph fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style StudioSimple fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AzFunc fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style ACA fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AppSvc fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AKS fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AgentService fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AzFuncFoundry fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style ACAFoundry fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AKSFoundry fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AFStudio fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
-    style AFCustom fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style G2LowCode fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G2ProCode fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G2Hybrid fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G2Integration fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
     
-    style BackToStudio fill:#D83B01,stroke:#8A2700,stroke-width:2px,color:#FFF
-    style NoDevs fill:#FFB900,stroke:#997000,stroke-width:2px,color:#000
+    style G3Graph fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G3Vector fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G3DB fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G3Hybrid fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    
+    style G4Simple fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G4Workflow fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G4Multi fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G4Custom fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    
+    style G5M365 fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G5Azure fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G5Hybrid fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G5Gov fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    
+    style G6Makers fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G6Devs fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G6MLEng fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    style G6Enterprise fill:#00BCF2,stroke:#0078D4,stroke-width:2px,color:#000
+    
+    style Profile fill:#107C10,stroke:#004B1C,stroke-width:3px,color:#FFF
+    style PhaseC fill:#FFB900,stroke:#997000,stroke-width:3px,color:#000
 ```
 
-**💡 Cross-Reference:** See **Section 3 Phase 2** for detailed criteria on each question (when to choose M365 vs custom, low-code vs pro-code, etc.)
+**� Cross-Reference:** See **Section 3 Phase 2** for detailed criteria on each question and what each grouping means.
 
-**Next Step:** Document final technology selection and trade-offs below.
+**Next Step:** Take your technology profile to **Phase C: Scenario-Specific Selection**
+
+---
+
+### Phase C: Scenario-Specific Selection (NEW)
+
+**Purpose:** Given the technology groupings from Phase B, apply scenario-specific criteria to select the optimal tool for your specific requirements.
+
+**Corresponds to:** Section 3 Phase 3 — Scenario-Specific Selection
+
+**How It Works:** Phase B created a technology profile (e.g., "Multi-Channel + Developer-Required + Vector Search + Workflow-Based + Azure-Native"). Phase C now asks: **"Given this profile and my specific scenario requirements, which exact technology should I use?"**
+
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'14px', 'primaryColor':'#0078D4', 'primaryTextColor':'#FFF', 'primaryBorderColor':'#004578', 'lineColor':'#605E5C', 'secondaryColor':'#107C10', 'tertiaryColor':'#D83B01'}}}%%
+graph TD
+    Start([Technology Profile<br/>from Phase B]) --> TimeToMarket{Criteria 1:<br/>Time to Market?}
+    
+    %% Time to Market Branch
+    TimeToMarket -->|Days immediate| FastTech[Fast Technologies:<br/>• M365 Copilot<br/>• Copilot Studio templates]
+    TimeToMarket -->|Weeks fast| ModTech[Moderate Technologies:<br/>• Copilot Studio custom<br/>• Logic Apps<br/>• M365 SDK + Teams AI]
+    TimeToMarket -->|Months custom| SlowTech[Custom Technologies:<br/>• Azure AI Foundry<br/>• SDK + Agent Framework<br/>• AI Agent Service]
+    
+    FastTech --> Managed
+    ModTech --> Managed
+    SlowTech --> Managed
+    
+    %% Managed vs Self-Managed
+    Managed{Criteria 2:<br/>Managed vs<br/>Self-Managed?} -->|Managed SaaS/PaaS| ManagedTech[Managed Options:<br/>• M365 Copilot<br/>• Copilot Studio<br/>• AI Agent Service]
+    Managed -->|Self-Managed Infrastructure| SelfManagedTech[Self-Managed Options:<br/>• Azure AI Foundry<br/>• M365 Agents SDK<br/>• Logic Apps Standard]
+    Managed -->|Hybrid| HybridTech[Hybrid Options:<br/>• Studio BYOK/BYOM<br/>• Foundry + Agent Service]
+    
+    ManagedTech --> Complexity
+    SelfManagedTech --> Complexity
+    HybridTech --> Complexity
+    
+    %% Complexity Level
+    Complexity{Criteria 3:<br/>Complexity Level?} -->|Low Simple Q&A| LowComplex[Low Complexity:<br/>• Studio declarative<br/>• M365 Copilot + Connectors<br/>• AI Builder]
+    Complexity -->|Medium Multi-step| MedComplex[Medium Complexity:<br/>• Studio custom engine + BYOK/BYOM<br/>• M365 SDK simple<br/>• Logic Apps AI workflows]
+    Complexity -->|High Multi-agent| HighComplex[High Complexity:<br/>• Foundry + Agent Service<br/>• SDK + Agent Framework<br/>• Semantic Kernel/LangChain]
+    
+    LowComplex --> Budget
+    MedComplex --> Budget
+    HighComplex --> Budget
+    
+    %% Budget Model
+    Budget{Criteria 4:<br/>Budget Model?} -->|Per-User Predictable| PerUserBudget[Per-User Licensing:<br/>• M365 Copilot $30/user/mo]
+    Budget -->|Usage-Based| UsageBudget[Usage-Based:<br/>• Studio Pay-As-You-Go<br/>• Foundry serverless]
+    Budget -->|Prepaid Capacity| PrepaidBudget[Prepaid Capacity:<br/>• Studio packs<br/>• Azure OpenAI PTU]
+    Budget -->|Azure Consumption| ConsumptionBudget[Azure Consumption:<br/>• Foundry token-based<br/>• AI Agent Service<br/>• Logic Apps execution]
+    
+    PerUserBudget --> Integration
+    UsageBudget --> Integration
+    PrepaidBudget --> Integration
+    ConsumptionBudget --> Integration
+    
+    %% Integration Requirements
+    Integration{Criteria 5:<br/>Integration Needs?} -->|Enterprise Connectors 1400+| EnterpriseInt[Enterprise Integration:<br/>• Logic Apps<br/>cloud + on-premises]
+    Integration -->|Power Platform Connectors 1000+| PowerInt[Power Platform:<br/>• Copilot Studio + Power Automate<br/>• Studio Agent Flows]
+    Integration -->|Document Processing| DocInt[Document Processing:<br/>• AI Builder Power Platform<br/>• Azure Document Intelligence]
+    Integration -->|Multi-Channel 10+| MultiInt[Multi-Channel:<br/>• M365 Agents SDK<br/>• Copilot Studio custom]
+    Integration -->|No special integration| NoInt[Standard Integration:<br/>Continue to orchestration]
+    
+    EnterpriseInt --> Orchestration
+    PowerInt --> Orchestration
+    DocInt --> Orchestration
+    MultiInt --> Orchestration
+    NoInt --> Orchestration
+    
+    %% Orchestration-Specific Needs
+    Orchestration{Criteria 6:<br/>Orchestration<br/>Specifics?} -->|Checkpointing Long-running| CheckpointOrch[Checkpointing:<br/>• Agent Framework<br/>• Logic Apps state management]
+    Orchestration -->|Multi-Agent Collaboration| MultiAgentOrch[Multi-Agent:<br/>• AI Agent Service<br/>• Studio connected agents<br/>• Agent Framework Handoff/Magentic]
+    Orchestration -->|Workflow Automation + AI| WorkflowOrch[Workflow + AI:<br/>• Logic Apps AI workflows<br/>• Studio Agent Flows<br/>• Power Automate]
+    Orchestration -->|No special orchestration| SimpleOrch[Simple Orchestration:<br/>• Continue to final selection]
+    
+    CheckpointOrch --> FinalSelection
+    MultiAgentOrch --> FinalSelection
+    WorkflowOrch --> FinalSelection
+    SimpleOrch --> FinalSelection
+    
+    %% Final Technology Selection
+    FinalSelection[🎯 Apply All Criteria<br/>Cross-reference Phase B groupings<br/>+ Phase C scenario requirements]
+    
+    FinalSelection --> Decision{Final Technology<br/>Decision}
+    
+    %% Final Recommendations by Pattern
+    Decision -->|Pattern 1| Pattern1[✅ Start in Studio Scale Azure<br/>• Copilot Studio → BYOK/BYOM<br/>See Section 5 Pattern 1]
+    Decision -->|Pattern 2| Pattern2[✅ Pro-Code First Surface in Copilot<br/>• Foundry/Agent Service + M365 SDK<br/>See Section 5 Pattern 2]
+    Decision -->|Pattern 3| Pattern3[✅ Graph-Centric Grounding<br/>• Graph Connectors + M365 Copilot<br/>See Section 5 Pattern 3]
+    Decision -->|Pattern 4| Pattern4[✅ Multi-Channel Custom Engine<br/>• M365 Agents SDK + orchestrator<br/>See Section 5 Pattern 4]
+    Decision -->|Pattern 5| Pattern5[✅ Workflow Orchestration<br/>• Agent Framework + checkpointing<br/>See Section 5 Pattern 5]
+    Decision -->|Custom Mix| CustomMix[✅ Custom Architecture<br/>Combine multiple technologies<br/>Document trade-offs]
+    
+    Pattern1 --> DocTradeoffs
+    Pattern2 --> DocTradeoffs
+    Pattern3 --> DocTradeoffs
+    Pattern4 --> DocTradeoffs
+    Pattern5 --> DocTradeoffs
+    CustomMix --> DocTradeoffs
+    
+    %% Document Trade-offs
+    DocTradeoffs[📝 Document Selection<br/>Use Phase 3 Decision Output Template<br/>Section 3]
+    
+    %% Styling
+    style Start fill:#0078D4,stroke:#004578,stroke-width:3px,color:#FFF
+    style TimeToMarket fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Managed fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Complexity fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Budget fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Integration fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Orchestration fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    style Decision fill:#0078D4,stroke:#004578,stroke-width:2px,color:#FFF
+    
+    style FinalSelection fill:#FFB900,stroke:#997000,stroke-width:3px,color:#000
+    
+    style Pattern1 fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style Pattern2 fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style Pattern3 fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style Pattern4 fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style Pattern5 fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    style CustomMix fill:#107C10,stroke:#004B1C,stroke-width:2px,color:#FFF
+    
+    style DocTradeoffs fill:#8764B8,stroke:#5B3F87,stroke-width:3px,color:#FFF
+```
+
+**💡 Cross-Reference:** See **Section 3 Phase 3** for detailed explanations of each criterion and how to apply them.
+
+**Output:** Use the **Phase 3 Decision Output Template** from Section 3 to document your final technology selection, rationale, architecture pattern, and trade-offs.
 
 ---
 
@@ -1194,6 +1414,7 @@ graph TD
 Based on Microsoft's BXT Framework, use cases fall into four categories:
 
 #### 1. **Accelerate to MVP** (High Impact + High Feasibility)
+
 - **Criteria:** High strategic business impact, technically feasible, meets user demand
 - **Action:** Invest resources and develop immediately
 - **Microsoft Technologies:** Any platform (SaaS/PaaS/IaaS) based on requirements
