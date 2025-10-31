@@ -644,7 +644,7 @@ Microsoft offers multiple agentic workflow technologies for automating business 
 **Logic Apps AI Agent Workflows** (Preview, October 2025) represent a **new paradigm** that is NOT the same as "agent flows" in Copilot Studio or Power Automate capabilities:
 
 **What Makes Logic Apps Agent Workflows Unique:**
-- 🤖 **Built-in Agent Action with LLM Integration:** Workflows contain Agent actions that use an iterative Think → Act → Learn loop powered by Azure OpenAI or Azure AI Foundry
+- 🤖 **Built-in Agent Action with LLM Integration:** Workflows contain Agent actions that use an iterative Think - Act - Learn loop powered by Azure OpenAI or Azure AI Foundry
 - 💬 **Conversational Agent Workflows:** Built-in chat UI (external client via Easy Auth) for human interaction with agents
 - 🚀 **Autonomous Agent Workflows:** Agents operate without human intervention, making dynamic decisions based on LLM reasoning
 - 🧠 **Agent-Driven Tool Selection:** The LLM-powered agent **decides which tools to invoke** at runtime (not predefined sequences)
@@ -652,13 +652,14 @@ Microsoft offers multiple agentic workflow technologies for automating business 
 - 🛠️ **1,400+ Connectors as Agent Tools:** Any Logic Apps connector can become a tool the agent chooses to use
 
 **Why This Is Different from Copilot Studio/Power Automate "Agent Flows":**
+
 | Capability | Logic Apps Agent Workflows | Copilot Studio/Power Automate Flows |
 |-----------|---------------------------|-------------------------------------|
 | **Flow Type** | LLM-powered agent makes decisions | Deterministic automation (same input = same output) |
 | **Tool Selection** | Agent dynamically chooses tools via LLM reasoning | Pre-configured fixed sequence of actions |
 | **Conversational UI** | Built-in chat interface (Azure portal + external client) | Not applicable (flows are invoked BY agents, they're not agents themselves) |
 | **Human Interaction Model** | Autonomous (no human) OR Conversational (integrated chat) | Approval actions (traditional workflows) |
-| **Execution Pattern** | Iterative loop (Think → Act → Learn) until goal achieved | Linear/conditional flow with branches |
+| **Execution Pattern** | Iterative loop (Think - Act - Learn) until goal achieved | Linear/conditional flow with branches |
 | **Adaptability** | Can handle undefined/unpredictable scenarios | Best for stable, predictable processes |
 
 **Common Misconception:** "I can do the same thing in Power Automate that Logic Apps Agent Workflows can do."  
