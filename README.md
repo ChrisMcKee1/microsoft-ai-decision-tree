@@ -348,21 +348,32 @@ Apply these questions **sequentially** after passing the BXT assessment.
 | **Approach** | Low-code to pro-code | Pro-code (TypeScript, C#, JS, Python) | Pro-code (C#, JS, Python) |
 | **IDE** | Copilot Studio UI | VS Code/Visual Studio | VS Code/Visual Studio with M365 Agents Toolkit |
 | **Channels** | M365 Copilot + Teams + partner channels + Web + Mobile | M365 Copilot + Teams only | M365 Copilot + Teams + Web + Mobile + SMS + Email + 10+ channels |
-| **Audience** | Individual or group productivity | Group productivity | Group productivity |
+| **Collaboration Pattern** | Individual user scenarios | Group collaboration (Teams channels/meetings) | Group collaboration (Teams channels/meetings) |
 | **Orchestration** | Copilot Studio orchestrator (custom engine) | Teams AI Action Planner (built-in) | Bring your own (Semantic Kernel, LangChain, Agent Framework, custom) |
 | **Model Selection** | Copilot Studio managed (supports BYOM from Azure AI Foundry) | Azure OpenAI or OpenAI | Any model (Azure OpenAI, OpenAI, Anthropic, custom) |
-| **Publishing** | Within org or commercial store | Teams only | Within org or commercial store (multi-platform) |
+| **Publishing** | Within org, commercial marketplace (external customers), or external-facing channels | Teams only (within org) | Within org, commercial marketplace (external customers), multi-platform |
 | **Status** | Custom engine agents: GA (July 2025) | GA | GA |
 | **Best For** | Faster time-to-value, managed infrastructure, low-code with custom engine workflows | Teams-only scenarios with built-in planner | Multi-channel, full control, Bot Framework migration |
 | **Prior Experience** | Power Platform, low-code tools | Teams development | Bot Framework, Semantic Kernel, LangChain |
 | **Integration** | Native Power Platform, M365 services, Azure AI Foundry (BYOM) | Teams-specific APIs | Azure AI Foundry, any orchestration framework |
 
+**Note on "Collaboration Pattern" row:** This refers to how users interact with the agent in Teams environments:
+- **Individual user scenarios**: Single-user interactions (e.g., 1:1 chats, personal productivity tasks)
+- **Group collaboration**: Multi-user scenarios in Teams channels, meetings, or collaborative workspaces where multiple people interact with the same agent simultaneously
+
+**Note on "Publishing" row:** 
+- **Within org**: Internal deployment to your organization only
+- **Commercial marketplace**: External-facing deployment to customers via Microsoft AppSource/Teams Store (ISV scenarios)
+- **External-facing channels**: Web, mobile apps, WhatsApp, SMS, and other public channels beyond M365
+
 **Sources:**
 - [Agents for M365 Copilot Overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview) (Updated: August 2025)
 - [Custom Engine Agent Overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-custom-engine-agent) (Updated: July 2025)
 - [What's New in M365 Copilot Extensibility](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/whats-new) (Updated: August 2025)
+- [Copilot Studio Licensing](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing) (Updated: October 2025)
+- [Copilot Studio Pay-As-You-Go](https://learn.microsoft.com/en-us/power-platform/admin/pay-as-you-go-overview) (Updated: October 2025)
 
-**Confidence Level:** HIGH (Tier 1 sources from Microsoft Learn, updated July-August 2025, custom engine agents moved to GA in July 2025)
+**Confidence Level:** HIGH (Tier 1 sources from Microsoft Learn, updated July-October 2025, custom engine agents moved to GA in July 2025)
 
 **Key Updates (July-August 2025):**
 - Custom engine agents for Microsoft 365 Copilot are now **Generally Available** (July 2025)
@@ -563,11 +574,11 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 | Cost Profile | Characteristics | Recommended Approach |
 |--------------|----------------|----------------------|
-| **Minimal upfront investment** | Leverage existing M365 licenses, quick POC | M365 Copilot with built-in agents, Copilot Studio trials |
+| **Minimal upfront investment** | Leverage existing M365 licenses, quick POC | M365 Copilot with built-in agents, Copilot Studio trials, Copilot Studio Pay-As-You-Go |
 | **Predictable per-user** | Known user count, steady usage patterns | M365 Copilot licensing ($30/user/month) |
-| **Usage-based** | Variable usage, message-based pricing acceptable | Copilot Studio metered agents |
+| **Usage-based** | Variable usage, message-based pricing acceptable, no upfront commitment | Copilot Studio Pay-As-You-Go ($0.01/Copilot Credit) or metered agents |
 | **Pay-for-performance** | Azure consumption model, scale to zero | Azure AI Foundry with serverless deployment |
-| **Enterprise-scale** | High volume, need cost optimization | Azure AI Foundry with provisioned throughput |
+| **Enterprise-scale** | High volume, need cost optimization | Azure AI Foundry with provisioned throughput, Copilot Studio prepaid packs |
 
 ---
 
