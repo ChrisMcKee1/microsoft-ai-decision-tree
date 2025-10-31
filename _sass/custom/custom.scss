@@ -397,37 +397,12 @@ div.main#top {
   background-color: rgba(100, 100, 100, 0.1) !important;
 }
 
-// SMART COLUMN WIDTHS based on content type
-
-// 2-column tables (typically Name + Description)
-.main-content table thead th:first-child:nth-last-child(2),
-.main-content table thead th:first-child:nth-last-child(2) ~ th {
-  &:first-child { width: 25% !important; } // Label/name column
-  &:last-child { width: 75% !important; } // Description column
-}
-
-// 3-column tables (Feature/Extension | Description | Docs link)
-.main-content table thead th:first-child:nth-last-child(3),
-.main-content table thead th:first-child:nth-last-child(3) ~ th {
-  &:nth-child(1) { width: 25% !important; } // Feature/Extension name
-  &:nth-child(2) { width: 63% !important; } // Description (most content)
-  &:nth-child(3) { width: 12% !important; } // Docs link (narrow)
-}
-
-// 4-column tables (Technology | Description | Capabilities | Docs link)
-.main-content table thead th:first-child:nth-last-child(4),
-.main-content table thead th:first-child:nth-last-child(4) ~ th {
-  &:nth-child(1) { width: 22% !important; } // Technology name
-  &:nth-child(2) { width: 28% !important; } // Description
-  &:nth-child(3) { width: 38% !important; } // Key capabilities (most content)
-  &:nth-child(4) { width: 12% !important; } // Docs link (narrow)
-}
-
-// 5+ column tables (compact even distribution with last column larger)
-.main-content table thead th:first-child:nth-last-child(n+5),
-.main-content table thead th:first-child:nth-last-child(n+5) ~ th {
-  min-width: 120px !important; // Minimum width for readability
-  &:last-child { width: auto !important; } // Last column gets remaining space
+// AUTOMATIC COLUMN WIDTHS - Let content determine size
+// Tables will autosize based on content with proper wrapping
+.main-content table thead th,
+.main-content table tbody td {
+  width: auto !important; // Auto-size columns based on content
+  white-space: normal !important; // Allow text wrapping
 }
 
 // Links in tables - make them visible
