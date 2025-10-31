@@ -644,14 +644,14 @@ Governance decisions impact technology selection and deployment architecture. Ke
 | Feature | **Agent Framework Workflows** | **Logic Apps AI Agent Workflows** | **Copilot Studio Agent Flows** |
 |---------|------------------------------|-----------------------------------|--------------------------------|
 | **Approach** | Pro-code (C#, Python) | Visual designer + code | Low-code (natural language/visual) |
-| **Architecture** | Graph-based (Executors + Edges) | Workflow designer + connectors | Drag-and-drop canvas |
+| **Architecture** | Graph-based (Executors + Edges) | Workflow designer + connectors | Workflow designer + connectors |
 | **Checkpointing** | ✅ Yes (built-in) | ✅ Yes (state management) | ❌ No |
 | **Type Safety** | ✅ Yes (compile-time) | ⚠️ Partial (schema validation) | ⚠️ Partial (schema validation) |
-| **AI Integration** | Native (`IChatClient`) | Azure OpenAI, Azure AI Foundry | Native (flows as agent tools) |
-| **Connectors** | Custom code (any API) | 1,400+ enterprise connectors | 1,000+ (Power Platform) |
+| **AI Integration** | Native (`IChatClient`) | Azure OpenAI, Azure AI Foundry, Agent Service | Azure OpenAI, Azure AI Foundry, Agent Service |
+| **Connectors** | Custom code (any API) | 1,400+ connectors + custom code | 1,000+ (Power Platform) |
 | **Hosting** | Self-managed (Azure) | Azure Portal | Microsoft SaaS (managed) |
 | **Licensing** | Open-source (free SDK) | Azure consumption/Standard | Copilot Studio Credits |
-| **DevOps** | ✅ Yes (code-based CI/CD) | ✅ Yes (Azure DevOps, GitHub) | ✅ Yes (Pipelines, Azure DevOps) |
+| **DevOps** | ✅ Yes (code-based CI/CD) | ✅ Yes (GitHub Actions, Azure DevOps) | ✅ Yes (Pipelines, GitHub Actions, Azure DevOps) |
 | **MCP Server** | ⚠️ Custom | ✅ Yes (Preview) | ❌ No |
 | **Status** | Public Preview | Preview (Agents), GA (core) | GA |
 | **Best For** | Multi-agent orchestration + checkpointing | Enterprise integration + AI agents | Fast automation within Studio agents |
@@ -678,7 +678,8 @@ Governance decisions impact technology selection and deployment architecture. Ke
 - Fastest time-to-value with low-code/natural language
 - Managed SaaS (no infrastructure management)
 - Business process automation for Studio agents
-- [Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) | [Agent Flows vs Cloud Flows FAQ](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-faqs)
+- [Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview)
+- [Agent Flows vs Cloud Flows FAQ](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-faqs)
 
 **Sources:**  
 [Agent Framework Workflows](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/overview) | [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (October 2025) | [Copilot Studio Agent Flows](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) (2025)
