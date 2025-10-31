@@ -37,14 +37,14 @@ div.main#top {
 
 // SIDEBAR - Keep it compact but functional
 .side-bar {
-  width: 240px !important; // Reduce to 240px for less whitespace
+  width: 200px !important; // Reduce by 40px for minimal whitespace
   padding-left: 0.5rem !important; // Minimal left padding
   padding-right: 0.5rem !important; // Minimal right padding
   padding-top: 0.25rem !important; // Reduce top padding to move content up
   padding-bottom: 0 !important; // Remove bottom padding
   
   @media (min-width: 66.5rem) {
-    width: 260px !important; // 260px on large screens (was 280px)
+    width: 220px !important; // 220px on large screens (reduced by 40px)
   }
 }
 
@@ -300,7 +300,7 @@ div.main#top {
 @media (min-width: 50rem) {
   .main,
   #top {
-    margin-left: 240px !important; // Match reduced sidebar width
+    margin-left: 200px !important; // Match reduced sidebar width (200px)
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
     width: auto !important; // Let it stretch
@@ -318,7 +318,7 @@ div.main#top {
 @media (min-width: 66.5rem) {
   .main,
   #top {
-    margin-left: 260px !important; // Match larger sidebar (260px not 280px)
+    margin-left: 220px !important; // Match larger sidebar (220px)
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
     width: auto !important; // Let it stretch
