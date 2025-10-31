@@ -28,10 +28,26 @@
 // SIDEBAR - Keep it compact but functional
 .side-bar {
   width: 260px !important; // Compact sidebar
+  padding-left: 0.5rem !important; // Minimal left padding
+  padding-right: 0.5rem !important; // Minimal right padding
   
   @media (min-width: 66.5rem) {
     width: 280px !important; // Slightly wider on large screens only
   }
+}
+
+// SITE TITLE - Remove padding
+.site-title {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// SITE HEADER (in sidebar) - Remove padding
+.site-header {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 // REMOVE TOP PADDING from main content
@@ -39,10 +55,16 @@
   padding-top: 1rem !important;
 }
 
-// HEADER - Minimize padding
-.site-header {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+// TOP HEADER BAR (search + view on github) - Remove all padding
+.main-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.site-nav,
+.main-content-wrap > .site-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 // NAVIGATION - Tighter spacing
@@ -58,6 +80,20 @@
 // SEARCH BAR - Reduce padding
 .search {
   padding: 0.5rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.search-input-wrap,
+.search-input {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// Search results
+.search-results {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 // BREADCRUMBS - Minimize space
@@ -149,4 +185,37 @@
   max-width: none !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+// Override any wrapper divs adding padding
+.site-nav,
+.navigation,
+.nav-category {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+// Make logo/title flush left
+.site-logo,
+.site-title {
+  padding-left: 0.5rem !important;
+}
+
+// Remove extra spacing from nav list
+.nav-list-item .nav-list {
+  padding-left: 1rem !important; // Just enough for hierarchy
+}
+
+// Auxiliary nav (top right) - minimize padding
+.aux-nav {
+  padding-left: 0 !important;
+  padding-right: 0.5rem !important;
+}
+
+// Top-level page header in main content area
+.main-content > .page-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
