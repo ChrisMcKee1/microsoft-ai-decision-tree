@@ -7,7 +7,10 @@ url: "https://chrismckee1.github.io" # the base hostname & protocol for your sit
 # Theme
 remote_theme: just-the-docs/just-the-docs
 
-# Color scheme (supports light/dark mode toggle)
+# Color scheme options:
+# - nil (default with light/dark toggle)
+# - "dark" (dark mode only)
+# - "light" (light mode only)
 color_scheme: nil
 
 # Logo (optional - add your logo to /images/ folder)
@@ -39,13 +42,8 @@ aux_links:
   "View on GitHub":
     - "//github.com/ChrisMcKee1/microsoft-ai-decision-tree"
 
-# Navigation structure
-nav_enabled: true
-nav_external_links:
-  - title: Microsoft Learn
-    url: https://learn.microsoft.com
-  - title: Azure Documentation
-    url: https://docs.microsoft.com/azure
+# Quick links in header
+aux_links_new_tab: true
 
 # Enable/disable components
 heading_anchors: true
