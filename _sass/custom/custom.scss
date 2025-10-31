@@ -38,6 +38,8 @@ div.main#top {
 // SIDEBAR - Keep it compact but functional
 .side-bar {
   width: 200px !important; // Reduce by 40px for minimal whitespace
+  min-width: 200px !important; // Override default min-width of 16.5rem (264px)
+  max-width: 200px !important; // Prevent expansion
   padding-left: 0.5rem !important; // Minimal left padding
   padding-right: 0.5rem !important; // Minimal right padding
   padding-top: 0.25rem !important; // Reduce top padding to move content up
@@ -45,6 +47,8 @@ div.main#top {
   
   @media (min-width: 66.5rem) {
     width: 220px !important; // 220px on large screens (reduced by 40px)
+    min-width: 220px !important; // Override default min-width
+    max-width: 220px !important; // Prevent expansion
   }
 }
 
