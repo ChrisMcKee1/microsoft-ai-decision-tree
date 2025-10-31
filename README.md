@@ -706,13 +706,16 @@ These are common scenarios with recommended technology paths. They represent typ
 
 ### "I need multi-agent orchestration"
 
-**Option 1: Managed multi-agent service (PaaS)**  
+**Option 1: Low-code multi-agent orchestration (SaaS)**  
+→ **Copilot Studio** (connect agents to delegate tasks, child agents + connected agents, supports Copilot Studio agents + Microsoft Fabric data agents)
+
+**Option 2: Managed multi-agent service (PaaS)**  
 → **Azure AI Agent Service** (connected agents, multi-agent systems)
 
-**Option 2: Workflow-based orchestration (SDK)**  
+**Option 3: Workflow-based orchestration (SDK)**  
 → **Microsoft Agent Framework** (Sequential/Concurrent/Handoff/Magentic patterns)
 
-**Option 3: Combined approach**  
+**Option 4: Combined approach**  
 → **Azure AI Foundry + Agent Framework** (custom orchestration with managed infrastructure)
 
 ### "I need to process documents at scale"
