@@ -54,12 +54,17 @@ div.main#top {
 .side-bar {
   flex: 0 0 160px !important; // Reduced by 40px: 200px -> 160px
   width: 160px !important;
+  min-width: 160px !important; // Override theme's 16.5rem (264px)
+  max-width: 160px !important; // Enforce width constraint
   min-height: 100vh !important; // At least full viewport height
+  height: auto !important; // Override theme's height: 100%, allow expansion
   overflow-y: auto !important; // Scroll if sidebar content overflows
   padding: 0.25rem !important; // 4px padding on all sides (0.25rem = 4px)
   padding-top: 0.5rem !important; // 8px top padding
   order: -1 !important; // Ensure sidebar appears first (left side)
   position: relative !important; // Override any absolute positioning
+  flex-flow: column nowrap !important; // Maintain vertical layout
+  align-items: stretch !important; // Stretch to fill width (not flex-end)
 }
 
 // SITE TITLE - Minimal padding, move up
@@ -539,6 +544,9 @@ div.main#top {
 @media (min-width: 50rem) {
   .side-bar {
     flex: 0 0 160px !important; // Keep sidebar at 160px
+    width: 160px !important;
+    min-width: 160px !important; // Override theme's 16.5rem
+    max-width: 160px !important;
   }
   
   .main-content-wrap {
@@ -553,6 +561,8 @@ div.main#top {
   .side-bar {
     flex: 0 0 180px !important; // Increase to 180px on large screens (reduced by 40px from 220px)
     width: 180px !important;
+    min-width: 180px !important; // Override theme's min-width
+    max-width: 180px !important;
   }
 }
 
