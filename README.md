@@ -13,7 +13,7 @@ Comprehensive Guide to AI Technologies and When to Use Them
 {: .fs-6 .fw-300 }
 
 [Get Started](#overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View on GitHub](https://github.com/yourusername/microsoft-ai-decision-tree){: .btn .fs-5 .mb-4 .mb-md-0 }
+[View on GitHub](https://github.com/ChrisMcKee1/microsoft-ai-decision-tree){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
