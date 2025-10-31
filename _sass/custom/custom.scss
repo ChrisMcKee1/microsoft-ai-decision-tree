@@ -192,12 +192,12 @@ div.main#top {
   &:last-child { width: 75% !important; } // Description column
 }
 
-// 3-column tables (typically short, medium, long content)
+// 3-column tables (Feature/Extension | Description | Docs link)
 .main-content table thead th:first-child:nth-last-child(3),
 .main-content table thead th:first-child:nth-last-child(3) ~ th {
-  &:nth-child(1) { width: 20% !important; } // First column
-  &:nth-child(2) { width: 35% !important; } // Middle column
-  &:nth-child(3) { width: 45% !important; } // Last column (usually descriptions)
+  &:nth-child(1) { width: 25% !important; } // Feature/Extension name
+  &:nth-child(2) { width: 63% !important; } // Description (most content)
+  &:nth-child(3) { width: 12% !important; } // Docs link (narrow)
 }
 
 // 4-column tables (Technology | Description | Capabilities | Docs link)

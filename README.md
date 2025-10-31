@@ -86,9 +86,11 @@ Microsoft's AI portfolio is organized into **five capability layers**. Understan
 ### Layer 1: Consumption (End-User AI)
 Ready-to-use AI experiences for immediate productivity.
 
-- **Microsoft 365 Copilot** - Integrated assistant across Word, Excel, Teams, Outlook with tenant security | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/)
-- **Built-in Agents** - Researcher, Analyst, Visual Creator, Prompt Coach, Idea Coach, Writing Coach | [Docs](https://learn.microsoft.com/en-us/training/modules/explore-prebuilt-microsoft-365-copilot-agents/)
-- **Agent Store** - Discover, acquire, and manage prebuilt agents in M365 apps | Available in-app (June 2025)
+| Feature | Description | Documentation |
+|---------|-------------|---------------|
+| **Microsoft 365 Copilot** | Integrated assistant across Word, Excel, Teams, Outlook with tenant security | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/) |
+| **Built-in Agents** | Researcher, Analyst, Visual Creator, Prompt Coach, Idea Coach, Writing Coach | [Docs](https://learn.microsoft.com/en-us/training/modules/explore-prebuilt-microsoft-365-copilot-agents/) |
+| **Agent Store** | Discover, acquire, and manage prebuilt agents in M365 apps | Available in-app (June 2025) |
 
 **When to use:** Broad productivity gains, existing M365 licenses, no custom development needed
 
@@ -97,10 +99,12 @@ Ready-to-use AI experiences for immediate productivity.
 ### Layer 2: Extensibility (Enhance Existing Copilots)
 Extend M365 Copilot with organizational knowledge and actions.
 
-- **Graph Connectors** - Index external data into Microsoft Graph for Copilot discovery | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-extensibility)
-- **AI Plugins** - Add actionable skills to M365 Copilot (Preview) | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-plugins)
-- **Teams Message Extensions** - Extend Copilot with Teams-based actions | [Docs](https://learn.microsoft.com/en-us/microsoftteams/platform/messaging-extensions/what-are-messaging-extensions)
-- **Declarative Agents** - Configure agents with instructions, knowledge sources, and actions | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/build-declarative-agents)
+| Extension Type | Description | Documentation |
+|----------------|-------------|---------------|
+| **Graph Connectors** | Index external data into Microsoft Graph for Copilot discovery | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-extensibility) |
+| **AI Plugins** | Add actionable skills to M365 Copilot (Preview) | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-plugins) |
+| **Teams Message Extensions** | Extend Copilot with Teams-based actions | [Docs](https://learn.microsoft.com/en-us/microsoftteams/platform/messaging-extensions/what-are-messaging-extensions) |
+| **Declarative Agents** | Configure agents with instructions, knowledge sources, and actions | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/build-declarative-agents) |
 
 **When to use:** Extend M365 Copilot with company data, add custom skills, stay within M365 trust boundary
 
