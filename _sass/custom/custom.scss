@@ -5,8 +5,8 @@
 .main-content {
   max-width: none !important; // Remove default 800px limit
   width: 100% !important; // Use full available width
-  padding-left: 1.5rem !important; // Minimal left padding
-  padding-right: 1.5rem !important; // Minimal right padding
+  padding-left: 1rem !important; // Minimal left padding
+  padding-right: 0.5rem !important; // Even less right padding to reach edge
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -163,18 +163,23 @@
 @media (min-width: 50rem) {
   .main {
     margin-left: 260px !important; // Match sidebar width
+    margin-right: 0 !important; // No right margin
+    padding-right: 0 !important; // No right padding
   }
   
   .main-content-wrap {
     max-width: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
 @media (min-width: 66.5rem) {
   .main {
     margin-left: 280px !important; // Match larger sidebar
+    margin-right: 0 !important; // No right margin
+    padding-right: 0 !important; // No right padding
   }
 }
 
@@ -217,5 +222,24 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
   margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// Body and html - ensure no hidden margins
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.site {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+// Main wrapper - extend to full viewport
+.wrap,
+.wrapper {
+  max-width: 100vw !important;
+  padding-right: 0 !important;
   margin-right: 0 !important;
 }
