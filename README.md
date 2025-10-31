@@ -370,7 +370,7 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 
 ---
 
-### Phase 3: Scenario-Specific Selection (NEW)
+### Phase 3: Scenario-Specific Selection
 
 **Purpose:** Given the technology groupings from Phase 2, apply scenario-specific criteria to select the optimal tool for your specific requirements.
 
@@ -381,15 +381,18 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 1. Time to Market Urgency
 
 **Days (Immediate):**
+
 - M365 Copilot (built-in agents, no setup)
 - Copilot Studio templates (declarative agents)
 
 **Weeks (Fast):**
+
 - Copilot Studio (custom engine agents with low-code)
 - Azure Logic Apps (visual designer + AI agent workflows)
 - M365 Agents SDK (with Teams AI Library for Teams-only)
 
 **Months (Custom):**
+
 - Azure AI Foundry + custom development
 - M365 Agents SDK + Agent Framework (complex orchestration)
 - Azure AI Agent Service (managed PaaS for enterprise-scale)
@@ -401,16 +404,19 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 2. Managed vs. Self-Managed Preference
 
 **Managed (SaaS/PaaS):**
+
 - Microsoft 365 Copilot (fully managed)
 - Copilot Studio (SaaS platform)
 - Azure AI Agent Service (managed agent runtime)
 
 **Self-Managed (Infrastructure Control):**
+
 - Azure AI Foundry (you manage compute, networking)
 - M365 Agents SDK (you host and deploy)
 - Azure Logic Apps (Standard plan, self-hosted integration runtime)
 
 **Hybrid:**
+
 - Copilot Studio with BYOK/BYOM (managed platform + your infrastructure)
 - Azure AI Foundry + Agent Service (code-first + managed runtime)
 
@@ -421,16 +427,19 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 3. Complexity Level
 
 **Low Complexity (Simple Q&A, basic actions):**
+
 - Copilot Studio declarative agents
 - M365 Copilot with Graph Connectors
 - AI Builder models (prebuilt document processing)
 
 **Medium Complexity (Multi-step workflows, integrations):**
+
 - Copilot Studio custom engine agents with BYOK/BYOM
 - M365 Agents SDK with simple orchestration
 - Azure Logic Apps AI agent workflows
 
 **High Complexity (Multi-agent, custom orchestration, advanced evals):**
+
 - Azure AI Foundry + Azure AI Agent Service
 - M365 Agents SDK + Agent Framework (checkpointing, workflow orchestration)
 - Custom solutions with Semantic Kernel or LangChain
@@ -442,17 +451,21 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 4. Budget & Licensing Model
 
 **Predictable Per-User:**
+
 - M365 Copilot ($30/user/month, included in Microsoft 365 E5)
 
 **Usage-Based (No upfront commitment):**
+
 - Copilot Studio Pay-As-You-Go ($0.01/Copilot Credit)
 - Azure AI Foundry (serverless, pay-per-token)
 
 **Prepaid Capacity:**
+
 - Copilot Studio prepaid packs (predictable high-volume)
 - Azure OpenAI provisioned throughput (PTU)
 
 **Azure Consumption:**
+
 - Azure AI Foundry (token-based pricing)
 - Azure AI Agent Service (compute + storage)
 - Azure Logic Apps (execution-based)
@@ -464,16 +477,20 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 5. Integration Requirements
 
 **Need Enterprise Connectors (1,400+)?**
+
 - **Azure Logic Apps** (cloud + on-premises, MCP server, AI agent workflows)
 
 **Need Power Platform Connectors (1,000+)?**
+
 - **Copilot Studio** + **Power Automate** (Cloud Flows or Agent Flows)
 
 **Need Document Processing?**
+
 - **AI Builder** (Power Platform scenarios)
 - **Azure Document Intelligence** (custom/advanced scenarios)
 
 **Need Multi-Channel Deployment?**
+
 - **M365 Agents SDK** (10+ channels: Web, Mobile, SMS, WhatsApp, Teams, M365 Copilot)
 - **Copilot Studio** (M365 + custom channels)
 
@@ -484,15 +501,18 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 #### 6. Orchestration-Specific Needs
 
 **Need Checkpointing (Long-running, human-in-loop)?**
+
 - **Microsoft Agent Framework** (Executor/Edge workflows, built-in checkpointing)
 - **Azure Logic Apps** (state management, workflow designer)
 
 **Need Multi-Agent Collaboration?**
+
 - **Azure AI Agent Service** (connected agents, managed orchestration)
 - **Copilot Studio** (child agents + connected agents, supports Fabric data agents)
 - **Agent Framework** (Handoff/Magentic patterns)
 
 **Need Workflow Automation + AI?**
+
 - **Azure Logic Apps AI Agent Workflows** (autonomous/conversational, MCP server)
 - **Copilot Studio Agent Flows** (native flows in Studio)
 - **Power Automate Cloud Flows** (1,000+ connectors, long-running)
