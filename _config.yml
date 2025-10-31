@@ -1,8 +1,8 @@
 # Site settings
 title: Microsoft AI Decision Tree
 description: Comprehensive guide to navigating Microsoft's AI technology portfolio
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+baseurl: "/microsoft-ai-decision-tree" # the subpath of your site, e.g. /blog
+url: "https://chrismckee1.github.io" # the base hostname & protocol for your site
 
 # Theme
 remote_theme: just-the-docs/just-the-docs
@@ -37,7 +37,7 @@ footer_content: "Copyright &copy; 2025. This documentation is based on official 
 # External links
 aux_links:
   "View on GitHub":
-    - "//github.com/yourusername/microsoft-ai-decision-tree"
+    - "//github.com/ChrisMcKee1/microsoft-ai-decision-tree"
 
 # Navigation structure
 nav_enabled: true
