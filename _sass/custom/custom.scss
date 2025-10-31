@@ -88,6 +88,9 @@ div.main#top {
   padding-right: 0.5rem !important;
   padding-top: 0.5rem !important;
   margin-top: 0 !important;
+  width: 100% !important; // Inherit full width from sidebar
+  max-width: 100% !important; // Don't exceed sidebar width
+  box-sizing: border-box !important; // Include padding in width
 }
 
 // REMOVE TOP PADDING from main content
@@ -118,9 +121,13 @@ div.main#top {
 }
 
 // SITE NAV - Remove all padding (#site-nav)
-#site-nav {
+#site-nav,
+.site-nav {
   padding: 0 !important;
   margin: 0 !important;
+  width: 100% !important; // Inherit full width from sidebar
+  max-width: 100% !important; // Don't exceed sidebar width
+  box-sizing: border-box !important; // Include padding in width
 }
 
 // NAVIGATION - Tighter spacing
