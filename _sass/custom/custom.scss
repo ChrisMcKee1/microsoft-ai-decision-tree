@@ -1,6 +1,13 @@
 // Custom styles to optimize layout for large monitors
 // Aggressive space utilization - minimize all padding and maximize content area
 
+// BODY - Configure as flex container for proper sidebar + main layout
+body {
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 100vh !important;
+}
+
 // MAIN CONTENT - Use maximum width available
 .main-content {
   max-width: none !important; // Remove default 800px limit
@@ -25,37 +32,43 @@
   margin-right: 0 !important;
 }
 
-// MAIN DIV - Force full width stretch
+// MAIN DIV - Use flexbox to fill remaining space
 .main,
 #top,
 div.main#top {
+  flex: 1 1 auto !important; // Grow to fill remaining space after sidebar
   max-width: none !important;
-  width: auto !important; // Let it calculate based on available space
+  width: auto !important;
+  margin-left: 0 !important; // No margin needed - flexbox handles layout
   margin-right: 0 !important;
   padding-right: 0 !important;
+  overflow-x: auto !important; // Handle overflow properly
 }
 
-// SIDEBAR - Keep it compact but functional
+// SIDEBAR - Fixed width, no flex growth
 .side-bar {
-  width: 200px !important; // Reduce by 40px for minimal whitespace
+  flex: 0 0 200px !important; // Fixed at 200px, don't grow or shrink
+  width: 200px !important;
   padding-left: 0.5rem !important; // Minimal left padding
   padding-right: 0.5rem !important; // Minimal right padding
   padding-top: 0.25rem !important; // Reduce top padding to move content up
   padding-bottom: 0 !important; // Remove bottom padding
-  
-  @media (min-width: 66.5rem) {
-    width: 220px !important; // 220px on large screens (reduced by 40px)
-  }
+  order: -1 !important; // Ensure sidebar appears first (left side)
 }
 
-// SITE TITLE - Remove padding and move up
+// SITE TITLE - Minimal padding, move up
 .site-title {
-  padding-left: 0 !important;
+  padding-left: 0.5rem !important; // Small left padding for alignment
   padding-right: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
+}
+
+// SITE LOGO - Consistent with title
+.site-logo {
+  padding-left: 0.5rem !important;
 }
 
 // SITE HEADER (in sidebar) - Remove padding and move up
@@ -441,14 +454,8 @@ div.main#top {
 
 // Ensure content stretches to fill available space
 @media (min-width: 50rem) {
-  .main,
-  #top,
-  div.main#top {
-    margin-left: 200px !important; // Match reduced sidebar width (200px)
-    margin-right: 0 !important; // No right margin
-    padding-right: 0 !important; // No right padding
-    width: auto !important; // Let it stretch naturally
-    max-width: none !important; // Remove any max-width constraint
+  .side-bar {
+    flex: 0 0 200px !important; // Keep sidebar at 200px
   }
   
   .main-content-wrap {
@@ -460,14 +467,9 @@ div.main#top {
 }
 
 @media (min-width: 66.5rem) {
-  .main,
-  #top,
-  div.main#top {
-    margin-left: 220px !important; // Match larger sidebar (220px)
-    margin-right: 0 !important; // No right margin
-    padding-right: 0 !important; // No right padding
-    width: auto !important; // Let it stretch naturally
-    max-width: none !important; // Remove any max-width constraint
+  .side-bar {
+    flex: 0 0 220px !important; // Increase to 220px on large screens
+    width: 220px !important;
   }
 }
 
@@ -488,21 +490,9 @@ div.main#top {
   padding-right: 0.5rem !important;
 }
 
-// Make logo/title flush left
-.site-logo,
-.site-title {
-  padding-left: 0.5rem !important;
-}
-
 // Remove extra spacing from nav list
 .nav-list-item .nav-list {
   padding-left: 1rem !important; // Just enough for hierarchy
-}
-
-// Auxiliary nav (top right) - minimize padding
-.aux-nav {
-  padding-left: 0 !important;
-  padding-right: 0.5rem !important;
 }
 
 // Top-level page header in main content area
@@ -513,12 +503,7 @@ div.main#top {
   margin-right: 0 !important;
 }
 
-// Body and html - ensure no hidden margins
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
+// Site wrapper - ensure proper layout
 .site {
   padding-right: 0 !important;
   margin-right: 0 !important;
