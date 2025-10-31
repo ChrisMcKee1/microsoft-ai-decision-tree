@@ -42,7 +42,10 @@ div.main#top {
   margin-left: 0 !important; // No margin needed - flexbox handles layout
   margin-right: 0 !important;
   padding-right: 0 !important;
+  padding-left: 0 !important;
   overflow-x: auto !important; // Handle overflow properly
+  order: 0 !important; // Ensure main comes after sidebar (order: -1)
+  position: relative !important; // Override any absolute positioning
 }
 
 // SIDEBAR - Fixed width, no flex growth
@@ -54,6 +57,7 @@ div.main#top {
   padding-top: 0.25rem !important; // Reduce top padding to move content up
   padding-bottom: 0 !important; // Remove bottom padding
   order: -1 !important; // Ensure sidebar appears first (left side)
+  position: relative !important; // Override any absolute positioning
 }
 
 // SITE TITLE - Minimal padding, move up
