@@ -54,9 +54,8 @@ div.main#top {
 .side-bar {
   flex: 0 0 160px !important; // Reduced by 40px: 200px -> 160px
   width: 160px !important;
-  min-height: 100vh !important; // Full viewport height
-  max-height: 100vh !important; // Don't exceed viewport
-  overflow-y: auto !important; // Scroll if content overflows
+  min-height: 100vh !important; // At least full viewport height
+  overflow-y: auto !important; // Scroll if sidebar content overflows
   padding: 0.25rem !important; // 4px padding on all sides (0.25rem = 4px)
   padding-top: 0.5rem !important; // 8px top padding
   order: -1 !important; // Ensure sidebar appears first (left side)
