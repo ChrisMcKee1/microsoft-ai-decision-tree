@@ -96,6 +96,16 @@ div.main#top {
 .main-header {
   padding-left: 0 !important;
   padding-right: 0 !important;
+  display: flex !important;
+  align-items: center !important; // Vertically center contents
+  min-height: 3.5rem !important; // Ensure minimum height
+}
+
+// Main header direct child divs (search container)
+.main-header > div {
+  display: flex !important;
+  align-items: center !important; // Vertically center search input
+  height: 100% !important;
 }
 
 .site-nav,
@@ -127,17 +137,32 @@ div.main#top {
   padding: 0.25rem 0.5rem !important; // Minimal padding instead of 32px
 }
 
-// SEARCH BAR - Reduce padding
+// SEARCH BAR - Reduce padding and center properly
 .search {
   padding: 0.5rem !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
-.search-input-wrap,
-.search-input {
+.search-input-wrap {
   margin-left: 0 !important;
   margin-right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: auto !important; // Let it size naturally
+}
+
+.search-input,
+#search-input {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  position: relative !important; // Override absolute positioning
+  height: 2.5rem !important; // Fixed height for consistency
+  width: 100% !important;
 }
 
 // Search results
