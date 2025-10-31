@@ -42,16 +42,20 @@ div.main#top {
   margin-left: 0 !important; // No margin needed - flexbox handles layout
   margin-right: 0 !important;
   padding-right: 0 !important;
-  padding-left: 0 !important;
+  padding-left: 2rem !important; // Space for heading anchor links (left: -1.5rem)
   overflow-x: auto !important; // Handle overflow properly
   order: 0 !important; // Ensure main comes after sidebar (order: -1)
   position: relative !important; // Override any absolute positioning
+  min-height: 100vh !important; // Full viewport height
 }
 
 // SIDEBAR - Fixed width, no flex growth
 .side-bar {
   flex: 0 0 200px !important; // Fixed at 200px, don't grow or shrink
   width: 200px !important;
+  min-height: 100vh !important; // Full viewport height
+  max-height: 100vh !important; // Don't exceed viewport
+  overflow-y: auto !important; // Scroll if content overflows
   padding-left: 0.5rem !important; // Minimal left padding
   padding-right: 0.5rem !important; // Minimal right padding
   padding-top: 0.25rem !important; // Reduce top padding to move content up
@@ -167,6 +171,27 @@ div.main#top {
 .main-content h3 {
   margin-top: 1.5rem !important;
   margin-bottom: 0.75rem !important;
+}
+
+// HEADING ANCHOR LINKS - Ensure they stay within main content area
+.main-content h1 > a.anchor,
+.main-content h2 > a.anchor,
+.main-content h3 > a.anchor,
+.main-content h4 > a.anchor,
+.main-content h5 > a.anchor,
+.main-content h6 > a.anchor {
+  left: -1.5rem !important; // Position to the left of heading
+  margin-left: 0 !important; // Reset any margin
+}
+
+// Ensure headings have position: relative for anchor positioning
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  position: relative !important;
 }
 
 // ENHANCED HEADING STYLES FOR PHASES AND QUESTIONS
