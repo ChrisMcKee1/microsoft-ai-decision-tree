@@ -43,6 +43,7 @@ div.main#top {
   margin-right: 0 !important;
   padding-right: 0 !important;
   padding-left: 2rem !important; // Space for heading anchor links (left: -1.5rem)
+  padding-top: 0.5rem !important; // Reduced from 32px to 8px (0.5rem)
   overflow-x: auto !important; // Handle overflow properly
   order: 0 !important; // Ensure main comes after sidebar (order: -1)
   position: relative !important; // Override any absolute positioning
@@ -51,15 +52,12 @@ div.main#top {
 
 // SIDEBAR - Fixed width, no flex growth
 .side-bar {
-  flex: 0 0 200px !important; // Fixed at 200px, don't grow or shrink
-  width: 200px !important;
+  flex: 0 0 160px !important; // Reduced by 40px: 200px -> 160px
+  width: 160px !important;
   min-height: 100vh !important; // Full viewport height
   max-height: 100vh !important; // Don't exceed viewport
   overflow-y: auto !important; // Scroll if content overflows
-  padding-left: 0.5rem !important; // Minimal left padding
-  padding-right: 0.5rem !important; // Minimal right padding
-  padding-top: 0.25rem !important; // Reduce top padding to move content up
-  padding-bottom: 0 !important; // Remove bottom padding
+  padding: 0.25rem !important; // 4px padding on all sides (0.25rem = 4px)
   order: -1 !important; // Ensure sidebar appears first (left side)
   position: relative !important; // Override any absolute positioning
 }
@@ -540,7 +538,7 @@ div.main#top {
 // Ensure content stretches to fill available space
 @media (min-width: 50rem) {
   .side-bar {
-    flex: 0 0 200px !important; // Keep sidebar at 200px
+    flex: 0 0 160px !important; // Keep sidebar at 160px
   }
   
   .main-content-wrap {
@@ -553,8 +551,8 @@ div.main#top {
 
 @media (min-width: 66.5rem) {
   .side-bar {
-    flex: 0 0 220px !important; // Increase to 220px on large screens
-    width: 220px !important;
+    flex: 0 0 180px !important; // Increase to 180px on large screens (reduced by 40px from 220px)
+    width: 180px !important;
   }
 }
 
