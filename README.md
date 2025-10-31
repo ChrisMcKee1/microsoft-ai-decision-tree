@@ -527,7 +527,7 @@ Apply these questions **sequentially** after passing the BXT assessment.
 Governance decisions impact technology selection and deployment architecture. Key checkpoints determine boundaries, ownership, extensibility, channels, costing, and compliance posture for AI agent implementations.
 
 **Critical Decision Points:**
-- **Data Boundary:** M365-only (Connectors/Studio) vs Azure-acceptable (Foundry options)
+- **Data Governance:** M365 tenant-integrated (fast deployment) vs Azure workload-tailored (precise control)
 - **Ownership & Skills:** Makers/business users (Studio) vs Dev teams (Foundry/SDK)
 - **Extensibility:** BYOK/BYOM requirements, multi-agent orchestration, custom tools
 - **Channels:** M365 apps vs external sites vs mobile vs third-party platforms
@@ -590,7 +590,8 @@ Governance decisions impact technology selection and deployment architecture. Ke
 | **User Experience** | M365 apps | Custom channels | Custom apps | Embedded in apps | Custom apps | Copilot/Teams/Web |
 | **Build Approach** | No-build (consume) | Low-code to pro-code | Code-first | Pro-code (orchestration SDK) | Code-first | Pro-code |
 | **Data Boundary** | M365 tenant | M365 or Azure | Azure | Any | Azure | M365 or Azure |
-| **Governance** | M365 admin center | Power Platform admin | Azure RBAC | Application-level | Azure RBAC | M365 admin center |
+| **Governance** | Tenant-integrated (automatic) | Tenant or workload | Workload-tailored (custom) | Application-level | Workload-tailored (custom) | Tenant or workload |
+| **Admin Center** | M365 admin center | Power Platform admin | Azure RBAC | Application-level | Azure RBAC | M365 admin center |
 | **Licensing Model** | Per-user ($30/month) | Metered messages | Azure consumption | Open-source (free) | Azure consumption | Included in M365 |
 | **Extensibility** | Via Studio/SDK | Plugins, connectors | Full custom | Workflow orchestration | Full custom | Full custom |
 | **Deployment** | Microsoft-managed | Microsoft-managed | Self-managed | Self-managed (SDK) | Microsoft-managed | Self-managed |
@@ -640,26 +641,90 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ## 10. Quick Start Recommendations
 
+These are common scenarios with recommended technology paths. They represent typical use cases but are not exhaustive—your specific requirements may lead to different technology combinations based on the decision framework in Section 3.
+
 ### "I need something in production next week"
-→ **M365 Copilot** (if you have licenses) or **Copilot Studio** with templates
+
+**Option 1: Use existing M365 licenses**  
+→ **Microsoft 365 Copilot** (built-in agents, no setup required)
+
+**Option 2: Need custom agent quickly**  
+→ **Copilot Studio** (templates, low-code, rapid deployment)
 
 ### "I have makers but no developers"
-→ **Copilot Studio** + **AI Builder**
+
+**Option 1: Build conversational agents**  
+→ **Copilot Studio** (low-code/no-code agents, declarative + custom engine)
+
+**Option 2: Build agents + native automation**  
+→ **Copilot Studio + Agent Flows** (native flows in Studio, no Power Automate license needed)
+
+**Option 3: Build agents + external system automation**  
+→ **Copilot Studio + Power Automate Cloud Flows** (1,000+ connectors, 100s timeout, requires Power Automate)
+
+**Option 4: Add AI models to apps/flows**  
+→ **AI Builder** (document processing, text analysis, vision, predictions—prebuilt + custom)
 
 ### "I have a dev team and complex requirements"
-→ **Azure AI Foundry** + **M365 Agents SDK**
+
+**Option 1: Code-first AI platform with full control**  
+→ **Azure AI Foundry** (models, prompt flow, evaluations, RAG, safety)
+
+**Option 2: Managed agent orchestration (PaaS)**  
+→ **Azure AI Agent Service** (skills, memory, runtime infrastructure)
+
+**Option 3: Workflow orchestration with checkpointing**  
+→ **Microsoft Agent Framework** (Executor/Edge patterns, long-running processes)
+
+**Option 4: Multi-channel pro-code agents**  
+→ **M365 Agents SDK** (BYO orchestrator, 10+ channels, Bot Framework migration)
 
 ### "I need to extend M365 Copilot for my org"
-→ **Copilot Studio** agents published to M365 Copilot
+
+**Option 1: Just need to index external data (RAG only)**  
+→ **Graph Connectors** (simplest, fastest - no code required)
+
+**Option 2: Need custom instructions + knowledge + actions**  
+→ **Copilot Studio Declarative Agents** (low-code or pro-code with M365 Agents Toolkit)
+
+**Option 3: Need custom orchestration + complex workflows**  
+→ **Copilot Studio Custom Engine Agents** (BYO orchestrator, group productivity)
+
+**Option 4: Need multi-channel pro-code deployment**  
+→ **M365 Agents SDK** (full control, 10+ channels, Bot Framework migration)
 
 ### "I need to ground in our proprietary data"
-→ **Copilot Connectors** (if M365-centric) or **Azure AI Search** + **BYOK**
+
+**Option 1: M365-centric read-only RAG**  
+→ **Graph Connectors** (index external data into Microsoft Graph)
+
+**Option 2: Azure-native data sources (Preview)**  
+→ **Azure AI Agent Service** (Fabric Data Agent, SharePoint, Bing Search connectors)
+
+**Option 3: Custom data connections**  
+→ **Azure AI Foundry Connected Resources** (Azure AI Search, Blob Storage, custom APIs)
 
 ### "I need multi-agent orchestration"
-→ **Azure AI Agent Service** + **Azure AI Foundry**
+
+**Option 1: Managed multi-agent service (PaaS)**  
+→ **Azure AI Agent Service** (connected agents, multi-agent systems)
+
+**Option 2: Workflow-based orchestration (SDK)**  
+→ **Microsoft Agent Framework** (Sequential/Concurrent/Handoff/Magentic patterns)
+
+**Option 3: Combined approach**  
+→ **Azure AI Foundry + Agent Framework** (custom orchestration with managed infrastructure)
 
 ### "I need to process documents at scale"
-→ **AI Builder** for Power Platform scenarios, **Azure Document Intelligence** for custom apps
+
+**Option 1: Power Platform scenarios**  
+→ **AI Builder** (document processing, vision models, callable from agents)
+
+**Option 2: Custom document intelligence**  
+→ **Azure Document Intelligence** (OCR, layout, prebuilt/custom models)
+
+**Option 3: Complex multimodal processing (Preview)**  
+→ **Azure AI Content Understanding** (documents, images, audio, video with reasoning)
 
 ---
 
@@ -667,7 +732,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 1. **Start with user experience**: Where users interact drives technology choice
 2. **Choose simplest tool that meets requirements**: Developers can use low-code or pro-code; makers limited to low-code; let complexity and time-to-market decide
-3. **Consider data location**: M365 boundary vs. Azure flexibility
+3. **Match governance approach to your needs**: M365 tenant-integrated (ready to use, fast) vs Azure workload-tailored (precise control for specific requirements)
 4. **Plan for scale**: Start simple, architect for growth
 5. **Leverage integration**: Technologies work together, not in isolation
 6. **Prioritize governance**: Especially for M365 Copilot extensions
@@ -911,9 +976,9 @@ graph TD
     HostingSDK -->|Self-hosted LLMs<br/>KAITO 1,600+ models<br/>GPU training| AKS[🏠 AKS<br/>🔥 Full K8s control]
     
     %% Azure AI Foundry Path → Q5 → HOSTING DECISION (NEW)
-    AzurePath --> Q5{Q5: Compliance<br/>& Boundaries?}
-    Q5 -->|Must stay in<br/>M365 boundary| BackToStudio[⚠️ Use Copilot Studio<br/>or M365 SDK instead]
-    Q5 -->|Azure acceptable<br/>with governance| AzureOK[Proceed with<br/>Azure options]
+    AzurePath --> Q5{Q5: Data<br/>Governance?}
+    Q5 -->|Need M365<br/>tenant-integrated| BackToStudio[⚠️ Use Copilot Studio<br/>or M365 SDK instead]
+    Q5 -->|Want workload-<br/>tailored controls| AzureOK[Proceed with<br/>Azure options]
     
     AzureOK --> Q4Azure{Q4: Need managed<br/>orchestration?}
     Q4Azure -->|Yes| AgentService[✅ Azure AI<br/>Agent Service<br/>🏠 Hosted: Microsoft PaaS]
@@ -1085,7 +1150,7 @@ Use these questions to navigate the triage process:
 **Platform Selection:**
 - What is the time to market urgency (days vs. weeks vs. months)?
 - Where should users experience the AI (M365 vs. custom app)?
-- What are the data residency requirements (M365 boundary vs. Azure)?
+- What governance approach fits: M365 tenant-integrated (fast) or Azure workload-tailored (precise)?
 - What channels are required (M365 only vs. multi-channel)?
 
 **Orchestration & Complexity:**
