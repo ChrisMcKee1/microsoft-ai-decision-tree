@@ -109,11 +109,13 @@ Extend M365 Copilot with organizational knowledge and actions.
 ### Layer 3: Development Platforms (Build Custom Agents)
 Platforms for building agents with varying levels of control and complexity.
 
-- **Copilot Studio** - Low-code to pro-code SaaS for custom agents | Managed governance, multi-channel, BYOM/BYOK | [Docs](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
-- **M365 Agents SDK** - Pro-code framework for multi-channel agents | BYO orchestrator (Semantic Kernel, LangChain, Agent Framework) | [Docs](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/)
-- **Agent Framework** - Orchestration SDK for workflow-based agents | Checkpointing, Executor/Edge patterns | [Docs](https://learn.microsoft.com/en-us/agent-framework/)
-- **Azure AI Foundry** - Code-first platform for AI models, RAG, evaluations | Works with or without Agent Service | [Docs](https://learn.microsoft.com/en-us/azure/ai-studio/)
-- **Azure AI Agent Service** - Managed PaaS for agent orchestration | Skills, memory, runtime infrastructure | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
+| Technology | Description | Key Capabilities | Documentation |
+|------------|-------------|------------------|---------------|
+| **Copilot Studio** | Low-code to pro-code SaaS for custom agents | Managed governance, multi-channel, BYOM/BYOK | [Docs](https://learn.microsoft.com/en-us/microsoft-copilot-studio/) |
+| **M365 Agents SDK** | Pro-code framework for multi-channel agents | BYO orchestrator (Semantic Kernel, LangChain, Agent Framework) | [Docs](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/) |
+| **Agent Framework** | Orchestration SDK for workflow-based agents | Checkpointing, Executor/Edge patterns | [Docs](https://learn.microsoft.com/en-us/agent-framework/) |
+| **Azure AI Foundry** | Code-first platform for AI models, RAG, evaluations | Works with or without Agent Service | [Docs](https://learn.microsoft.com/en-us/azure/ai-studio/) |
+| **Azure AI Agent Service** | Managed PaaS for agent orchestration | Skills, memory, runtime infrastructure | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/agents/) |
 
 **When to use:** Custom business logic, multi-channel requirements, complex orchestration, Azure-native infrastructure
 
@@ -122,27 +124,33 @@ Platforms for building agents with varying levels of control and complexity.
 ### Layer 4: Infrastructure & AI Services (Building Blocks)
 Foundational services that power agents across all platforms.
 
-- **Azure OpenAI Service** - Enterprise GPT models with VNet, RBAC, TPM | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
-- **Azure AI Search** - Vector/hybrid search for RAG | Semantic ranking, BYOK to Studio | [Docs](https://learn.microsoft.com/en-us/azure/search/)
-- **Azure API Management (AI Gateway)** - Centralized governance layer | Token rate limiting, model routing, chargeback, content safety, observability | [Docs](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities)
-- **Azure AI Content Safety** - Content filtering, groundedness detection | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/)
-- **Prompt Flow** - GenAIOps for evaluations and orchestration | [Docs](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow)
-- **AI Builder** - Document processing, vision models for Power Platform | [Docs](https://learn.microsoft.com/en-us/ai-builder/)
-- **Azure Document Intelligence** - Prebuilt and custom document models | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/)
+| Service | Description | Key Capabilities | Documentation |
+|---------|-------------|------------------|---------------|
+| **Azure OpenAI Service** | Enterprise GPT models with VNet, RBAC, TPM | Managed LLM infrastructure | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/openai/) |
+| **Azure AI Search** | Vector/hybrid search for RAG | Semantic ranking, BYOK to Studio | [Docs](https://learn.microsoft.com/en-us/azure/search/) |
+| **Azure API Management (AI Gateway)** | Centralized governance layer | Token rate limiting, model routing, chargeback, content safety, observability | [Docs](https://learn.microsoft.com/en-us/azure/api-management/genai-gateway-capabilities) |
+| **Azure AI Content Safety** | Content filtering, groundedness detection | Moderation and safety controls | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/) |
+| **Prompt Flow** | GenAIOps for evaluations and orchestration | Model testing and deployment | [Docs](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow) |
+| **AI Builder** | Document processing, vision models for Power Platform | Low-code AI models | [Docs](https://learn.microsoft.com/en-us/ai-builder/) |
+| **Azure Document Intelligence** | Prebuilt and custom document models | OCR and document understanding | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
 
 **When to use:** Reusable infrastructure across multiple agents, advanced RAG patterns, custom evaluations, governance
+
 
 ---
 
 ### Layer 5: Specialized Copilots (Domain-Specific)
 Purpose-built AI assistants for specific workflows and industries.
 
-- **GitHub Copilot** - Code generation and developer productivity | [Docs](https://github.com/features/copilot)
-- **Security Copilot** - Security operations and threat analysis | [Docs](https://learn.microsoft.com/en-us/security-copilot/)
-- **Dynamics 365 Copilots** - Sales, Service, Marketing, Finance agents | [Docs](https://learn.microsoft.com/en-us/dynamics365/release-plan/)
-- **Microsoft Fabric** - Data/AI agents for analytics and data engineering | [Docs](https://learn.microsoft.com/en-us/fabric/get-started/microsoft-fabric-overview)
+| Copilot | Description | Primary Use Cases | Documentation |
+|---------|-------------|-------------------|---------------|
+| **GitHub Copilot** | Code generation and developer productivity | AI-assisted coding | [Docs](https://github.com/features/copilot) |
+| **Security Copilot** | Security operations and threat analysis | SOC automation | [Docs](https://learn.microsoft.com/en-us/security-copilot/) |
+| **Dynamics 365 Copilots** | Sales, Service, Marketing, Finance agents | CRM and ERP workflows | [Docs](https://learn.microsoft.com/en-us/dynamics365/release-plan/) |
+| **Microsoft Fabric** | Data/AI agents for analytics and data engineering | Data pipelines and analytics | [Docs](https://learn.microsoft.com/en-us/fabric/get-started/microsoft-fabric-overview) |
 
 **When to use:** Domain expertise required, integrated with specialized platforms, industry-specific workflows
+
 
 ---
 
