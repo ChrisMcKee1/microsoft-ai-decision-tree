@@ -11,7 +11,7 @@ remote_theme: just-the-docs/just-the-docs
 # - nil (default with light/dark toggle)
 # - "dark" (dark mode only)
 # - "light" (light mode only)
-color_scheme: nil
+color_scheme: dark
 
 # Logo (optional - add your logo to /images/ folder)
 # logo: "/images/logo.png"
