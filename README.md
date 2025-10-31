@@ -1,5 +1,19 @@
+---
+layout: default
+title: Home
+nav_order: 1
+description: "Comprehensive guide to navigating Microsoft's AI technology portfolio and making informed technology decisions"
+permalink: /
+---
+
 # Microsoft AI Decision Tree
-## Comprehensive Guide to AI Technologies and When to Use Them
+{: .fs-9 }
+
+Comprehensive Guide to AI Technologies and When to Use Them
+{: .fs-6 .fw-300 }
+
+[Get Started](#overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/yourusername/microsoft-ai-decision-tree){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 

@@ -1,0 +1,65 @@
+# Site settings
+title: Microsoft AI Decision Tree
+description: Comprehensive guide to navigating Microsoft's AI technology portfolio
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+# Theme
+remote_theme: just-the-docs/just-the-docs
+
+# Color scheme (supports light/dark mode toggle)
+color_scheme: nil
+
+# Logo (optional - add your logo to /images/ folder)
+# logo: "/images/logo.png"
+
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# Mermaid diagrams support
+mermaid:
+  version: "10.6.0"
+
+# Navigation
+nav_sort: case_sensitive
+
+# Footer content
+footer_content: "Copyright &copy; 2025. This documentation is based on official Microsoft sources and best practices."
+
+# External links
+aux_links:
+  "View on GitHub":
+    - "//github.com/yourusername/microsoft-ai-decision-tree"
+
+# Navigation structure
+nav_enabled: true
+nav_external_links:
+  - title: Microsoft Learn
+    url: https://learn.microsoft.com
+  - title: Azure Documentation
+    url: https://docs.microsoft.com/azure
+
+# Enable/disable components
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Kramdown settings
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-include-cache
