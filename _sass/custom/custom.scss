@@ -42,8 +42,8 @@ div.main#top {
   margin-left: 0 !important; // No margin needed - flexbox handles layout
   margin-right: 0 !important;
   padding-right: 0 !important;
-  padding-left: 2rem !important; // Space for heading anchor links (left: -1.5rem)
-  padding-top: 0.5rem !important; // Reduced from 32px to 8px (0.5rem)
+  padding-left: 0.25rem !important; // Reduced to 4px (0.25rem)
+  padding-top: 0.5rem !important; // 8px top padding (0.5rem)
   overflow-x: auto !important; // Handle overflow properly
   order: 0 !important; // Ensure main comes after sidebar (order: -1)
   position: relative !important; // Override any absolute positioning
@@ -58,6 +58,7 @@ div.main#top {
   max-height: 100vh !important; // Don't exceed viewport
   overflow-y: auto !important; // Scroll if content overflows
   padding: 0.25rem !important; // 4px padding on all sides (0.25rem = 4px)
+  padding-top: 0.5rem !important; // 8px top padding
   order: -1 !important; // Ensure sidebar appears first (left side)
   position: relative !important; // Override any absolute positioning
 }
