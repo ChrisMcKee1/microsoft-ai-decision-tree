@@ -145,10 +145,107 @@ div.main#top {
   padding-left: 1.5rem !important;
 }
 
-// TABLES - Full width
+// TABLES - Full width with professional styling
 .main-content table {
   width: 100% !important;
   max-width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+}
+
+// Table headers - bold and styled
+.main-content table thead th {
+  background-color: rgba(100, 100, 100, 0.15) !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  padding: 0.75rem 1rem !important;
+  border-bottom: 2px solid rgba(150, 150, 150, 0.3) !important;
+  vertical-align: top !important;
+}
+
+// Table cells - consistent padding and alignment
+.main-content table td {
+  padding: 0.65rem 1rem !important;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.2) !important;
+  vertical-align: top !important;
+  text-align: left !important;
+}
+
+// Zebra striping for readability
+.main-content table tbody tr:nth-child(even) {
+  background-color: rgba(100, 100, 100, 0.05) !important;
+}
+
+// Hover effect for rows
+.main-content table tbody tr:hover {
+  background-color: rgba(100, 100, 100, 0.1) !important;
+}
+
+// SMART COLUMN WIDTHS based on content type
+
+// 2-column tables (typically Name + Description)
+.main-content table thead th:first-child:nth-last-child(2),
+.main-content table thead th:first-child:nth-last-child(2) ~ th {
+  &:first-child { width: 25% !important; } // Label/name column
+  &:last-child { width: 75% !important; } // Description column
+}
+
+// 3-column tables (typically short, medium, long content)
+.main-content table thead th:first-child:nth-last-child(3),
+.main-content table thead th:first-child:nth-last-child(3) ~ th {
+  &:nth-child(1) { width: 20% !important; } // First column
+  &:nth-child(2) { width: 35% !important; } // Middle column
+  &:nth-child(3) { width: 45% !important; } // Last column (usually descriptions)
+}
+
+// 4-column tables (balanced)
+.main-content table thead th:first-child:nth-last-child(4),
+.main-content table thead th:first-child:nth-last-child(4) ~ th {
+  &:nth-child(1) { width: 20% !important; }
+  &:nth-child(2) { width: 20% !important; }
+  &:nth-child(3) { width: 25% !important; }
+  &:nth-child(4) { width: 35% !important; }
+}
+
+// 5+ column tables (compact even distribution with last column larger)
+.main-content table thead th:first-child:nth-last-child(n+5),
+.main-content table thead th:first-child:nth-last-child(n+5) ~ th {
+  min-width: 120px !important; // Minimum width for readability
+  &:last-child { width: auto !important; } // Last column gets remaining space
+}
+
+// Links in tables - make them visible
+.main-content table a {
+  color: #4a9eff !important; // Bright blue for dark mode
+  text-decoration: none !important;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+// Bold text in tables
+.main-content table strong,
+.main-content table b {
+  font-weight: 700 !important;
+  color: #e0e0e0 !important; // Brighter in dark mode
+}
+
+// Code in tables
+.main-content table code {
+  background-color: rgba(150, 150, 150, 0.2) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 3px !important;
+  font-size: 0.85em !important;
+}
+
+// Ensure text wraps properly in cells
+.main-content table td,
+.main-content table th {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
 }
 
 // CODE BLOCKS - Full width
