@@ -216,59 +216,59 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 #### Question 1: User Experience Location
 
-**Inside M365 (Teams/Outlook/Word) with tenant context?**  
-→ **Microsoft 365 Copilot** + **Copilot Studio** or **Connectors**
+- **Inside M365 (Teams/Outlook/Word) with tenant context?**  
+  → **Microsoft 365 Copilot** + **Copilot Studio** or **Connectors**
 
-**Custom app, website, or external channel (Web/Mobile/WhatsApp)?**  
-→ **Copilot Studio** (SaaS) or **M365 Agents SDK**
+- **Custom app, website, or external channel (Web/Mobile/WhatsApp)?**  
+  → **Copilot Studio** (SaaS) or **M365 Agents SDK**
 
 ---
 
 #### Question 2: Build Style & Control Level
 
-**Low-ops, governed, fastest time-to-value (makers can own)**  
-→ **Copilot Studio** (low-code to pro-code)
+- **Low-ops, governed, fastest time-to-value (makers can own)**  
+  → **Copilot Studio** (low-code to pro-code)
 
-**Pro-code, multi-channel, M365-focused**  
-→ **M365 Agents SDK** (BYO orchestrator)
+- **Pro-code, multi-channel, M365-focused**  
+  → **M365 Agents SDK** (BYO orchestrator)
 
-**Code-first, deep customization, Azure-native**  
-→ **Azure AI Foundry** + **Azure AI Agent Service**
+- **Code-first, deep customization, Azure-native**  
+  → **Azure AI Foundry** + **Azure AI Agent Service**
 
-**Pro-code, Teams-only, built-in orchestration acceptable**  
-→ **Teams AI Library**
+- **Pro-code, Teams-only, built-in orchestration acceptable**  
+  → **Teams AI Library**
 
 ---
 
 #### Question 3: Data Grounding Pattern
 
-**M365 + third-party data indexed into Microsoft Graph**  
-→ **Graph/Copilot Connectors** + **M365 Copilot** or **Copilot Studio**
+- **M365 + third-party data indexed into Microsoft Graph**  
+  → **Graph/Copilot Connectors** + **M365 Copilot** or **Copilot Studio**
 
-**Large-scale vector search with hybrid capabilities (keyword + semantic + vector)**  
-→ **Azure AI Search** + **Azure AI Foundry** (optionally BYOK to **Copilot Studio**)
+- **Large-scale vector search with hybrid capabilities (keyword + semantic + vector)**  
+  → **Azure AI Search** + **Azure AI Foundry** (optionally BYOK to **Copilot Studio**)
 
-**Operational database with real-time vector updates (RAG + transactional data co-located)**  
-→ **Azure Database for PostgreSQL (pgvector)** + **Azure AI Foundry**
+- **Operational database with real-time vector updates (RAG + transactional data co-located)**  
+  → **Azure Database for PostgreSQL (pgvector)** + **Azure AI Foundry**
 
 ---
 
 #### Question 4: Agent Complexity & Orchestration
 
-**Conversational Q&A + light actions**  
-→ **Copilot Studio** declarative agents or **M365 Agents SDK** with simple orchestration
+- **Conversational Q&A + light actions**  
+  → **Copilot Studio** declarative agents or **M365 Agents SDK** with simple orchestration
 
-**Multi-step workflows with checkpointing**  
-→ **Microsoft Agent Framework** (Executor/Edge patterns, Sequential/Concurrent/Handoff/Magentic workflows)
+- **Multi-step workflows with checkpointing**  
+  → **Microsoft Agent Framework** (Executor/Edge patterns, Sequential/Concurrent/Handoff/Magentic workflows)
 
-**Multi-tool skills, autonomy, multi-agent collaboration**  
-→ **Azure AI Foundry + Agent Service** or **M365 Agents SDK + Agent Framework**
+- **Multi-tool skills, autonomy, multi-agent collaboration**  
+  → **Azure AI Foundry + Agent Service** or **M365 Agents SDK + Agent Framework**
 
-**Complex business logic, multi-channel**  
-→ **M365 Agents SDK** + custom orchestrator (Agent Framework/LangChain/custom)
+- **Complex business logic, multi-channel**  
+  → **M365 Agents SDK** + custom orchestrator (Agent Framework/LangChain/custom)
 
-**Multi-agent orchestration across platforms**  
-→ **M365 Agents SDK** (can reference **Copilot Studio agents** as tools)
+- **Multi-agent orchestration across platforms**  
+  → **M365 Agents SDK** (can reference **Copilot Studio agents** as tools)
 
 **Decision Criteria:**
 
@@ -280,14 +280,14 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 #### Question 5: Compliance & Boundaries
 
-**Must stay in M365 trust boundary**  
-→ **M365 Copilot + Copilot Studio + Connectors**
+- **Must stay in M365 trust boundary**  
+  → **M365 Copilot + Copilot Studio + Connectors**
 
-**Can leverage Azure with governance**  
-→ **Azure AI Foundry** (proper networking/security)
+- **Can leverage Azure with governance**  
+  → **Azure AI Foundry** (proper networking/security)
 
-**Cross-cutting: Centralized governance, cost control, rate limiting, security**  
-→ **Azure API Management (AI Gateway)** – Works with both M365 and Azure paths to enforce token quotas, chargeback, content safety, monitoring
+- **Cross-cutting: Centralized governance, cost control, rate limiting, security**  
+  → **Azure API Management (AI Gateway)** – Works with both M365 and Azure paths to enforce token quotas, chargeback, content safety, monitoring
 
 ![AI Gateway Flow](images/ai-gateway-flow.gif)
 
@@ -297,11 +297,11 @@ Apply these questions **sequentially** after passing the BXT assessment.
 
 #### Question 6: Persona & Skills
 
-**Business maker/Power User driving quick wins**  
-→ **Copilot Studio** + **AI Builder** (for document extraction) or **Engineering team** can also use Azure Documents Intelligence
+- **Business maker/Power User driving quick wins**  
+  → **Copilot Studio** + **AI Builder** (for document extraction) or **Engineering team** can also use Azure Documents Intelligence
 
-**Engineering team delivering programmable agents**  
-→ **Azure AI Foundry + Agent Service** and/or **M365 Agents SDK/Toolkit**
+- **Engineering team delivering programmable agents**  
+  → **Azure AI Foundry + Agent Service** and/or **M365 Agents SDK/Toolkit**
 
 
 ---
