@@ -1,86 +1,152 @@
 // Custom styles to optimize layout for large monitors
-// This overrides the default narrow content width
+// Aggressive space utilization - minimize all padding and maximize content area
 
-// Increase main content max-width for better use of screen real estate
+// MAIN CONTENT - Use maximum width available
 .main-content {
-  max-width: 1400px !important; // Default is 800px - now uses more space on large monitors
-  
-  @media (min-width: 66.5rem) {
-    // On extra large screens (desktop monitors), use even more space
-    max-width: 90% !important;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
+  max-width: none !important; // Remove default 800px limit
+  width: 100% !important; // Use full available width
+  padding-left: 1.5rem !important; // Minimal left padding
+  padding-right: 1.5rem !important; // Minimal right padding
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
-// Adjust sidebar width for better proportions
+// MAIN CONTENT WRAPPER - Remove extra padding
+.main-content-wrap {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// PAGE WRAPPER - Remove margins
+.page {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// SIDEBAR - Keep it compact but functional
 .side-bar {
-  @media (min-width: 50rem) {
-    width: 280px; // Slightly wider sidebar for better navigation visibility
-  }
+  width: 260px !important; // Compact sidebar
   
   @media (min-width: 66.5rem) {
-    width: 300px; // Even wider on large monitors
+    width: 280px !important; // Slightly wider on large screens only
   }
 }
 
-// Improve spacing and readability
+// REMOVE TOP PADDING from main content
 .main-content {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  
-  @media (min-width: 66.5rem) {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
+  padding-top: 1rem !important;
 }
 
-// Make navigation items more visible and easier to click
+// HEADER - Minimize padding
+.site-header {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+// NAVIGATION - Tighter spacing
+.nav-list {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
 .nav-list .nav-list-item {
-  font-size: 14px !important;
-  
-  @media (min-width: 66.5rem) {
-    font-size: 15px !important;
-  }
+  margin: 0.25rem 0 !important;
 }
 
-// Improve table of contents (right side) spacing
-.page-header {
-  @media (min-width: 66.5rem) {
-    padding-right: 2rem;
-  }
+// SEARCH BAR - Reduce padding
+.search {
+  padding: 0.5rem !important;
 }
 
-// Make code blocks use full width when needed
-.main-content pre {
-  max-width: 100%;
-}
-
-// Better table rendering on wide screens
-.main-content table {
-  display: table;
-  width: auto;
-  max-width: 100%;
-}
-
-// Optimize for ultra-wide monitors (1920px+)
-@media (min-width: 120rem) {
-  .main-content {
-    max-width: 1800px !important;
-  }
-  
-  .side-bar {
-    width: 340px;
-  }
-}
-
-// Improve breadcrumb visibility
+// BREADCRUMBS - Minimize space
 .breadcrumb-nav {
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 0 !important;
 }
 
-// Better footer spacing
+// PAGE HEADER - Remove excessive padding
+.page-header {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// TITLES - Reduce spacing
+.main-content h1:first-of-type {
+  margin-top: 0.5rem !important;
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+// PARAGRAPHS - Tighter spacing
+.main-content p {
+  margin-bottom: 0.75rem !important;
+}
+
+// LISTS - Reduce spacing
+.main-content ul,
+.main-content ol {
+  margin-bottom: 0.75rem !important;
+  padding-left: 1.5rem !important;
+}
+
+// TABLES - Full width
+.main-content table {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+// CODE BLOCKS - Full width
+.main-content pre {
+  max-width: 100% !important;
+  margin: 0.75rem 0 !important;
+}
+
+// FOOTER - Minimal spacing
 .site-footer {
-  margin-top: 3rem;
+  margin-top: 1.5rem !important;
+  padding: 1rem !important;
+}
+
+// REMOVE AUX LINKS PADDING
+.aux-nav {
+  padding-top: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+// Ensure content stretches to fill available space
+@media (min-width: 50rem) {
+  .main {
+    margin-left: 260px !important; // Match sidebar width
+  }
+  
+  .main-content-wrap {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (min-width: 66.5rem) {
+  .main {
+    margin-left: 280px !important; // Match larger sidebar
+  }
+}
+
+// Remove default container constraints
+.container,
+.container-lg,
+.container-xl {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
