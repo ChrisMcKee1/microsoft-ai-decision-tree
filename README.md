@@ -20,6 +20,73 @@ This guide helps you navigate Microsoft's AI technology portfolio to make inform
 
 ---
 
+## Table of Contents
+
+- [1. Technology Definitions](#1-technology-definitions)
+  - [Microsoft 365 Copilot](#microsoft-365-copilot)
+  - [Copilot Studio](#copilot-studio)
+  - [Azure AI Foundry](#azure-ai-foundry)
+  - [Azure AI Agent Service](#azure-ai-agent-service)
+  - [AI Builder](#ai-builder)
+  - [Azure Logic Apps](#azure-logic-apps)
+  - [Microsoft 365 Agents SDK & Toolkit](#microsoft-365-agents-sdk--toolkit)
+  - [Microsoft Agent Framework](#microsoft-agent-framework)
+  - ["Agent Framework" Terminology Clarification](#agent-framework-terminology-clarification)
+- [2. Microsoft AI Ecosystem Architecture](#2-microsoft-ai-ecosystem-architecture)
+  - [Layer 1: Consumption (End-User AI)](#layer-1-consumption-end-user-ai)
+  - [Layer 2: Extensibility (Enhance Existing Copilots)](#layer-2-extensibility-enhance-existing-copilots)
+  - [Layer 3: Development Platforms (Build Custom Agents)](#layer-3-development-platforms-build-custom-agents)
+  - [Layer 4: Infrastructure & AI Services (Building Blocks)](#layer-4-infrastructure--ai-services-building-blocks)
+  - [Layer 5: Specialized Copilots (Domain-Specific)](#layer-5-specialized-copilots-domain-specific)
+  - [Integration Patterns](#integration-patterns)
+- [3. Decision Framework: When to Use What](#3-decision-framework-when-to-use-what)
+  - [Phase 1: Business Impact Assessment (BXT Framework)](#phase-1-business-impact-assessment-bxt-framework)
+  - [Phase 2: Technology Selection (Six Critical Questions)](#phase-2-technology-selection-six-critical-questions)
+- [4. Technology Selection Matrix](#4-technology-selection-matrix)
+- [4a. When to Choose Each Agent Development Approach](#4a-when-to-choose-each-agent-development-approach)
+  - [Declarative Agents vs. Custom Engine Agents](#declarative-agents-vs-custom-engine-agents)
+  - [Custom Engine Agent Tool Comparison](#custom-engine-agent-tool-comparison)
+- [5. Architecture Patterns](#5-architecture-patterns)
+  - [Pattern 1: Start in Studio, Scale with Azure](#pattern-1-start-in-studio-scale-with-azure)
+  - [Pattern 2: Pro-Code First, Surface in Copilot](#pattern-2-pro-code-first-surface-in-copilot)
+  - [Pattern 3: Graph-Centric Grounding](#pattern-3-graph-centric-grounding)
+  - [Pattern 4: Multi-Channel Custom Engine Agent with M365 Agents SDK](#pattern-4-multi-channel-custom-engine-agent-with-m365-agents-sdk)
+  - [Pattern 5: Workflow Orchestration with Agent Framework](#pattern-5-workflow-orchestration-with-agent-framework)
+- [6. Governance & Operations Checkpoints](#6-governance--operations-checkpoints)
+- [7. Decision Criteria Summary](#7-decision-criteria-summary)
+  - [Complexity](#complexity)
+  - [Skills Required](#skills-required)
+  - [Budget Considerations](#budget-considerations)
+  - [Audience](#audience)
+- [8. Technology Comparison Matrix](#8-technology-comparison-matrix)
+- [8a. Agentic Workflows Comparison](#8a-agentic-workflows-comparison)
+  - [Technology Options](#technology-options)
+  - [When to Use Each](#when-to-use-each)
+- [9. Quick Start Recommendations](#9-quick-start-recommendations)
+  - ["I need something in production next week"](#i-need-something-in-production-next-week)
+  - ["I have makers but no developers"](#i-have-makers-but-no-developers)
+  - ["I have a dev team and complex requirements"](#i-have-a-dev-team-and-complex-requirements)
+  - ["I need enterprise integration with AI agent capabilities"](#i-need-enterprise-integration-with-ai-agent-capabilities)
+  - ["I need to extend M365 Copilot for my org"](#i-need-to-extend-m365-copilot-for-my-org)
+  - ["I need to ground in our proprietary data"](#i-need-to-ground-in-our-proprietary-data)
+  - ["I need multi-agent orchestration"](#i-need-multi-agent-orchestration)
+  - ["I need to process documents at scale"](#i-need-to-process-documents-at-scale)
+- [10. Key Takeaways](#10-key-takeaways)
+- [11. Resources & Next Steps](#11-resources--next-steps)
+  - [For Architects & Technical Decision Makers](#for-architects--technical-decision-makers)
+  - [For Developers](#for-developers)
+  - [For Makers & Business Users](#for-makers--business-users)
+  - [For IT Admins](#for-it-admins)
+- [12. Triaging Intake Process: Complete Decision Framework](#12-triaging-intake-process-complete-decision-framework)
+  - [Phase A: Business Impact Assessment (BXT Framework)](#phase-a-business-impact-assessment-bxt-framework)
+  - [Phase B: Technology Selection (Six Critical Questions)](#phase-b-technology-selection-six-critical-questions)
+  - [Triage Outcome Categories](#triage-outcome-categories)
+  - [Critical Decision Trade-offs](#critical-decision-trade-offs)
+  - [Key Questions Reference](#key-questions-reference)
+- [Glossary](#glossary)
+
+---
+
 ## 1. Technology Definitions
 
 ### Microsoft 365 Copilot
@@ -188,7 +255,7 @@ Purpose-built AI assistants for specific workflows and industries.
 
 **Source:** This framework integrates Microsoft's [Business-Experience-Technology (BXT) Framework](https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/business-envisioning), [Cloud Adoption Framework AI Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy), and [M365 Copilot Extensibility Decision Guidance](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview)
 
-💡 **See Section 13 for visual workflow diagrams** that illustrate how to apply this framework as an intake process.
+💡 **See Section 12 for visual workflow diagrams** that illustrate how to apply this framework as an intake process.
 
 ---
 
@@ -686,43 +753,7 @@ Governance decisions impact technology selection and deployment architecture. Ke
 
 ---
 
-## 9. Migration Paths
-
-### From Power Virtual Agents to Copilot Studio
-**Status:** Power Virtual Agents is now Copilot Studio
-
-**Action:**
-- Existing bots automatically migrated to Copilot Studio
-- Leverage new generative AI capabilities
-- Update to new conversational design patterns
-- Take advantage of M365 Copilot integration
-
----
-
-### From Bot Framework to M365 Agents SDK
-**Status:** Bot Framework continues, SDK adds M365 integration
-
-**Action:**
-- Existing Bot Framework skills can be wrapped
-- Use Agents SDK for M365-native experiences
-- Maintain Bot Framework for non-M365 channels
-- Consider hybrid approach during transition
-
----
-
-### From Custom Solutions to Azure AI Foundry
-**Status:** Consolidate onto unified platform
-
-**Action:**
-- Assess current custom implementations
-- Identify Azure AI Foundry equivalents
-- Migrate models and data to Foundry
-- Leverage managed services for reduced ops burden
-- Implement proper evaluation and monitoring
-
----
-
-## 10. Quick Start Recommendations
+## 9. Quick Start Recommendations
 
 These are common scenarios with recommended technology paths. They represent typical use cases but are not exhaustive—your specific requirements may lead to different technology combinations based on the decision framework in Section 3.
 
@@ -828,7 +859,7 @@ These are common scenarios with recommended technology paths. They represent typ
 
 ---
 
-## 11. Key Takeaways
+## 10. Key Takeaways
 
 1. **Start with user experience**: Where users interact drives technology choice
 2. **Choose simplest tool that meets requirements**: Developers can use low-code or pro-code; makers limited to low-code; let complexity and time-to-market decide
@@ -843,7 +874,7 @@ These are common scenarios with recommended technology paths. They represent typ
 
 ---
 
-## 12. Resources & Next Steps
+## 11. Resources & Next Steps
 
 ### For Architects & Technical Decision Makers
 1. Review this decision tree with stakeholders
@@ -875,7 +906,7 @@ These are common scenarios with recommended technology paths. They represent typ
 
 ---
 
-## 13. Triaging Intake Process: Complete Decision Framework
+## 12. Triaging Intake Process: Complete Decision Framework
 
 **Purpose:** This comprehensive framework guides organizations from initial AI use case through final technology selection, incorporating business viability, user desirability, and technical feasibility assessments.
 
@@ -1040,17 +1071,10 @@ graph TD
     Q2 -->|Workflow orchestration<br/>+ Checkpointing| AgentFrameworkPath[Agent Framework<br/>SDK-based Workflows<br/>Developers]
     Q2 -->|Custom orchestration<br/>Multi-channel Months| ProCodePath{Q6: Developer<br/>skills available?}
     
-    %% Logic Apps Path → AI Agent Workflow Types
-    LogicAppsPath --> LogicAppsType{Agent Workflow<br/>Pattern?}
-    LogicAppsType -->|Autonomous task<br/>execution LLM-powered| LogicAppsAuto[✅ Logic Apps<br/>AI Agent Workflows<br/>🏠 Azure Portal Preview]
-    LogicAppsType -->|Expose workflows<br/>as AI tools| LogicAppsMCP[✅ Logic Apps<br/>MCP Server<br/>🏠 Remote MCP Preview]
-    LogicAppsType -->|Function calling<br/>+ Foundry integration| LogicAppsFoundry[✅ Logic Apps +<br/>Azure AI Foundry<br/>🏠 Azure DevOps-ready]
-    
-    LogicAppsAuto --> LogicAppsData{Q3: Data<br/>Grounding?}
-    LogicAppsMCP --> LogicAppsData
-    LogicAppsFoundry --> LogicAppsData
-    LogicAppsData -->|1,400+ connectors<br/>Enterprise systems| LogicAppsConn[Use Logic Apps<br/>Built-in Connectors]
-    LogicAppsData -->|Azure OpenAI<br/>LLM reasoning| LogicAppsLLM[Integrate Azure<br/>OpenAI Service]
+    %% Logic Apps Path → Direct to Data Grounding (CORRECTED - removed agent workflow pattern decision)
+    LogicAppsPath --> LogicAppsData{Q3: Data<br/>Grounding?}
+    LogicAppsData -->|1,400+ connectors<br/>Enterprise systems| LogicAppsConn[✅ Logic Apps<br/>AI Agent Workflows<br/>🏠 Azure Portal Preview]
+    LogicAppsData -->|Azure OpenAI<br/>+ AI Foundry| LogicAppsLLM[✅ Logic Apps +<br/>Azure AI Foundry<br/>🏠 DevOps-ready]
     
     LogicAppsConn --> FinalRec
     LogicAppsLLM --> FinalRec
