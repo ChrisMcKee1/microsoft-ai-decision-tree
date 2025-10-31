@@ -152,17 +152,104 @@ div.main#top {
   margin-bottom: 0.75rem !important;
 }
 
+// ENHANCED HEADING STYLES FOR PHASES AND QUESTIONS
+// Phase headers (h3) - Make them prominent with background and borders
+.main-content h3 {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
+  border-left: 4px solid #6366f1 !important;
+  padding: 1rem 1.25rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.25rem !important;
+  border-radius: 6px !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #e0e0ff !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15) !important;
+}
+
+// Question headers (h4) - Distinctive styling with icon-like appearance
+.main-content h4 {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border-left: 3px solid #8b5cf6 !important;
+  padding: 0.75rem 1rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 1rem !important;
+  border-radius: 4px !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  color: #ddd6fe !important;
+  box-shadow: 0 1px 4px rgba(139, 92, 246, 0.1) !important;
+}
+
+// Special styling for "Decision Gate" and "Decision Criteria" headers
+.main-content h4:contains("Decision"),
+.main-content h4[id*="decision"] {
+  background: rgba(236, 72, 153, 0.12) !important;
+  border-left-color: #ec4899 !important;
+  color: #fce7f3 !important;
+}
+
+
 // PARAGRAPHS - Tighter spacing
 .main-content p {
   margin-bottom: 0.75rem !important;
+  line-height: 1.7 !important;
 }
 
-// LISTS - Reduce spacing
+// Enhanced styling for decision path paragraphs (bold questions with arrows)
+.main-content p strong {
+  color: #a5b4fc !important; // Brighter indigo for questions
+  font-weight: 600 !important;
+}
+
+// Paragraphs immediately after h4 headings (decision paths)
+.main-content h4 + p {
+  margin-top: 0.5rem !important;
+  padding-left: 1rem !important;
+  border-left: 2px solid rgba(139, 92, 246, 0.3) !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+// LISTS - Reduce spacing and improve hierarchy
 .main-content ul,
 .main-content ol {
   margin-bottom: 0.75rem !important;
   padding-left: 1.5rem !important;
 }
+
+// List items with better spacing
+.main-content li {
+  margin-bottom: 0.5rem !important;
+  line-height: 1.6 !important;
+}
+
+// Nested lists
+.main-content ul ul,
+.main-content ol ul,
+.main-content ul ol,
+.main-content ol ol {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 1.25rem !important;
+}
+
+// List items under h4 headings (like the dimension questions)
+.main-content h4 + ul,
+.main-content h4 + ol {
+  background: rgba(100, 100, 100, 0.05) !important;
+  padding: 1rem 1rem 1rem 2rem !important;
+  border-radius: 4px !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1rem !important;
+}
+
+// Arrow symbol styling in decision paths
+.main-content p:contains("→"),
+.main-content li:contains("→") {
+  color: #e0e0e0 !important;
+}
+
 
 // TABLES - Full width with professional styling
 .main-content table {
@@ -273,6 +360,62 @@ div.main#top {
   margin: 0.75rem 0 !important;
 }
 
+// CODE INLINE - Better visibility
+.main-content code {
+  background-color: rgba(150, 150, 150, 0.25) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 3px !important;
+  font-size: 0.9em !important;
+  color: #c7d2fe !important;
+  border: 1px solid rgba(150, 150, 150, 0.3) !important;
+}
+
+// BLOCKQUOTES - Enhanced styling
+.main-content blockquote {
+  border-left: 4px solid #6366f1 !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+  padding: 0.75rem 1rem !important;
+  margin: 1rem 0 !important;
+  border-radius: 4px !important;
+}
+
+// EMOJI AND ICONS - Better visibility
+.main-content {
+  // Emoji in lists
+  li:first-child::before {
+    font-size: 1.1em !important;
+  }
+}
+
+// HORIZONTAL RULES - More visible separators
+.main-content hr {
+  border: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent) !important;
+  margin: 2rem 0 !important;
+}
+
+// LINKS - Better contrast
+.main-content a {
+  color: #7dd3fc !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(125, 211, 252, 0.3) !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    color: #bae6fd !important;
+    border-bottom-color: rgba(186, 230, 253, 0.6) !important;
+  }
+}
+
+// EMPHASIS - Bold text needs to stand out more
+.main-content strong,
+.main-content b {
+  font-weight: 700 !important;
+  color: #f0f0f5 !important;
+}
+
+
 // FOOTER - Minimal spacing and hide theme credit
 .site-footer {
   margin-top: 1.5rem !important;
@@ -297,13 +440,16 @@ div.main#top {
 }
 
 // Ensure content stretches to fill available space
+// Match the sidebar width at different breakpoints
 @media (min-width: 50rem) {
   .main,
-  #top {
+  #top,
+  div.main#top {
     margin-left: 200px !important; // Match reduced sidebar width (200px)
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
-    width: auto !important; // Let it stretch
+    padding-left: 1rem !important; // Space from sidebar
+    width: calc(100% - 200px) !important; // Calculate available width
     max-width: none !important; // Remove any max-width constraint
   }
   
@@ -317,11 +463,13 @@ div.main#top {
 
 @media (min-width: 66.5rem) {
   .main,
-  #top {
+  #top,
+  div.main#top {
     margin-left: 220px !important; // Match larger sidebar (220px)
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
-    width: auto !important; // Let it stretch
+    padding-left: 1rem !important; // Space from sidebar
+    width: calc(100% - 220px) !important; // Calculate available width
     max-width: none !important; // Remove any max-width constraint
   }
 }
