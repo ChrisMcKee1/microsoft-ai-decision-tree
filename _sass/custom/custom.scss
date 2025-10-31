@@ -37,27 +37,32 @@ div.main#top {
 
 // SIDEBAR - Keep it compact but functional
 .side-bar {
-  width: 220px !important; // Skinnier sidebar for more content space
+  width: 260px !important; // Revert to original width
   padding-left: 0.5rem !important; // Minimal left padding
   padding-right: 0.5rem !important; // Minimal right padding
+  padding-top: 0.25rem !important; // Reduce top padding to move content up
   
   @media (min-width: 66.5rem) {
-    width: 240px !important; // Slightly wider on large screens only
+    width: 280px !important; // Slightly wider on large screens only
   }
 }
 
-// SITE TITLE - Remove padding
+// SITE TITLE - Remove padding and move up
 .site-title {
   padding-left: 0 !important;
   padding-right: 0 !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
-// SITE HEADER (in sidebar) - Remove padding
+// SITE HEADER (in sidebar) - Remove padding and move up
 .site-header {
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
+  padding-top: 0.5rem !important;
+  margin-top: 0 !important;
 }
 
 // REMOVE TOP PADDING from main content
@@ -254,10 +259,15 @@ div.main#top {
   margin: 0.75rem 0 !important;
 }
 
-// FOOTER - Minimal spacing
+// FOOTER - Minimal spacing and hide theme credit
 .site-footer {
   margin-top: 1.5rem !important;
   padding: 1rem !important;
+}
+
+// Hide "This site uses Just the Docs" text
+.site-footer p {
+  display: none !important;
 }
 
 // REMOVE AUX LINKS PADDING
@@ -270,7 +280,7 @@ div.main#top {
 @media (min-width: 50rem) {
   .main,
   #top {
-    margin-left: 220px !important; // Match skinnier sidebar width
+    margin-left: 260px !important; // Match original sidebar width
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
     width: auto !important; // Let it stretch
@@ -288,7 +298,7 @@ div.main#top {
 @media (min-width: 66.5rem) {
   .main,
   #top {
-    margin-left: 240px !important; // Match larger sidebar width
+    margin-left: 280px !important; // Match original larger sidebar
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
     width: auto !important; // Let it stretch
