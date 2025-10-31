@@ -25,6 +25,16 @@
   margin-right: 0 !important;
 }
 
+// MAIN DIV - Force full width stretch
+.main,
+#top,
+div.main#top {
+  max-width: none !important;
+  width: auto !important; // Let it calculate based on available space
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
 // SIDEBAR - Keep it compact but functional
 .side-bar {
   width: 260px !important; // Compact sidebar
@@ -161,10 +171,13 @@
 
 // Ensure content stretches to fill available space
 @media (min-width: 50rem) {
-  .main {
+  .main,
+  #top {
     margin-left: 260px !important; // Match sidebar width
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
+    width: auto !important; // Let it stretch
+    max-width: none !important; // Remove any max-width constraint
   }
   
   .main-content-wrap {
@@ -176,10 +189,13 @@
 }
 
 @media (min-width: 66.5rem) {
-  .main {
+  .main,
+  #top {
     margin-left: 280px !important; // Match larger sidebar
     margin-right: 0 !important; // No right margin
     padding-right: 0 !important; // No right padding
+    width: auto !important; // Let it stretch
+    max-width: none !important; // Remove any max-width constraint
   }
 }
 
