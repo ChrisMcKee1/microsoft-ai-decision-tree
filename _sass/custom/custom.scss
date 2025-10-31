@@ -182,6 +182,24 @@ div.main#top {
 .main-content h6 > a.anchor {
   left: -1.5rem !important; // Position to the left of heading
   margin-left: 0 !important; // Reset any margin
+  text-decoration: none !important; // Remove underline
+  border-bottom: none !important; // Remove any border
+  opacity: 0 !important; // Hidden by default
+  transition: opacity 0.2s ease !important;
+  
+  &:hover {
+    opacity: 1 !important; // Show on hover
+  }
+}
+
+// Show anchor when hovering over heading
+.main-content h1:hover > a.anchor,
+.main-content h2:hover > a.anchor,
+.main-content h3:hover > a.anchor,
+.main-content h4:hover > a.anchor,
+.main-content h5:hover > a.anchor,
+.main-content h6:hover > a.anchor {
+  opacity: 1 !important;
 }
 
 // Ensure headings have position: relative for anchor positioning
