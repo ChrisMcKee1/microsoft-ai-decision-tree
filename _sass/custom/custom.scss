@@ -13,7 +13,7 @@ body {
   max-width: none !important; // Remove default 800px limit
   width: 100% !important; // Use full available width
   padding-left: 1rem !important; // Minimal left padding
-  padding-right: 0.5rem !important; // Even less right padding to reach edge
+  padding-right: 0.625rem !important; // 10px right padding for better spacing
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
