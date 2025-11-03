@@ -1,6 +1,3 @@
-// Mermaid configuration for dark theme
-// This file is loaded by just-the-docs theme for mermaid diagram rendering
-// See: https://just-the-docs.com/docs/ui-components/code/#mermaid-diagram-code-blocks
 {
   "theme": "dark",
   "themeVariables": {
