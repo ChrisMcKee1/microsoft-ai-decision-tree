@@ -173,10 +173,6 @@ flowchart TD
 
 **Last Validated:** November 2025
 
-**Key Changes from Validation:**
-- **Removed:** Fabric Data Agents from Autonomous path (validated as conversational Q&A tool, not autonomous agent)
-- **Added Preview Status:** Logic Apps AI Agent Workflows, SQL Server 2025 VECTOR
-
 **Validated Technologies:**
 
 *UI-Based Agents (GA unless noted):*
@@ -255,12 +251,8 @@ flowchart TD
 ```
 
 ### Validation Summary - Persona-Based Flow
-**Last Validated:** November 3, 2025
 
-**Key Changes:**
-- Added Preview annotations to Logic Apps AI Agent Workflows and Fabric Data Agents
-- Corrected "Copilot Studio Pro" to "Copilot Studio + Custom Actions" (no official "Pro" tier)
-- Validated persona assignments against official Microsoft documentation
+**Last Validated:** November 3, 2025
 
 **Persona-to-Technology Mappings:**
 
@@ -301,12 +293,16 @@ flowchart TD
     M365Data -->|Teams messages| GraphTeams[Graph Connectors]
     M365Data -->|Custom M365 app| GraphCustom[Custom Graph Connector]
     
-    AzureData -->|Documents, PDFs| Q2{Processing needs?}
+    AzureData -->|Documents, PDFs| Q2{File count?}
     AzureData -->|Structured DB| DB{Database?}
     AzureData -->|Unstructured| Blob[Blob Storage + AI Search]
     
-    Q2 -->|Standard indexing| Search[Azure AI Search]
+    Q2 -->|< 10,000 files<br/>Simple setup| FileSearch{Platform?}
+    Q2 -->|Production scale<br/>Custom chunking| Search[Azure AI Search]
     Q2 -->|Multimodal content| ContentUnderstanding[Azure AI Content Understanding<br/>+ AI Search<br/><i>Preview</i>]
+    
+    FileSearch -->|Azure Agent Service| AgentFileSearch[Agent Service File Search<br/>Auto chunk/embed]
+    FileSearch -->|Copilot Studio| StudioKnowledge[Studio Knowledge Base<br/>Up to 500 files]
     
     DB -->|Global scale, NoSQL| Cosmos{Vector algorithm?}
     DB -->|Relational| Postgres[PostgreSQL + pgvector]
@@ -326,6 +322,8 @@ flowchart TD
     Graph --> Layer{Which<br/>platform?}
     GraphTeams --> Layer
     GraphCustom --> Layer
+    AgentFileSearch --> Layer
+    StudioKnowledge --> Layer
     Search --> Layer
     ContentUnderstanding --> Layer
     CosmosIVF --> Layer
@@ -346,6 +344,8 @@ flowchart TD
     Layer -->|Logic Apps| LayerLogicApps([MCP Server/<br/>Connector])
     
     style Graph fill:#0078D4,color:#fff
+    style AgentFileSearch fill:#0078D4,color:#fff
+    style StudioKnowledge fill:#742774,color:#fff
     style Search fill:#0078D4,color:#fff
     style ContentUnderstanding fill:#50E6FF,color:#000
     style CosmosIVF fill:#0078D4,color:#fff
@@ -358,35 +358,39 @@ flowchart TD
 ```
 
 ### Validation Summary - Data Grounding Decision
+
 **Last Validated:** November 3, 2025
 
-**Key Changes:**
-- Added Preview annotation to Azure AI Content Understanding (2025-05-01-preview API)
-- Added Preview annotation to Fabric Data Agents (Copilot Studio integration)
-- **Distinguished Microsoft Fabric platform vs Fabric Data Agents** - added decision node for direct platform access (Lakehouse/Warehouse/OneLake) vs conversational agent layer
-- Confirmed SQL Server 2025 VECTOR Preview status (RC1)
-
 **Validated Technologies:**
-- **Microsoft Graph Connectors** (GA): M365 data sources (SharePoint, OneDrive, Teams) - [Graph Connectors Overview](https://learn.microsoft.com/en-us/microsoftsearch/connectors-overview)
-- **Azure AI Search** (GA): Document indexing, full-text search, vector search, hybrid queries - [AI Search Overview](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search)
-- **Azure AI Content Understanding** (Preview): Multimodal processing (documents/images/audio/video), RAG-ready Markdown output, AI Search custom skill integration, built-in chunking, standard/pro modes - [Content Understanding Overview](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) | [Multimodal Search](https://learn.microsoft.com/en-us/azure/search/multimodal-search-overview)
-- **Cosmos DB Vector Search** (GA): IVF/HNSW/DiskANN algorithms, NoSQL & MongoDB vCore APIs - [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database)
-- **PostgreSQL pgvector** (GA): Extension version 0.7.0, HNSW/IVF indexes - [PostgreSQL Vector Search](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector)
-- **SQL Server 2025 VECTOR** (Preview RC1): Native VECTOR data type, float32 (1,998 dims)/float16 (3,996 dims) - [SQL Server Vector](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type)
-- **Microsoft Fabric Platform** (GA): Direct knowledge source access via Lakehouse (Delta tables, Spark), Warehouse (T-SQL), OneLake (ADLS Gen2 APIs), KQL databases. Azure AI Foundry integration for RAG - [Fabric Overview](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) | [AI Foundry Fabric Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq)
-- **Fabric Data Agents** (Preview): Analytics data grounding (warehouses, lakehouses, Power BI semantic models, KQL databases), Copilot Studio connected agents, Azure AI Agent Service integration - [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) | [Copilot Studio Integration](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-microsoft-copilot-studio)
-- **Logic Apps MCP Server** (Preview): Standard logic apps as remote MCP servers, 1,400+ connectors, OAuth 2.0 auth, Streamable HTTP/SSE transports - [Logic Apps MCP Server](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) | [API Center Integration](https://learn.microsoft.com/en-us/azure/logic-apps/create-mcp-server-api-center)
 
----
+*M365 Data Sources (GA):*
+- **Microsoft Graph Connectors:** M365 data sources (SharePoint, OneDrive, Teams) - [Graph Connectors Overview](https://learn.microsoft.com/en-us/microsoftsearch/connectors-overview)
 
-## Complexity Assessment Flow
+*Document Processing - File Search (GA):*
+- **Azure AI Agent Service File Search Tool:** Built-in file search with automatic parsing, chunking (800 tokens/400 overlap), embedding (text-embedding-3-large), keyword + semantic search, reranking. Supports up to 10,000 files per vector store (max 512 MB/file). Two modes: Basic (Microsoft-managed) vs Standard (BYO Azure AI Search + Blob Storage). Supported formats: .doc, .docx, .pdf, .pptx, .py, .md, .txt, .json, .html, .java, .cs, .cpp, and more. Service handles entire ingestion automatically. - [Agent Service File Search](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/file-search)
+- **Copilot Studio Knowledge Base:** File upload from local/OneDrive/SharePoint. Supports .doc, .docx, .ppt, .pptx, .pdf, .xls, .xlsx, .txt, .md, .html, .csv, .xml. Max 512 MB per file, up to 500 files per agent. Automatic chunking and vectorization into Dataverse with semantic indexing. OneDrive/SharePoint: Auto-sync (updates reflected automatically) vs Upload: Static files. SharePoint: User-scoped permissions (only files user has access to). - [Copilot Studio Knowledge](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-unstructured-data) | [File Upload](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-file-upload) | [SharePoint Files](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-unstructured-data)
 
-```mermaid
-flowchart TD
-    Start([Assess Use Case]) --> Q1{How many<br/>data sources?}
-    
-````
-```
+*Document Processing - Production Scale (GA):*
+- **Azure AI Search:** Document indexing, full-text search, vector search, hybrid queries, custom chunking strategies (fixed-size, variable-size, Document Layout skill). Requires manual setup of indexers, skillsets, chunking strategy. Production-scale scenarios with millions of documents. - [AI Search Overview](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) | [Chunking Strategies](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)
+
+*Document Processing - Multimodal (Preview):*
+- **Azure AI Content Understanding:** Multimodal processing (documents/images/audio/video), RAG-ready Markdown output, AI Search custom skill integration, built-in chunking, standard/pro modes. API version: 2025-05-01-preview. - [Content Understanding Overview](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) | [Multimodal Search](https://learn.microsoft.com/en-us/azure/search/multimodal-search-overview)
+
+*Structured Databases - Vector Search (GA):*
+- **Cosmos DB Vector Search:** IVF/HNSW/DiskANN algorithms, NoSQL & MongoDB vCore APIs - [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database)
+- **PostgreSQL pgvector:** Extension version 0.7.0, HNSW/IVF indexes - [PostgreSQL Vector Search](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector)
+- **SQL Server 2025 VECTOR (Preview RC1):** Native VECTOR data type, float32 (1,998 dims)/float16 (3,996 dims) - [SQL Server Vector](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type)
+
+*Analytics Platform (GA with Preview features):*
+- **Microsoft Fabric Platform (GA):** Direct knowledge source access via Lakehouse (Delta tables, Spark), Warehouse (T-SQL), OneLake (ADLS Gen2 APIs), KQL databases. Azure AI Foundry integration for RAG - [Fabric Overview](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) | [AI Foundry Fabric Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq)
+- **Fabric Data Agents (Preview):** Analytics data grounding (warehouses, lakehouses, Power BI semantic models, KQL databases), Copilot Studio connected agents, Azure AI Agent Service integration - [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) | [Copilot Studio Integration](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-microsoft-copilot-studio)
+
+*MCP Integration (Preview):*
+- **Logic Apps MCP Server:** Standard logic apps as remote MCP servers, 1,400+ connectors, OAuth 2.0 auth, Streamable HTTP/SSE transports - [Logic Apps MCP Server](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) | [API Center Integration](https://learn.microsoft.com/en-us/azure/logic-apps/create-mcp-server-api-center)
+
+**When to Use File Search vs Azure AI Search:**
+- **File Search (Agent Service/Copilot Studio):** Up to 10,000 files, simple setup (no manual indexer/chunking config), automatic embedding, suitable for smaller document sets, internal knowledge bases, rapid prototyping. Cost: Included in Agent Service consumption or Copilot Studio credits.
+- **Azure AI Search:** Production scale (millions of documents), custom chunking strategies required, advanced features (analyzers, scoring profiles, faceting), complex indexing pipelines, enterprise search. Cost: Dedicated AI Search tier (Basic ~$75/mo to S3 ~$3K/mo).
 
 ---
 
@@ -474,14 +478,8 @@ flowchart TD
 ```
 
 ### Validation Summary - Budget & Timeline Tradeoffs
-**Last Validated:** November 3, 2025
 
-**Key Changes from Original Diagram:**
-- **Removed "Copilot Studio Pro" (doesn't exist)** - replaced with accurate PAYG and prepaid capacity pricing
-- **Restructured budget bands** - based on AI infrastructure costs, not per-user licensing
-- **Added missing technologies** - Logic Apps AI Workflows (Preview), AI Builder
-- **Removed unsupported claims** - eliminated "Not feasible" and "Not realistic" nodes without evidence
-- **Separated M365-only path** - users with existing M365 can extend at $0 additional AI cost
+**Last Validated:** November 3, 2025
 
 **Budget Band Rationale:**
 
@@ -505,7 +503,7 @@ flowchart TD
 - **Foundry + Agent Service:** Managed orchestration PaaS + AI Search S2 (~$1K/mo) = $10-30K/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview)
 - **Foundry PTU + Premium:** PTU reservations (50+ PTUs minimum) + AI Search S2/S3 = $30K+/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding#hourly-usage)
 
-**Timeline Estimates (validated against Scenarios doc):**
+**Timeline Estimates:**
 - Days: M365 built-in features, no development [(scenarios)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview)
 - 1-2 Weeks: Low-code platforms (Copilot Studio, Logic Apps) [(HR Knowledge Base scenario)](../scenarios.md)
 - 1-3 Months: Custom agents with SDKs, moderate complexity [(Customer Support scenario)](../scenarios.md)
@@ -564,7 +562,7 @@ flowchart TD
 
 ### Validation Summary: Governance & Compliance Path
 
-**Research Methodology:** Searched official Microsoft documentation for each technology's governance, compliance, security, RBAC, DLP, audit, and data residency capabilities (November 2025).
+**Last Validated:** November 2025
 
 **M365 Copilot (GA)** - STRICT GOVERNANCE:
 - **Data Residency:** M365 tenant boundary only. No data leaves M365 trust boundary. [Source: Data, Privacy, and Security for M365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
