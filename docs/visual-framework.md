@@ -532,37 +532,139 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start([Compliance Requirements]) --> Q1{Data<br/>residency<br/>critical?}
+    Start([Governance Requirements]) --> Q1{Data residency<br/>requirement?}
     
-    Q1 -->|Yes, M365 only| Strict[Strict Governance]
-    Q1 -->|Configurable| Medium[Medium Governance]
-    Q1 -->|Flexible| Low[Low Governance]
+    Q1 -->|M365 tenant only<br/>Strict boundary| R1[M365 Tenant Boundary]
+    Q1 -->|Azure region<br/>Configurable| R2[Azure Region Control]
+    Q1 -->|Flexible<br/>Multi-region OK| R3[Flexible Residency]
     
-    Strict --> S_DLP{Need<br/>DLP?}
-    S_DLP -->|Yes| S_M365[M365 Copilot<br/>Built-in DLP]
-    S_DLP -->|Custom| S_Studio[Copilot Studio<br/>M365 trust boundary]
+    R1 --> Q2{Built-in DLP<br/>sufficient?}
+    Q2 -->|Yes, inherit M365| G1[M365 Copilot GA<br/>• M365 trust boundary + Entra ID<br/>• Auto DLP, sensitivity labels<br/>• Purview audit all interactions<br/>• GDPR, HIPAA, ISO 27001, FedRAMP<br/>• Complexity: LOW, Cost: $30/user/mo]
+    Q2 -->|Need custom agents| G2[Copilot Studio GA<br/>• Power Platform RBAC + DLP<br/>• Environment-level governance<br/>• Connector controls 1P/3P<br/>• Purview audit + analytics<br/>• GDPR, HIPAA, ISO 27001, FedRAMP<br/>• Complexity: MEDIUM, Cost: $200/mo or PAYG]
     
-    Medium --> M_RBAC{RBAC<br/>model?}
-    M_RBAC -->|M365 groups| M_Studio[Copilot Studio<br/>M365 + custom RBAC]
-    M_RBAC -->|Custom| M_SDK[M365 SDK<br/>Full control]
+    R2 --> Q3{Network<br/>isolation?}
+    Q3 -->|VNet + private<br/>endpoints required| G3[Azure AI Foundry GA<br/>• Azure RBAC control/data plane<br/>• VNet, private endpoints, NSGs<br/>• Managed identity resource+project<br/>• Customer-managed keys optional<br/>• Azure Monitor + Log Analytics<br/>• Complexity: HIGH, Cost: Consumption]
+    Q3 -->|Managed runtime<br/>+ VNet needed| G4[AI Agent Service GA<br/>• Full RBAC project + resource<br/>• VNet, private endpoints, BYO storage<br/>• Azure Monitor project-scoped<br/>• Azure Policy integration<br/>• Complexity: HIGH, Cost: Consumption]
+    Q3 -->|Power Platform<br/>governance sufficient| G5[AI Builder GA<br/>• Power Platform DLP<br/>• Dataverse RBAC roles<br/>• PP environment location<br/>• Complexity: LOW-MEDIUM<br/>• Cost: Copilot Studio Credits]
     
-    Low --> L_Scale{Scale<br/>needs?}
-    L_Scale -->|< 1K users| L_Studio[Copilot Studio<br/>Fast deployment]
-    L_Scale -->|1K-10K users| L_SDK[M365 SDK<br/>Scalable]
-    L_Scale -->|10K+ users| L_Foundry[Azure AI Foundry<br/>Enterprise scale]
+    R3 --> Q4{Development<br/>model?}
+    Q4 -->|Enterprise workflows<br/>+ integration| G6[Logic Apps Standard GA<br/>• Granular Azure RBAC + managed ID<br/>• VNet, private endpoints Standard<br/>• Customer Lockbox support<br/>• Azure Policy + audit logs<br/>• FedRAMP, HIPAA, ISO 27001<br/>• Complexity: HIGH, Cost: ~$200/mo]
+    Q4 -->|Multi-channel<br/>custom agents| G7[M365 Agents SDK GA<br/>• Custom auth MSAL, Entra ID<br/>• Hosting platform RBAC Azure/on-prem<br/>• Custom telemetry implementation<br/>• Compliance inherits from host<br/>• Complexity: HIGH, Cost: Hosting only]
+    Q4 -->|Orchestration<br/>library only| G8[Agent Framework Preview<br/>• No built-in governance<br/>• Inherits from host application<br/>• App-level RBAC + audit<br/>• Compliance via hosting platform<br/>• Complexity: MEDIUM-HIGH, Cost: FREE]
     
-    S_M365 --> Audit1[M365 audit logs]
-    S_Studio --> Audit2[Studio analytics]
-    M_Studio --> Audit3[Studio + custom]
-    M_SDK --> Audit4[Custom telemetry]
-    L_Studio --> Audit5[Studio analytics]
-    L_SDK --> Audit6[Custom telemetry]
-    L_Foundry --> Audit7[Azure Monitor]
-    
-    style S_M365 fill:#0078D4,color:#fff
-    style S_Studio fill:#0078D4,color:#fff
-    style M_Studio fill:#0078D4,color:#fff
+    style G1 fill:#107C10,color:#fff
+    style G2 fill:#0078D4,color:#fff
+    style G3 fill:#0078D4,color:#fff
+    style G4 fill:#0078D4,color:#fff
+    style G5 fill:#FFB900,color:#000
+    style G6 fill:#0078D4,color:#fff
+    style G7 fill:#5C2D91,color:#fff
+    style G8 fill:#E81123,color:#fff
 ```
+
+### Validation Summary: Governance & Compliance Path
+
+**Research Methodology:** Searched official Microsoft documentation for each technology's governance, compliance, security, RBAC, DLP, audit, and data residency capabilities (November 2025).
+
+**M365 Copilot (GA)** - STRICT GOVERNANCE:
+- **Data Residency:** M365 tenant boundary only. No data leaves M365 trust boundary. [Source: Data, Privacy, and Security for M365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
+- **Built-in Governance:** Inherits all M365 Entra ID permissions, DLP policies, sensitivity labels, Conditional Access. No custom configuration required. [Source: Security for M365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+- **Audit:** Microsoft Purview audit logs capture all interactions (prompts + responses). [Source: M365 Copilot Audit Logs](https://learn.microsoft.com/en-us/purview/audit-copilot)
+- **Compliance:** GDPR, HIPAA, ISO 27001, ISO 42001 (AI management systems), FedRAMP. [Source: M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy#meeting-regulatory-compliance-requirements)
+- **Complexity:** LOW (fully managed, no configuration). **Cost:** $30/user/month.
+
+**Copilot Studio (GA)** - MEDIUM-HIGH GOVERNANCE:
+- **Data Residency:** Configurable by Power Platform environment geography (Azure regions). [Source: Geographic Data Residency in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/geo-data-residency-security)
+- **RBAC:** Power Platform RBAC with Entra ID. Environment-level roles (admin, maker, end-user). [Source: Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance)
+- **DLP:** Power Platform DLP policies control 1P/3P connector usage (business vs non-business). [Source: DLP in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-data-loss-prevention)
+- **ALM:** Dev/test/prod environment management with deployment pipelines. [Source: Copilot Studio Experience](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-experience#full-experience-governance-principles)
+- **Audit:** Microsoft Purview audit logs + Copilot Studio analytics. [Source: Copilot Studio Logging](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-logging-copilot-studio)
+- **Compliance:** ISO 27001, SOC 1/2/3, GDPR, FedRAMP, HIPAA. [Source: Copilot Studio Compliance](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-certification)
+- **Complexity:** MEDIUM (admin center configuration). **Cost:** $200/month prepaid (25K credits) or $0.01/credit PAYG.
+
+**Azure AI Foundry (GA)** - HIGH GOVERNANCE:
+- **Data Residency:** Azure region selection. Data stored in selected geography. [Source: Azure AI Foundry Planning](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#securing-the-ai-foundry-environment)
+- **RBAC:** Azure RBAC with control plane (resource management) and data plane (model access) separation. Resource-level + project-level assignments. [Source: Azure AI Foundry Architecture](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture#security-driven-separation-of-concerns)
+- **Managed Identity:** Supported at both resource and project level for passwordless auth. [Source: Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#securing-the-ai-foundry-environment)
+- **Networking:** VNet integration, private endpoints, NSGs for traffic isolation. [Source: Configure Private Link](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/configure-private-link)
+- **Encryption:** Customer-managed keys (CMK) optional for strict compliance. [Source: CMK in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/encryption-keys-portal)
+- **Audit:** Azure Monitor + Log Analytics for detailed logging. [Source: Monitor Applications](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-applications)
+- **Governance:** Azure Policy for model deployment control, cost management, quotas. [Source: Built-in Policy Model Deployment](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/built-in-policy-model-deployment)
+- **Compliance:** ISO 27001, SOC 2, GDPR. [Source: Azure Compliance](https://learn.microsoft.com/en-us/azure/compliance/)
+- **Complexity:** HIGH (requires Azure infrastructure + networking knowledge). **Cost:** Consumption-based (varies by model usage).
+
+**Azure AI Agent Service (GA May 2025)** - HIGH GOVERNANCE:
+- **Data Residency:** Same as Azure AI Foundry (Azure region selection). [Source: Agents Data Privacy](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/data-privacy-security)
+- **RBAC:** Full Azure RBAC at project + resource level. Granular access control. [Source: AI Agent Service Security Training](https://learn.microsoft.com/en-us/training/modules/intro-ai-agent-service-security-controls/3-azure-ai-agent-service-role-based-access-control)
+- **Networking:** VNet, private endpoints, BYO storage for threads/messages. [Source: Virtual Networks for Agents](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks)
+- **Managed Identity:** Supported at resource + project scopes. [Source: Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning)
+- **Audit:** Azure Monitor metrics (project-scoped), Log Analytics. [Source: Azure AI Foundry Architecture](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture#security-driven-separation-of-concerns)
+- **Governance:** Azure Policy integration, TPM limits at deployment level. [Source: Azure AI Foundry Governance](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#governance)
+- **Complexity:** HIGH (PaaS but requires Azure networking + RBAC config). **Cost:** Consumption-based (included in Azure AI Foundry).
+
+**AI Builder (GA)** - MEDIUM GOVERNANCE:
+- **Data Residency:** Power Platform environment location (geography). [Source: Power Platform Compliance](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/compliance)
+- **RBAC:** Dataverse security roles (Environment Maker, System Customizer). [Source: AI Builder Roles](https://learn.microsoft.com/en-us/ai-builder/security)
+- **DLP:** Power Platform DLP policies (part of Dataverse connector). [Source: AI Builder DLP](https://learn.microsoft.com/en-us/ai-builder/administer#data-loss-prevention-dlp)
+- **Audit:** Power Platform audit logs. [Source: Power Platform Logging](https://learn.microsoft.com/en-us/power-platform/admin/logging-power-automate)
+- **Networking:** No custom networking (tenant-level controls only).
+- **Complexity:** LOW-MEDIUM (low-code, simpler than Azure). **Cost:** Copilot Studio Credits (consumption).
+
+**Azure Logic Apps Standard (GA)** - HIGH GOVERNANCE:
+- **Data Residency:** Azure region selection. [Source: Logic Apps Overview](https://learn.microsoft.com/en-us/azure/logic-apps/)
+- **RBAC:** Granular Azure RBAC with Entra ID. [Source: Logic Apps Security Baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#identity-management)
+- **Managed Identity:** Full support for authentication to Azure services. [Source: Logic Apps Managed Identity](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#identity-management)
+- **Networking:** VNet integration, private endpoints (Standard only). [Source: Power Automate Migration Comparison](https://learn.microsoft.com/en-us/azure/logic-apps/power-automate-migration#compare-capability-details)
+- **Encryption:** Data at rest + in transit. Customer-managed keys for ISE. [Source: Logic Apps Security](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
+- **Audit:** Azure security audit logs + diagnostic logs. [Source: Logic Apps Policy](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
+- **Customer Lockbox:** Supported for Microsoft support access control. [Source: Logic Apps Baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#privileged-access)
+- **Compliance:** FedRAMP High/Moderate, HIPAA, ISO 27001, SOC 1/2/3. [Source: Logic Apps Regulatory Compliance](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
+- **Complexity:** HIGH (pro-code, enterprise integration). **Cost:** Consumption ~$0.000125/action OR Standard ~$200/month.
+
+**M365 Agents SDK (GA)** - CUSTOM GOVERNANCE:
+- **Authentication:** Bring your own (MSAL, Entra ID, OAuth 2.0, client cert, managed identity). [Source: M365 SDK Auth Configuration](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/microsoft-authentication-library-configuration-options)
+- **RBAC:** Custom implementation via hosting platform (Azure RBAC, Entra ID, custom).
+- **Data Residency:** Depends on hosting environment (Azure regions, on-prem, multi-cloud).
+- **Audit:** Custom telemetry implementation (Application Insights, custom logging).
+- **DLP:** Implement via hosting layer (no built-in SDK DLP).
+- **Compliance:** Inherits from hosting environment (Azure, on-prem compliance frameworks).
+- **Complexity:** HIGH (pro-code, full control = full responsibility for governance). **Cost:** FREE SDK (costs from hosting: Azure App Service, Functions, AKS).
+
+**Microsoft Agent Framework (Preview)** - NO BUILT-IN GOVERNANCE:
+- **Governance:** No built-in governance (orchestration library only). [Source: Agent Framework Overview](https://learn.microsoft.com/en-us/agent-framework/)
+- **Authentication:** Inherits from hosting application (M365 Agents SDK or custom app).
+- **RBAC:** Application-level implementation (not framework-level).
+- **Audit:** Application-level logging (framework doesn't provide audit).
+- **Compliance:** Depends entirely on hosting platform.
+- **Complexity:** MEDIUM-HIGH (requires integration with hosting platform). **Cost:** FREE (open-source library).
+
+**Key Findings:**
+1. **M365 Copilot** = Strictest built-in governance, lowest complexity (fully managed).
+2. **Copilot Studio** = Balanced managed governance with admin controls (environment-level).
+3. **Azure AI Foundry + Agent Service** = Enterprise-grade governance but highest complexity (networking + RBAC expertise required).
+4. **AI Builder** = Power Platform governance (simpler than Azure, more than M365 Copilot).
+5. **Logic Apps** = Enterprise governance with workflow focus (Standard = VNet, Consumption = limited networking).
+6. **M365 Agents SDK** = Custom governance (flexible but requires full implementation).
+7. **Agent Framework** = No governance (library only, inherits from host).
+
+**Decision Criteria:**
+- **Data residency = M365 only** → M365 Copilot or Copilot Studio
+- **Data residency = Azure region** → Azure AI Foundry, Agent Service, Logic Apps
+- **Built-in DLP required** → M365 Copilot (automatic) or Copilot Studio (Power Platform DLP)
+- **VNet isolation required** → Azure AI Foundry, Agent Service, Logic Apps Standard
+- **Low complexity needed** → M365 Copilot, AI Builder
+- **Enterprise integration workflows** → Logic Apps Standard (1,400+ connectors + governance)
+- **Multi-channel custom agents** → M365 Agents SDK (custom governance implementation)
+
+**Documentation Sources:**
+- [M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
+- [M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+- [Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance)
+- [Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning)
+- [AI Agent Service Security](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/data-privacy-security)
+- [AI Builder Governance](https://learn.microsoft.com/en-us/ai-builder/administer)
+- [Logic Apps Security](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
+- [M365 Agents SDK Auth](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/microsoft-authentication-library-configuration-options)
 
 ---
 
