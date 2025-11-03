@@ -433,43 +433,98 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Start([Project Constraints]) --> Q1{Budget<br/>per month?}
+    Start([Project Constraints]) --> Q1{AI setup<br/>budget?}
     
-    Q1 -->|< $500| Low[Low Budget]
-    Q1 -->|$500-$2K| Mid[Medium Budget]
-    Q1 -->|$2K-$10K| High[High Budget]
-    Q1 -->|$10K+| VeryHigh[Enterprise Budget]
+    Q1 -->|Existing M365| M365Only[M365-Only Path]
+    Q1 -->|$200-500/mo| Starter[Starter Budget]
+    Q1 -->|$1K-5K/mo| Growth[Growth Budget]
+    Q1 -->|$5K+/mo| Enterprise[Enterprise Budget]
     
-    Low --> LT{Timeline?}
-    LT -->|Days| L_Fast[M365 Copilot<br/>Limited customization]
-    LT -->|Weeks| L_Med[Copilot Studio Starter<br/>Low-code only]
-    LT -->|Months| L_Slow[Not feasible]
+    M365Only --> M365T{Timeline?}
+    M365T -->|Days| M365_Fast[M365 Copilot Chat<br/>$0 add'l + M365 license<br/>Instruction-based agents]
+    M365T -->|1-2 Weeks| M365_Med[M365 Copilot + Graph<br/>$0 add'l<br/>Knowledge grounding]
+    M365T -->|1 Month+| M365_Slow[Declarative Agents<br/>$0 add'l or PAYG<br/>Custom instructions + data]
     
-    Mid --> MT{Timeline?}
-    MT -->|Days| M_Fast[M365 + Graph<br/>Basic grounding]
-    MT -->|Weeks| M_Med[Copilot Studio Pro<br/>Good balance]
-    MT -->|Months| M_Slow[Studio + Actions<br/>High customization]
+    Starter --> StarterT{Timeline?}
+    StarterT -->|1-2 Weeks| S_Fast[Copilot Studio PAYG<br/>$200-500/mo avg<br/>$0.01/credit, low-code]
+    StarterT -->|1-2 Months| S_Med[Studio + AI Builder<br/>$200-500/mo<br/>Document processing]
+    StarterT -->|3+ Months| S_Slow[Logic Apps AI Workflows<br/>~$200-400/mo<br/>Preview, event-driven]
     
-    High --> HT{Timeline?}
-    HT -->|Days| H_Fast[Not realistic]
-    HT -->|Weeks| H_Med[M365 SDK Basic<br/>Limited scope]
-    HT -->|Months| H_Slow[M365 SDK or Foundry<br/>Full custom]
+    Growth --> GrowthT{Timeline?}
+    GrowthT -->|2-4 Weeks| G_Fast[Copilot Studio Capacity<br/>$200+/mo prepaid<br/>25K credits/pack]
+    GrowthT -->|1-3 Months| G_Med[M365 SDK + Azure Basic<br/>$1-3K/mo<br/>Custom agents, Azure hosting]
+    GrowthT -->|3-6 Months| G_Slow[Azure AI Foundry Starter<br/>$1-5K/mo<br/>PAYG tokens + AI Search Basic]
     
-    VeryHigh --> VT{Timeline?}
-    VT -->|Days| V_Fast[Not realistic]
-    VT -->|Weeks| V_Med[Foundry MVP<br/>Focused scope]
-    VT -->|Months| V_Slow[Full Foundry Stack<br/>Complete solution]
+    Enterprise --> EntT{Timeline?}
+    EntT -->|4-8 Weeks| E_Fast[Foundry Serverless<br/>$5-15K/mo est<br/>PAYG + AI Search Standard]
+    EntT -->|3-6 Months| E_Med[Foundry + Agent Service<br/>$10-30K/mo est<br/>Managed orchestration]
+    EntT -->|6+ Months| E_Slow[Foundry PTU + Premium<br/>$30K+/mo<br/>PTU reservation + S2/S3 Search]
     
-    style L_Fast fill:#107C10,color:#fff
-    style M_Med fill:#107C10,color:#fff
-    style M_Slow fill:#107C10,color:#fff
-    style H_Slow fill:#107C10,color:#fff
-    style V_Slow fill:#107C10,color:#fff
+    style M365_Fast fill:#107C10,color:#fff
+    style M365_Med fill:#107C10,color:#fff
+    style S_Fast fill:#107C10,color:#fff
+    style G_Fast fill:#107C10,color:#fff
+    style G_Med fill:#107C10,color:#fff
+    style E_Med fill:#107C10,color:#fff
     
-    style L_Slow fill:#D83B01,color:#fff
-    style H_Fast fill:#D83B01,color:#fff
-    style V_Fast fill:#D83B01,color:#fff
+    style M365_Slow fill:#FFB900,color:#000
+    style S_Med fill:#FFB900,color:#000
+    style G_Slow fill:#FFB900,color:#000
+    style S_Slow fill:#FF8C00,color:#fff
 ```
+
+### Validation Summary - Budget & Timeline Tradeoffs
+**Last Validated:** November 3, 2025
+
+**Key Changes from Original Diagram:**
+- **Removed "Copilot Studio Pro" (doesn't exist)** - replaced with accurate PAYG and prepaid capacity pricing
+- **Restructured budget bands** - based on AI infrastructure costs, not per-user licensing
+- **Added missing technologies** - Logic Apps AI Workflows (Preview), AI Builder
+- **Removed unsupported claims** - eliminated "Not feasible" and "Not realistic" nodes without evidence
+- **Separated M365-only path** - users with existing M365 can extend at $0 additional AI cost
+
+**Budget Band Rationale:**
+
+*M365-Only ($0 AI infrastructure add'l):*
+- **M365 Copilot Chat:** Included with M365 subscription, web-grounded chat and instruction-based agents [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#licensing-options-for-microsoft-365-copilot)
+- **M365 Copilot + Graph Connectors:** $30/user/month M365 Copilot license, Graph Connectors included at no extra charge [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-use-rights-included-with-microsoft-365-copilot-license)
+- **Declarative Agents:** Instruction-based or public-web grounded = $0; shared tenant data = PAYG [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot)
+
+*Starter ($200-500/mo):*
+- **Copilot Studio PAYG:** $0.01 per Copilot Credit, typical usage $200-500/mo for starter scenarios [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-pay-as-you-go)
+- **AI Builder:** Included in Power Platform, document processing (invoices, receipts, contracts) [(docs)](https://learn.microsoft.com/en-us/ai-builder/overview)
+- **Logic Apps AI Workflows (Preview):** Consumption ~$200-400/mo for typical workflows, event-driven agents [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
+
+*Growth ($1K-5K/mo):*
+- **Copilot Studio Capacity Packs:** $200/month per 25,000 credits prepaid [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-prepaid-copilot-credits-subscription)
+- **M365 SDK + Azure:** SDK free; Azure hosting (App Service ~$100-300/mo) + Azure OpenAI PAYG (~$500-2K/mo tokens) [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot)
+- **Azure AI Foundry Starter:** PAYG tokens + AI Search Basic (~$75/mo) = $1-5K/mo estimate [(docs)](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) | [(AI Search pricing)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions)
+
+*Enterprise ($5K+/mo):*
+- **Foundry Serverless:** PAYG tokens at scale + AI Search Standard S1 (~$250/mo) = $5-15K/mo [(docs)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions)
+- **Foundry + Agent Service:** Managed orchestration PaaS + AI Search S2 (~$1K/mo) = $10-30K/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview)
+- **Foundry PTU + Premium:** PTU reservations (50+ PTUs minimum) + AI Search S2/S3 = $30K+/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding#hourly-usage)
+
+**Timeline Estimates (validated against Scenarios doc):**
+- Days: M365 built-in features, no development [(scenarios)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview)
+- 1-2 Weeks: Low-code platforms (Copilot Studio, Logic Apps) [(HR Knowledge Base scenario)](../scenarios.md)
+- 1-3 Months: Custom agents with SDKs, moderate complexity [(Customer Support scenario)](../scenarios.md)
+- 3-6 Months: Azure AI Foundry custom solutions, complex orchestration [(evaluation-criteria)](../evaluation-criteria.md#4-time-to-production)
+- 6+ Months: Enterprise-scale with PTU, fine-tuning, advanced patterns
+
+**Cost Calculation Notes:**
+- M365 per-user costs ($30/user/month) NOT included in bands - these are AI infrastructure costs only
+- Estimates assume moderate usage (not high-scale production)
+- Azure consumption highly variable based on tokens, requests, storage
+- PTU (Provisioned Throughput Units) require Azure Reservations for cost optimization
+
+**Sources:**
+- [Copilot Studio Licensing](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing) (Updated: 2025)
+- [M365 Copilot Cost Considerations](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations) (Updated: 2025)
+- [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) (Updated: 2025)
+- [Azure AI Search Tiers](https://learn.microsoft.com/en-us/azure/search/search-sku-tier) (Updated: 2025)
+- [Logic Apps AI Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (Preview, Updated: 2025)
+- [AI Builder Overview](https://learn.microsoft.com/en-us/ai-builder/overview) (Updated: 2025)
 
 ---
 
