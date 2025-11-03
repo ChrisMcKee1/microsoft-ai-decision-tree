@@ -22,6 +22,7 @@ Interactive decision trees to guide Microsoft AI technology selection.
 ## Complete Decision Flow
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Start: Need AI Solution]) --> Q1{Where should users<br/>experience the AI?}
     
@@ -68,6 +69,7 @@ flowchart TD
     style Studio fill:#0078D4,color:#fff
     style SDK fill:#0078D4,color:#fff
     style Foundry fill:#0078D4,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -75,6 +77,7 @@ flowchart TD
 ## Persona-Based Flow
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Who are you?]) --> P1{Your role?}
     
@@ -108,6 +111,7 @@ flowchart TD
     style DevM365 fill:#5C2D91,color:#fff
     style DevAzure fill:#5C2D91,color:#fff
     style DS fill:#D83B01,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -115,6 +119,7 @@ flowchart TD
 ## Data Grounding Decision
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Need to ground AI]) --> Q1{Where is<br/>your data?}
     
@@ -158,6 +163,7 @@ flowchart TD
     style Cosmos fill:#0078D4,color:#fff
     style Postgres fill:#0078D4,color:#fff
     style SQL fill:#0078D4,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -165,6 +171,7 @@ flowchart TD
 ## Complexity Assessment Flow
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Assess Use Case]) --> Q1{How many<br/>data sources?}
     
@@ -197,6 +204,7 @@ flowchart TD
     style Simple fill:#107C10,color:#fff
     style Medium fill:#FFB900,color:#000
     style Complex fill:#D83B01,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -204,6 +212,7 @@ flowchart TD
 ## Budget & Timeline Tradeoffs
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Project Constraints]) --> Q1{Budget<br/>per month?}
     
@@ -241,6 +250,7 @@ flowchart TD
     style L_Slow fill:#D83B01,color:#fff
     style H_Fast fill:#D83B01,color:#fff
     style V_Fast fill:#D83B01,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -248,6 +258,7 @@ flowchart TD
 ## Governance & Compliance Path
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Compliance Requirements]) --> Q1{Data<br/>residency<br/>critical?}
     
@@ -279,6 +290,7 @@ flowchart TD
     style S_M365 fill:#0078D4,color:#fff
     style S_Studio fill:#0078D4,color:#fff
     style M_Studio fill:#0078D4,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -286,6 +298,7 @@ flowchart TD
 ## Multi-Agent Orchestration
 
 ```mermaid
+{% raw %}
 flowchart TD
     Start([Need Multi-Agent?]) --> Q1{Complexity?}
     
@@ -319,6 +332,7 @@ flowchart TD
     style Simple fill:#107C10,color:#fff
     style Medium fill:#FFB900,color:#000
     style Complex fill:#D83B01,color:#fff
+{% endraw %}
 ```
 
 ---
@@ -326,6 +340,7 @@ flowchart TD
 ## Upgrade Paths
 
 ```mermaid
+{% raw %}
 flowchart LR
     M365[M365 Copilot<br/>Built-in AI] -->|Add custom data| Graph[+ Graph Connectors]
     Graph -->|Need workflows| Studio[Migrate to<br/>Copilot Studio]
@@ -344,6 +359,7 @@ flowchart LR
     style Studio fill:#0078D4,color:#fff
     style SDK fill:#5C2D91,color:#fff
     style Foundry fill:#D83B01,color:#fff
+{% endraw %}
 ```
 
 ---
