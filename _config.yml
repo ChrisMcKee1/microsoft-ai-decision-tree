@@ -32,8 +32,10 @@ search:
   button: false
 
 # Mermaid diagrams support
+# Using latest stable version from https://github.com/mermaid-js/mermaid/releases
+# Last verified: November 2025
 mermaid:
-  version: "10.6.0"
+  version: "11.12.1"
 
 # Navigation
 nav_sort: case_sensitive
