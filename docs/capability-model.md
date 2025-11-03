@@ -115,6 +115,10 @@ Manage all agents (Studio, SDK, declarative) from Microsoft 365 admin center (GA
 
 ---
 
+**Next:** [Decision Framework](decision-framework.md) - Learn the three-phase methodology for technology selection
+
+---
+
 ## Sources
 
 **Layer 1 & 2:**
@@ -141,7 +145,3 @@ Manage all agents (Studio, SDK, declarative) from Microsoft 365 admin center (GA
 **Layer 5:**
 - [Azure SRE Agent Overview](https://learn.microsoft.com/en-us/azure/sre-agent/overview) (Preview, Updated: 2025)
 - [GitHub Copilot Coding Agent - Azure MCP Integration](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/how-to/github-copilot-coding-agent) (Updated: 2025)
-
----
-
-**Next:** [Decision Framework](decision-framework.md) - Learn the three-phase methodology for technology selection
