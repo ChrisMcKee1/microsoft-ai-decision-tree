@@ -132,9 +132,20 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 
 **Resulting Groupings:**
 - **Graph-Based**: M365 Copilot + Graph Connectors, Copilot Studio with M365 data
-- **Vector Search**: Azure AI Search + Azure AI Foundry, BYOK to Copilot Studio
-- **Transactional/Real-time**: PostgreSQL pgvector + Azure AI Foundry
-- **Hybrid**: Combine Graph + Azure Search + Custom connectors
+- **Vector Search (Document-Centric)**: Azure AI Search + Azure AI Foundry, BYOK to Copilot Studio
+- **Vector Search (NoSQL/Global)**: Cosmos DB (IVF, HNSW, DiskANN) + Azure AI Foundry
+- **Vector Search (Relational)**: PostgreSQL pgvector + Azure AI Foundry
+- **Vector Search (Enterprise SQL)**: SQL Server 2025 VECTOR + Azure AI Foundry
+- **Hybrid**: Combine Graph + Azure Search + Cosmos DB/PostgreSQL + Custom connectors
+
+{: .note }
+> **📋 Ingestion Pipeline Considerations**
+>
+> Vector search options require an **ingestion pipeline** (chunking + vectorization):
+> - **Azure AI Search**: Use [integrated vectorization](https://learn.microsoft.com/en-us/azure/search/vector-search-integrated-vectorization) (indexer + skillset with Text Split + embedding skills)
+> - **Azure AI Content Understanding**: Prebuilt analyzers with [built-in chunking](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) for multimodal content (docs, images, audio, video)
+> - **External Processing**: Chunk and vectorize outside Azure, then push to vector fields
+> - **Graph-Based**: No pipeline needed — Graph Connectors handle ingestion automatically
 
 💡 **Cross-reference:** See [Implementation Patterns](implementation-patterns.md) - Pattern 3: Graph-Centric Grounding
 
