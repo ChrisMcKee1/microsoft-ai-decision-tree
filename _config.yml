@@ -5,7 +5,11 @@ baseurl: "/microsoft-ai-decision-tree" # the subpath of your site, e.g. /blog
 url: "https://chrismckee1.github.io" # the base hostname & protocol for your site
 
 # Theme
+# For GitHub Pages (production):
 remote_theme: just-the-docs/just-the-docs
+
+# For local testing (uncomment the line below and comment out remote_theme):
+# theme: just-the-docs
 
 # Color scheme options:
 # - nil (default with light/dark toggle)
