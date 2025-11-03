@@ -92,6 +92,34 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 
 ---
 
+{: .warning }
+> **⚠️ Common Misconception: "Low-Code is Only for Makers, Pro-Code is Only for Developers"**
+>
+> This is **incorrect** and leads to poor technology choices. Here's the reality:
+>
+> | Term | What It Actually Means | Who Should Use It |
+> |------|------------------------|-------------------|
+> | **Low-Code** | Less code to write, visual/declarative approach, managed platform (e.g., Copilot Studio, Power Platform) | **Makers AND Developers** — Use when speed matters and custom orchestration isn't needed |
+> | **Pro-Code** | Write code in programming languages (C#, Python, JavaScript), full control, custom orchestration | **Developers only** — Use when you need custom logic beyond low-code capabilities |
+>
+> **✅ Correct Thinking:**
+> - **"We have developers, so we CAN use low-code OR pro-code — let the use case decide"**
+> - Low-code is faster for simple/moderate complexity (days/weeks vs months)
+> - Pro-code gives full control for complex orchestration needs
+>
+> **❌ Pitfall to Avoid:**
+> - **"We have developers, so we MUST use M365 SDK/Azure AI Foundry"**
+> - This wastes time building custom solutions when Copilot Studio (low-code) would suffice
+> - Developers should choose the **simplest tool that meets requirements**, not the most complex
+>
+> **Decision Drivers (in priority order):**
+> 1. **Use case complexity** — Simple Q&A vs Custom multi-agent workflows?
+> 2. **Time to market** — Days/weeks (low-code) vs Months (pro-code)?
+> 3. **Control requirements** — Managed governance OK vs Need custom orchestration?
+> 4. **Team skills** — Expands options (devs can use both) vs Limits options (makers use low-code only)
+
+---
+
 ### Question 3: Data Grounding Pattern
 
 **How will you ground the AI in organizational knowledge?**
