@@ -355,7 +355,9 @@ flowchart TD
     style SQL fill:#0078D4,color:#fff
     style FabricPlatform fill:#FFB900,color:#000
     style FabricAgent fill:#FFB900,color:#000
-```### Validation Summary - Data Grounding Decision
+```
+
+### Validation Summary - Data Grounding Decision
 **Last Validated:** November 3, 2025
 
 **Key Changes:**
