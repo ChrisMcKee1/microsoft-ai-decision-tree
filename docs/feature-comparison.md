@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Feature Comparison
-nav_order: 8
+nav_order: 9
 description: Comprehensive side-by-side technology comparisons
 ---
 
@@ -142,19 +142,22 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 
 ## Data Grounding Technology Comparison
 
-| Feature | **Graph Connectors** | **Azure AI Search** | **Cosmos DB** | **PostgreSQL** | **SQL Server 2025** |
-|---------|---------------------|---------------------|----------------|----------------|---------------------|
-| **Vector Search** | No (semantic index only) | ✅ Yes (IVF, HNSW) | ✅ Yes (IVF, HNSW, DiskANN) | ✅ Yes (pgvector, IVF) | ✅ Yes (DiskANN) |
-| **Hybrid Search** | No | ✅ Yes (vector + keyword) | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Data Boundary** | M365 tenant | Azure | Azure | Azure | On-premises or Azure |
-| **Index Target** | Microsoft Graph | Azure AI Search index | Cosmos DB collection | PostgreSQL table | SQL Server table |
-| **Best For** | M365-centric knowledge | Azure-native RAG | Transactional + vector data | PostgreSQL workloads with AI | SQL Server workloads with AI |
-| **Licensing** | Included with M365 | Azure consumption | Azure consumption | Azure consumption | SQL Server license |
-| **Status** | GA | GA | GA | GA | Preview |
+| Feature | **Graph Connectors** | **Azure AI Search** | **Microsoft Fabric** | **Cosmos DB** | **PostgreSQL** | **SQL Server 2025** |
+|---------|---------------------|---------------------|----------------------|----------------|----------------|---------------------|
+| **Vector Search** | No (semantic index only) | ✅ Yes (IVF, HNSW) | ✅ Yes (Lakehouse via external tools) | ✅ Yes (IVF, HNSW, DiskANN) | ✅ Yes (pgvector, IVF) | ✅ Yes (DiskANN) |
+| **Hybrid Search** | No | ✅ Yes (vector + keyword) | ✅ Yes (SQL endpoint + external) | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Data Boundary** | M365 tenant | Azure | Azure (OneLake) | Azure | Azure | On-premises or Azure |
+| **Index Target** | Microsoft Graph | Azure AI Search index | Lakehouse Delta tables, Warehouse tables | Cosmos DB collection | PostgreSQL table | SQL Server table |
+| **Access Method** | Graph API | REST API, SDKs | ADLS Gen2 APIs, SQL endpoint, Fabric Data Agents | SDKs, REST API | SQL, pgvector | T-SQL, VECTOR type |
+| **Best For** | M365-centric knowledge | Azure-native RAG | Analytics data + unified data platform | Transactional + vector data | PostgreSQL workloads with AI | SQL Server workloads with AI |
+| **Licensing** | Included with M365 | Azure consumption | Fabric capacity (F2+) | Azure consumption | Azure consumption | SQL Server license |
+| **Status** | GA | GA | GA (Platform), Preview (Data Agents) | GA | GA | Preview |
 
 **Sources:**
 - [Microsoft Graph Connectors](https://learn.microsoft.com/en-us/graph/connecting-external-content-connectors-overview) (Updated: 2024-09-20)
 - [Azure AI Search Vector Search](https://learn.microsoft.com/en-us/azure/search/vector-search-overview) (Updated: 2024-10-12)
+- [Microsoft Fabric Platform](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) (Updated: 2025-11-03)
+- [Fabric AI Foundry Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq) (Updated: 2025-11-03)
 - [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-search) (Updated: 2024-10-08)
 - [Azure Database for PostgreSQL AI](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/generative-ai-overview) (Updated: 2024-09-30)
 - [SQL Server 2025 Vectors](https://learn.microsoft.com/en-us/sql/relational-databases/vectors/vectors-sql-server) (Updated: 2024-10-20)
@@ -167,7 +170,7 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 
 | **Approach** | **Declarative Agents** | **Custom Engine Agents** |
 |--------------|------------------------|--------------------------|
-| **Definition** | Pre-built orchestration; configure instructions, knowledge, actions | Bring your own orchestrator (Semantic Kernel, Agent Framework, LangChain) |
+| **Definition** | Pre-built orchestration; configure instructions, knowledge, actions | Bring your own orchestrator (Agent Framework Preview recommended, LangChain third-party) |
 | **Best For** | Simple → Moderate complexity; fast time-to-market | Complex workflows; multi-agent systems; custom reasoning |
 | **Development Model** | Low-code (Copilot Studio) or Pro-code (M365 Agents Toolkit) | Pro-code only; full control over logic |
 | **Orchestration** | Microsoft-managed orchestration (GPT-based) | You control orchestration framework and model selection |
@@ -188,7 +191,7 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 | **Tool** | **Copilot Studio** | **Teams AI Library** | **M365 Agents SDK** |
 |----------|---------------------|----------------------|---------------------|
 | **Primary Use Case** | Low-code custom engine agents | Bot Framework migration path | Multi-channel pro-code agents |
-| **Orchestration Options** | Semantic Kernel, Agent Framework, LangChain | Teams AI Library framework | Agent Framework, Semantic Kernel, LangChain |
+| **Orchestration Options** | Agent Framework Preview recommended, LangChain third-party | Teams AI Library framework | Agent Framework Preview recommended, LangChain third-party |
 | **Deployment Channels** | Teams, M365 Copilot | Teams-focused | 10+ channels (Teams, Slack, web chat, etc.) |
 | **Developer Experience** | Visual designer + code | Code-first | Code-first with Toolkit in VS Code |
 | **Target Audience** | Makers and developers | Bot Framework developers | Professional developers |
@@ -207,6 +210,10 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 {: .note-title }
 > Related Pages
 >
-> - For technology selection guidance, see [Decision Framework](decision-framework.html)
+> - For technology selection guidance, see [Decision Framework](decision-framework.html)    
 > - For fast lookup tables, see [Quick Reference](quick-reference.html)
 > - For architecture patterns, see [Implementation Patterns](implementation-patterns.html)
+
+---
+
+**Next:** [Quick Reference](quick-reference.md) - Fast lookup for technology selection

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Scenarios
-nav_order: 9
+nav_order: 4
 description: "Real-world scenarios with technology recommendations"
 ---
 
@@ -288,4 +288,4 @@ Support team handles 1,000+ tickets per month with repetitive questions. Company
 ---
 
 **Last Updated:** November 2025  
-**Next:** [Evaluation Criteria](evaluation-criteria.md) - Assess your requirements
+**Next:** [Visual Framework](visual-framework.md) - Apply the decision methodology with interactive diagrams

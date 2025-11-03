@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Microsoft AI Technologies
-nav_order: 2
+nav_order: 8
 description: "Complete reference for Microsoft's AI technology portfolio"
 ---
 
@@ -116,14 +116,14 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Microsoft 365 Agents SDK & Toolkit
-**Description:** Pro-code framework for building multi-channel custom engine agents. Model-agnostic and orchestrator-agnostic (bring your own: Semantic Kernel, LangChain, Agent Framework). Deploys to M365 Copilot, Teams, Web, Mobile, SMS, Email, and 10+ external channels. Bot Framework successor (BF support ends Dec 31, 2025).  
+**Description:** Pro-code framework for building multi-channel custom engine agents. Model-agnostic and orchestrator-agnostic (bring your own: Agent Framework recommended, LangChain third-party alternative). Deploys to M365 Copilot, Teams, Web, Mobile, SMS, Email, and 10+ external channels. Bot Framework successor (BF support ends Dec 31, 2025).  
 **Status:** GA (C#, JavaScript, Python)  
 **Official Docs:** [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/) | [Bot Framework Migration](https://aka.ms/bfmigrationguidance)
 
 **Key Features:**
 - Multi-channel deployment (10+ platforms)
 - Model-agnostic (Azure OpenAI, OpenAI, Anthropic, custom)
-- Orchestrator-agnostic (Semantic Kernel, LangChain, Agent Framework, custom)
+- Orchestrator-agnostic (Agent Framework recommended, LangChain third-party, custom)
 - Bot Framework successor
 - Group productivity scenarios (Teams channels/meetings)
 - Proactive messaging
@@ -187,4 +187,4 @@ Managed service for agent orchestration within Azure AI Foundry. GA. Use for: Ma
 
 ---
 
-**Next:** [Capability Model](capability-model.md) - Understand the five-layer architecture
+**Next:** [Feature Comparison](feature-comparison.md) - Side-by-side capability matrices

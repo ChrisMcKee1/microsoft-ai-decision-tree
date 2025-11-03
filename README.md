@@ -9,108 +9,183 @@ permalink: /
 # Microsoft AI Decision Tree
 {: .fs-9 }
 
-Navigate Microsoft's AI portfolio to make informed technology decisions.
+Master the art of selecting the right Microsoft AI technology for your business needs.
 {: .fs-6 .fw-300 }
 
-[Get Started](docs/decision-framework.md){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View Technologies](docs/technologies.md){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Start Learning](docs/capability-model.md){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View Visual Framework](docs/visual-framework.md){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
-## Overview
+## The Challenge
 
-This guide helps you navigate Microsoft's rapidly evolving AI technology portfolio to make evidence-based decisions about which tools and platforms to use. It covers technology selection, implementation patterns, governance, and real-world scenarios across the entire Microsoft AI stack.
+Microsoft's AI portfolio includes **M365 Copilot, Copilot Studio, Azure AI Foundry, Agent Service, SDKs, and more**. Each technology serves different needs, and choosing the wrong one wastes time and money.
 
-**Key capabilities:**
-- **Technology Reference** - Complete portfolio from M365 Copilot to Azure AI Foundry
-- **Decision Framework** - Three-phase methodology (BXT → Technology Groupings → Selection)
-- **Implementation Patterns** - Proven architecture patterns and integration strategies
-- **Scenario Guidance** - Common use cases with recommended technology paths
+**This guide solves that problem** by teaching you a systematic framework for evaluating and selecting the right tool for your specific requirements.
 
 ---
 
-## Quick Navigation
+## What You'll Learn
 
-### 🎯 Start Here
+By following this framework, you'll gain:
 
-**New to Microsoft AI?**  
-→ [Microsoft AI Technologies](docs/technologies.md) - Understand the complete portfolio
-
-**Ready to choose a technology?**  
-→ [Decision Framework](docs/decision-framework.md) - Three-phase selection methodology
-
-**Need quick answers?**  
-→ [Scenarios](docs/scenarios.md) - "I need X" → recommended path
-
----
-
-### 📚 Core Content
-
-| Section | Description | Best For |
-|---------|-------------|----------|
-| [Technologies](docs/technologies.md) | Complete reference: M365 Copilot, Copilot Studio, Azure AI Foundry, Agent Service, SDKs | Understanding each technology's capabilities |
-| [Capability Model](docs/capability-model.md) | Five layers from consumption to specialized copilots | Architectural understanding |
-| [Decision Framework](docs/decision-framework.md) | BXT assessment → 6 questions → scenario selection | Making technology decisions |
-| [Quick Reference](docs/quick-reference.md) | Technology by need + comparison tables | Fast lookups |
-| [Implementation Patterns](docs/implementation-patterns.md) | 5 proven architecture patterns | Implementation guidance |
-| [Evaluation Criteria](docs/evaluation-criteria.md) | Complexity, skills, budget, governance considerations | Evaluation and planning |
-| [Feature Comparison](docs/feature-comparison.md) | Side-by-side technology comparisons | Detailed feature analysis |
-| [Scenarios](docs/scenarios.md) | Real-world use cases with recommendations | Scenario-based guidance |
-| [Visual Framework](docs/visual-framework.md) | Decision tree diagrams (Mermaid) | Visual learners |
-| [Resources](docs/resources.md) | Next steps by role + key takeaways | Getting started |
-| [Glossary](docs/glossary.md) | Key terms and definitions | Reference |
+✅ **Foundation** - Understanding of Microsoft's five-layer AI capability model  
+✅ **Methodology** - The BXT decision framework for systematic technology selection  
+✅ **Context** - Real-world scenarios showing how others solved similar problems  
+✅ **Application** - Interactive decision trees for visual technology selection  
+✅ **Assessment** - Evaluation criteria for complexity, skills, budget, and governance  
+✅ **Execution** - Implementation patterns and architecture guidance  
+✅ **Mastery** - Deep technical knowledge of each technology's capabilities  
 
 ---
 
-## Common Paths
+## Your Learning Journey
+
+Follow this progressive path for the best learning experience:
+
+```mermaid
+%%{init: {'theme':'dark', 'themeVariables': {'fontSize':'14px'}}}%%
+flowchart LR
+    Start([📖 Start]) --> CM[1️⃣ Capability Model<br/>Five Layers]
+    CM --> DF[2️⃣ Decision Framework<br/>BXT Method]
+    DF --> SC[3️⃣ Scenarios<br/>Examples]
+    SC --> VF[4️⃣ Visual Framework<br/>Diagrams]
+    VF --> EC[5️⃣ Evaluation<br/>Assessment]
+    EC --> IP[6️⃣ Implementation<br/>Patterns]
+    IP --> TECH[7️⃣ Technologies<br/>Deep Dive]
+    TECH --> FC[8️⃣ Comparison<br/>Features]
+    
+    style Start fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style CM fill:#1976D2,stroke:#0D47A1,color:#fff
+    style DF fill:#1976D2,stroke:#0D47A1,color:#fff
+    style SC fill:#1976D2,stroke:#0D47A1,color:#fff
+    style VF fill:#1976D2,stroke:#0D47A1,color:#fff
+    style EC fill:#1976D2,stroke:#0D47A1,color:#fff
+    style IP fill:#1976D2,stroke:#0D47A1,color:#fff
+    style TECH fill:#1976D2,stroke:#0D47A1,color:#fff
+    style FC fill:#1976D2,stroke:#0D47A1,color:#fff
+```
+
+### The Progressive Path
+
+| Step | Module | What You'll Learn | Time Investment |
+|------|--------|-------------------|-----------------|
+| 1️⃣ | [Capability Model](docs/capability-model.md) | **Foundation** - Five layers from M365 Copilot to Infrastructure | 15 min |
+| 2️⃣ | [Decision Framework](docs/decision-framework.md) | **Methodology** - BXT assessment + 6 critical questions | 20 min |
+| 3️⃣ | [Scenarios](docs/scenarios.md) | **Context** - Real-world use cases with solutions | 15 min |
+| 4️⃣ | [Visual Framework](docs/visual-framework.md) | **Application** - Interactive decision tree diagrams | 20 min |
+| 5️⃣ | [Evaluation Criteria](docs/evaluation-criteria.md) | **Assessment** - Complexity, skills, budget, governance | 15 min |
+| 6️⃣ | [Implementation Patterns](docs/implementation-patterns.md) | **Execution** - Proven architecture patterns | 15 min |
+| 7️⃣ | [Technologies](docs/technologies.md) | **Deep Dive** - Technical specifications for each tool | 30 min |
+| 8️⃣ | [Feature Comparison](docs/feature-comparison.md) | **Mastery** - Side-by-side feature matrices | 10 min |
+
+**Total learning time:** ~2.5 hours for complete framework mastery
+
+**Reference materials** (use as needed): [Quick Reference](docs/quick-reference.md) · [Resources](docs/resources.md) · [Glossary](docs/glossary.md)
+
+---
+
+## Choose Your Learning Path
+
+### 🎓 First-Time Learner
+**Recommended:** Follow the sequential path above for comprehensive understanding.
+
+**Start here:** [Capability Model](docs/capability-model.md) - Understand the five-layer foundation
+
+### 🎨 Visual Learner
+**Prefer diagrams?** Jump to the interactive decision trees and explore visually.
+
+**Start here:** [Visual Framework](docs/visual-framework.md) - See the decision trees first
+
+### ⚡ Need Quick Answers
+**Experienced user?** Use the fast-lookup tables and scenario shortcuts.
+
+**Start here:** [Scenarios](docs/scenarios.md) - "I need X" → recommended path
+
+---
+
+---
+
+## Common Paths (Quick Shortcuts)
+
+For experienced users who need fast recommendations:
 
 ### "I need something in production next week"
-→ [M365 Copilot](docs/technologies.md#microsoft-365-copilot) (no setup) or [Copilot Studio](docs/technologies.md#copilot-studio) (templates)
+
+→ **[M365 Copilot](docs/technologies.md#microsoft-365-copilot)** (zero setup) or **[Copilot Studio](docs/technologies.md#copilot-studio)** (templates available)
 
 ### "I have makers but no developers"
-→ [Copilot Studio](docs/technologies.md#copilot-studio) + [AI Builder](docs/technologies.md#ai-builder)
+
+→ **[Copilot Studio](docs/technologies.md#copilot-studio)** + **[AI Builder](docs/capability-model.md#layer-4-infrastructure--ai-services-building-blocks)**
 
 ### "I have a dev team and complex requirements"
-→ [Azure AI Foundry](docs/technologies.md#azure-ai-foundry) or [M365 Agents SDK](docs/technologies.md#microsoft-365-agents-sdk--toolkit)
+
+→ **[Azure AI Foundry](docs/technologies.md#azure-ai-foundry)** or **[M365 Agents SDK](docs/technologies.md#microsoft-365-agents-sdk--toolkit)**
 
 ### "I need enterprise integration + AI"
-→ [Azure Logic Apps](docs/technologies.md#azure-logic-apps) (1,400+ connectors, MCP server, AI agent workflows)
+
+→ **[Azure Logic Apps](docs/technologies.md#azure-logic-apps)** (1,400+ connectors, AI agent workflows)
 
 ### "I need to extend M365 Copilot"
-→ [Graph Connectors](docs/capability-model.md#layer-2-extensibility-enhance-existing-copilots) (data only) or [Copilot Studio](docs/technologies.md#copilot-studio) (custom agents)
+
+→ **[Graph Connectors](docs/capability-model.md#layer-2-extensibility-enhance-existing-copilots)** (data) or **[Declarative Agents](docs/capability-model.md#layer-2-extensibility-enhance-existing-copilots)** (custom skills)
+
+{: .note }
+> **Note:** These shortcuts skip the learning framework. For comprehensive understanding, follow the [progressive learning path](#your-learning-journey) above.
 
 ---
 
-## Key Principles
+## Framework Principles
 
-1. **Source-First Research** - All content backed by official Microsoft documentation (within 30 days preferred)
-2. **Dynamic Portfolio** - Microsoft's AI landscape changes frequently; verify current state
-3. **Evidence-Based Decisions** - Use the BXT framework + 6 critical questions + scenario criteria
-4. **Start Simple, Scale Smart** - Choose the simplest technology that meets requirements
-5. **Integration Matters** - Technologies work together (BYOK, BYOM, multi-agent orchestration)
+This guide is built on evidence-based research and systematic decision-making:
+
+1. **Source-First Research** - All content backed by official Microsoft documentation
+2. **Framework-Driven** - BXT methodology + 6 critical questions + scenario criteria
+3. **Pattern-Oriented** - Proven implementation approaches from real deployments
+4. **Progressive Learning** - Foundation → Context → Application → Mastery
+5. **Start Simple, Scale Smart** - Choose the simplest technology that meets requirements
 
 ---
 
-## About This Guide
+## How to Use This Guide
 
-**Purpose:** Research methodology framework for navigating Microsoft's AI portfolio
+**Sequential Learning (Recommended for first-time users)**  
+Follow the numbered path from Capability Model → Feature Comparison to build comprehensive knowledge.
 
-**Approach:** 
-- Source-backed (official docs, updated within 30 days)
-- Framework-driven (BXT → Groupings → Selection)
-- Pattern-oriented (proven implementation approaches)
+**Modular Learning (For specific questions)**  
+Jump directly to relevant sections using the navigation sidebar or Quick Reference.
+
+**Visual Learning (For diagram-oriented thinkers)**  
+Start with the Visual Framework to see decision trees, then drill into details as needed.
+
+**Scenario-Based Learning (For practical problem-solvers)**  
+Begin with Scenarios to find use cases similar to yours, then explore referenced sections.
+
+---
+
+## About This Framework
+
+**Purpose:** Systematic methodology for navigating Microsoft's AI portfolio and selecting the right technology for your business requirements.
+
+**Approach:**
+
+- Source-backed (official Microsoft Learn documentation)
+- Framework-driven (BXT + Technology Groupings + Selection Criteria)
+- Pattern-oriented (proven architecture approaches)
+- Validation-focused (all diagrams validated against official capabilities)
 
 **Maintenance:** This guide reflects the state as of **November 2025**. Microsoft's AI capabilities evolve rapidly—always verify with official sources for production decisions.
 
 ---
 
-## Credits
+## Credits & Foundations
 
 This framework integrates:
+
 - Microsoft's [Business-Experience-Technology (BXT) Framework](https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv/business-envisioning)
 - [Cloud Adoption Framework AI Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy)
 - [M365 Copilot Extensibility Guidance](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview)
 
 ---
 
-**Ready to start?** → [Decision Framework](docs/decision-framework.md)
+**Ready to start your learning journey?** → [Begin with the Capability Model](docs/capability-model.md)

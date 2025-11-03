@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Evaluation Criteria
-nav_order: 7
+nav_order: 6
 description: "Framework for evaluating complexity, skills, budget, and governance"
 ---
 
@@ -36,7 +36,7 @@ Use this framework to evaluate your organization's readiness and requirements be
 | **Low** | Simple Q&A, existing knowledge base, single data source | M365 Copilot, Graph Connectors, Declarative Agents |
 | **Medium** | Multiple data sources, workflow automation, approvals | Copilot Studio, AI Builder, Power Automate |
 | **High** | Custom models, multi-agent orchestration, custom evaluation | Azure AI Foundry, M365 Agents SDK, Agent Framework |
-| **Very High** | Multi-step reasoning, complex state management | Azure AI Foundry + LangGraph, custom pipelines |
+| **Very High** | Multi-step reasoning, complex state management | Azure AI Foundry + Agent Framework, custom pipelines |
 
 **Key Indicators:**
 - Data sources: 1 (low) vs 5+ (high)
@@ -110,7 +110,7 @@ Use this framework to evaluate your organization's readiness and requirements be
 | Makers, workflows | Studio + AI Builder | → Add BYOK |
 | Devs, multi-channel | M365 SDK + Studio | → Azure AI Foundry |
 | Devs, custom models | Azure AI Foundry | → Add Agent Framework |
-| Data scientists | Foundry + LangGraph | → BYOM |
+| Data scientists | Foundry + Agent Framework | → BYOM |
 
 ---
 
@@ -165,4 +165,4 @@ Use this framework to evaluate your organization's readiness and requirements be
 ---
 
 **Last Updated:** November 2025  
-**Next:** [Feature Comparison](feature-comparison.md)
+**Next:** [Implementation Patterns](implementation-patterns.md) - Learn common patterns and best practices

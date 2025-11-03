@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Quick Reference
-nav_order: 5
-description: Fast lookup tables for technology selection by need
+nav_order: 10
+description: "Fast lookup table for Microsoft AI technologies"
 ---
 
 # Quick Reference: Technology by Need
@@ -36,7 +36,7 @@ This page provides fast-lookup tables for common scenarios. For detailed decisio
 
 | **Approach** | **Declarative Agents** | **Custom Engine Agents** |
 |--------------|------------------------|--------------------------|
-| **Definition** | Pre-built orchestration; configure instructions, knowledge, actions | Bring your own orchestrator (Semantic Kernel, Agent Framework, LangChain) |
+| **Definition** | Pre-built orchestration; configure instructions, knowledge, actions | Bring your own orchestrator (Agent Framework Preview recommended, LangChain third-party) |
 | **Best For** | Simple → Moderate complexity; fast time-to-market | Complex workflows; multi-agent systems; custom reasoning |
 | **Development Model** | Low-code (Copilot Studio) or Pro-code (M365 Agents Toolkit) | Pro-code only; full control over logic |
 | **Orchestration** | Microsoft-managed orchestration (GPT-based) | You control orchestration framework and model selection |
@@ -57,7 +57,7 @@ This page provides fast-lookup tables for common scenarios. For detailed decisio
 | **Tool** | **Copilot Studio** | **Teams AI Library** | **M365 Agents SDK** |
 |----------|---------------------|----------------------|---------------------|
 | **Primary Use Case** | Low-code custom engine agents | Bot Framework migration path | Multi-channel pro-code agents |
-| **Orchestration Options** | Semantic Kernel, Agent Framework, LangChain | Teams AI Library framework | Agent Framework, Semantic Kernel, LangChain |
+| **Orchestration Options** | Agent Framework Preview recommended, LangChain third-party | Teams AI Library framework | Agent Framework Preview recommended, LangChain third-party |
 | **Deployment Channels** | Teams, M365 Copilot | Teams-focused | 10+ channels (Teams, Slack, web chat, etc.) |
 | **Developer Experience** | Visual designer + code | Code-first | Code-first with Toolkit in VS Code |
 | **Target Audience** | Makers and developers | Bot Framework developers | Professional developers |
@@ -83,12 +83,15 @@ This page provides fast-lookup tables for common scenarios. For detailed decisio
 | **Real-Time Transactional Data** | API-based grounding | API Plugins, Function Calling |
 | **Multimodal Content** | Azure AI Content Understanding (Preview) | Process documents, images, audio, video with reasoning |
 | **Database Vectors** | AI-capable databases | Cosmos DB (GA), PostgreSQL (GA), SQL Server 2025 (Preview) |
-| **Microsoft Fabric Data** | Fabric Data Agents | Azure AI Agent Service with Fabric connector (Preview) |
+| **Microsoft Fabric Platform** | Direct data access | Lakehouse (Delta tables), Warehouse (T-SQL), OneLake (ADLS Gen2 APIs), SQL analytics endpoint |
+| **Microsoft Fabric via Agent** | Conversational data layer | Fabric Data Agents (Preview) with Copilot Studio or Azure AI Agent Service |
 
 **Sources:**
 - [Microsoft Graph Connectors](https://learn.microsoft.com/en-us/graph/connecting-external-content-connectors-overview) (Updated: 2024-09-20)
 - [Azure AI Search for RAG](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) (Updated: 2024-10-12)
 - [Azure AI Content Understanding](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) (Updated: 2024-10-28)
+- [Microsoft Fabric Platform](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) (Updated: 2025-11-03)
+- [Fabric AI Foundry Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq) (Updated: 2025-11-03)
 
 **Confidence Level:** High for GA technologies, Medium for Preview (Fabric Data Agents, Content Understanding)
 
@@ -102,7 +105,7 @@ This page provides fast-lookup tables for common scenarios. For detailed decisio
 | **Moderate (Task Execution)** | Multi-turn, 1-5 actions, simple branching | Declarative Agents with API plugins, Azure AI Agent Service |
 | **Complex (Workflows)** | Sequential workflows, conditional logic | Declarative Agents + Power Automate, Agent Framework workflows |
 | **Advanced (Multi-Agent)** | Agent-to-agent delegation, parallel execution | Copilot Studio multi-agent, Azure AI Agent Service, Agent Framework |
-| **Expert (Custom Reasoning)** | Custom orchestration logic, model selection | Custom Engine Agents (Semantic Kernel, Agent Framework, LangChain) |
+| **Expert (Custom Reasoning)** | Custom orchestration logic, model selection | Custom Engine Agents (Agent Framework Preview recommended, LangChain third-party) |
 
 **Sources:**
 - [Agent Framework Orchestration Patterns](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-framework) (Updated: 2024-10-20)

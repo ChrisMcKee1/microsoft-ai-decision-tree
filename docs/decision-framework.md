@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Decision Framework
-nav_order: 4
+nav_order: 3
 description: "Three-phase decision methodology for selecting Microsoft AI technologies"
 ---
 
@@ -165,7 +165,7 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 - **Declarative/Simple**: Copilot Studio declarative agents, M365 Copilot built-in agents
 - **Workflow-Based**: Microsoft Agent Framework, Azure Logic Apps, Copilot Studio Agent Flows
 - **Multi-Agent Systems**: Azure AI Agent Service (connected agents), Copilot Studio (child + connected agents)
-- **Custom Orchestration**: M365 Agents SDK + Semantic Kernel/LangChain, Azure AI Foundry custom
+- **Custom Orchestration**: M365 Agents SDK + Agent Framework, Azure AI Foundry custom
 
 💡 **Cross-reference:** See [Feature Comparison](feature-comparison.md) - Workflow Orchestration Platform Comparison
 
@@ -274,7 +274,7 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 **High Complexity (Multi-agent, custom orchestration, advanced evals):**
 - Azure AI Foundry + Azure AI Agent Service
 - M365 Agents SDK + Agent Framework (checkpointing, workflow orchestration)
-- Custom solutions with Semantic Kernel or LangChain
+- Custom solutions with Agent Framework
 
 💡 **Cross-reference:** [Evaluation Criteria](evaluation-criteria.md) - Complexity table
 
@@ -365,4 +365,4 @@ After applying all criteria, document your selection:
 
 ---
 
-**Next:** [Quick Reference](quick-reference.md) - Fast technology lookup by need
+**Next:** [Scenarios](scenarios.md) - See real-world examples of the framework in action

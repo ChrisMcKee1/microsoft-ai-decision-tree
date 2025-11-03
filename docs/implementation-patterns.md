@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Implementation Patterns
-nav_order: 6
-description: Proven architecture patterns for Microsoft AI solutions
+nav_order: 7
+description: "Common patterns and best practices for implementing Microsoft AI solutions"
 ---
 
 # Common Implementation Patterns
@@ -42,7 +42,7 @@ These patterns represent proven approaches for implementing Microsoft AI solutio
 ## Pattern 2: Pro-Code First, Surface in Copilot
 
 **Approach:**
-1. **Build custom agent** in Azure AI Foundry (Semantic Kernel, Agent Framework, or LangChain)
+1. **Build custom agent** in Azure AI Foundry (Agent Framework recommended, LangChain third-party alternative)
 2. **Develop with Azure AI Search** for RAG, Azure OpenAI for LLM
 3. **Deploy as Azure service** (Container Apps, App Service, or Kubernetes)
 4. **Expose as M365 Copilot extension** using API plugins or custom engine agent
@@ -91,9 +91,8 @@ These patterns represent proven approaches for implementing Microsoft AI solutio
 
 **Approach:**
 1. **Choose orchestration framework:**
-   - **Option A (Microsoft Agent Framework):** Use for multi-agent orchestration patterns (Sequential, Concurrent, Handoff, Magentic)
-   - **Option B (Semantic Kernel):** Use for custom agent logic, memory management, planning
-   - **Option C (LangChain):** Use for ecosystem integrations, community tools, Python-first development
+   - **Agent Framework (Preview/Experimental - Recommended):** Microsoft's investment direction; multi-agent orchestration (Sequential, Concurrent, Handoff, Magentic); checkpointing, workflows, consolidates SK + AutoGen
+   - **LangChain (Third-party alternative):** Ecosystem integrations, community tools, Python-first development
 2. **Develop agent** with M365 Agents SDK Toolkit in VS Code
 3. **Integrate Azure services:**
    - Azure OpenAI for LLM
@@ -105,9 +104,8 @@ These patterns represent proven approaches for implementing Microsoft AI solutio
 6. **Configure governance:** Entra ID authentication, Azure RBAC, monitoring
 
 **Integration Options:**
-- **Semantic Kernel:** Full control over orchestration, memory, planning, function calling
-- **Agent Framework:** Pre-built orchestration patterns, multi-agent delegation, state management
-- **LangChain:** Python ecosystem, LangGraph for complex workflows, LangSmith for observability
+- **Agent Framework (Preview/Experimental - Recommended):** Microsoft's orchestration consolidation (SK + AutoGen); multi-agent workflows, checkpointing, executor/edge patterns, sequential/concurrent/handoff/magentic orchestration
+- **LangChain (Third-party alternative):** Python ecosystem, LangGraph for complex workflows, LangSmith for observability
 
 **Best For:**
 - Developers requiring full control over orchestration
@@ -205,3 +203,7 @@ These patterns represent proven approaches for implementing Microsoft AI solutio
 > - For technology comparison tables, see [Quick Reference](quick-reference.html)
 > - For real-world applications of these patterns, see [Scenarios](scenarios.html)
 > - For evaluation criteria, see [Evaluation Criteria](evaluation-criteria.html)
+
+---
+
+**Next:** [Technologies](technologies.md) - Deep dive into technical specifications
