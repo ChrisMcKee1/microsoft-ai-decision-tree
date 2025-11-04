@@ -540,6 +540,7 @@ flowchart TD
 ## Governance & Compliance Path
 
 ```mermaid
+%%{init: {'theme':'dark'}}%%
 flowchart TD
     Start([Governance Requirements]) --> Q1{Data residency<br/>requirement?}
     
@@ -548,18 +549,18 @@ flowchart TD
     Q1 -->|Flexible<br/>Multi-region OK| R3[Flexible Residency]
     
     R1 --> Q2{Built-in DLP<br/>sufficient?}
-    Q2 -->|Yes, inherit M365| G1[M365 Copilot GA<br/>• M365 trust boundary + Entra ID<br/>• Auto DLP, sensitivity labels<br/>• Purview audit all interactions<br/>• GDPR, HIPAA, ISO 27001, FedRAMP<br/>• ✓ No training on tenant data<br/>• ✓ User-scoped, honors permissions<br/>• ⚠️ Requires gateway for private on-prem access<br/>• Scale: No throttling, Microsoft-managed<br/>• Complexity: LOW, Cost: $30/user/mo predictable]
-    Q2 -->|Need custom agents| G2[Copilot Studio GA<br/>• Power Platform RBAC + DLP<br/>• Environment-level governance<br/>• Connector controls 1P/3P<br/>• ⚠️ External connectors inherit compliance<br/>• ⚠️ Web search leaves enterprise boundary<br/>• ⚠️ Dual auth: user OR service account<br/>• ⚠️ Requires gateway for private resources<br/>• Purview audit + analytics<br/>• GDPR, HIPAA, ISO 27001, FedRAMP<br/>• Scale: 100 RPM/2000 RPH (PAYG), shared env quota<br/>• Complexity: MEDIUM, Cost: $200/mo or PAYG $0.01/credit]
+    Q2 -->|Yes, inherit M365| G1[M365 Copilot<br/>M365 Boundary + DLP]
+    Q2 -->|Need custom agents| G2[Copilot Studio<br/>Power Platform Governance]
     
     R2 --> Q3{Network<br/>isolation?}
-    Q3 -->|VNet + private<br/>endpoints required| G3[Azure AI Foundry GA<br/>• Azure RBAC control/data plane<br/>• VNet, private endpoints, NSGs<br/>• Managed identity resource+project<br/>• Customer-managed keys optional<br/>• ⚠️ API key OR Entra ID (Entra ID recommended)<br/>• Azure landing zone controls<br/>• ✓ Full private networking support<br/>• Azure Monitor + Log Analytics<br/>• Scale: TPM quotas per region/model, request increases<br/>• Complexity: HIGH, Cost: Per-token variable, scales w/ traffic]
-    Q3 -->|Managed runtime<br/>+ VNet needed| G4[AI Agent Service GA<br/>• Full RBAC project + resource<br/>• VNet, private endpoints, BYO storage<br/>• Governed by Azure landing zone<br/>• ✓ No public egress by default<br/>• Azure Monitor project-scoped<br/>• Azure Policy integration<br/>• Scale: TPM quotas + 100K msg/thread max<br/>• Complexity: HIGH, Cost: Per-token + hosting consumption]
-    Q3 -->|Power Platform<br/>governance sufficient| G5[AI Builder GA<br/>• Power Platform DLP<br/>• Dataverse RBAC roles<br/>• PP environment location<br/>• Complexity: LOW-MEDIUM<br/>• Cost: Copilot Studio Credits]
+    Q3 -->|VNet + private<br/>endpoints required| G3[Azure AI Foundry<br/>VNet + Private Endpoints]
+    Q3 -->|Managed runtime<br/>+ VNet needed| G4[AI Agent Service<br/>Full Azure Governance]
+    Q3 -->|Power Platform<br/>governance sufficient| G5[AI Builder<br/>Power Platform DLP]
     
     R3 --> Q4{Development<br/>model?}
-    Q4 -->|Enterprise workflows<br/>+ integration| G6[Logic Apps Standard GA<br/>• Granular Azure RBAC + managed ID<br/>• VNet, private endpoints Standard<br/>• Customer Lockbox support<br/>• Azure Policy + audit logs<br/>• FedRAMP, HIPAA, ISO 27001<br/>• Complexity: HIGH, Cost: ~$200/mo]
-    Q4 -->|Multi-channel<br/>custom agents| G7[M365 Agents SDK GA<br/>• Custom auth MSAL, Entra ID<br/>• Hosting platform RBAC Azure/on-prem<br/>• ⚠️ Custom auth: delegated OR application perms<br/>• ✓ Self-hosted = customer controls networking<br/>• Custom telemetry implementation<br/>• Compliance inherits from host<br/>• Scale: Customer controls auto-scaling + rate limits<br/>• Complexity: HIGH, Cost: Hosting + token-based variable]
-    Q4 -->|Orchestration<br/>library only| G8[Agent Framework Preview<br/>• No built-in governance<br/>• Inherits from host application<br/>• App-level RBAC + audit<br/>• Compliance via hosting platform<br/>• Complexity: MEDIUM-HIGH, Cost: FREE]
+    Q4 -->|Enterprise workflows<br/>+ integration| G6[Logic Apps Standard<br/>Azure RBAC + VNet]
+    Q4 -->|Multi-channel<br/>custom agents| G7[M365 Agents SDK<br/>Custom Auth + Hosting]
+    Q4 -->|Orchestration<br/>library only| G8[Agent Framework<br/>Host-Inherited Governance]
     
     style G1 fill:#107C10,color:#fff
     style G2 fill:#0078D4,color:#fff
