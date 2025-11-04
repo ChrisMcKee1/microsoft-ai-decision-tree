@@ -187,4 +187,95 @@ Managed service for agent orchestration within Azure AI Foundry. GA. Use for: Ma
 
 ---
 
+## Network Isolation Capabilities
+
+Understanding network isolation options is critical for zero-trust architectures, air-gapped environments, and regulated industries requiring private networking.
+
+### Azure AI Foundry & Agent Service
+
+**VNet Support:** ✅ Full private networking support
+
+**Key Capabilities:**
+- VNet integration with container injection (platform APIs communicate within customer VNet)
+- Private endpoints for all resources (Storage, AI Search, Cosmos DB, Foundry resource)
+- Network Security Groups (NSGs) for traffic isolation
+- **Standard Setup with Private Networking:** No public egress by default
+- Customer-managed keys (CMK) optional
+- Azure landing zone controls (Azure Policy, RBAC)
+
+**Ideal for:** Zero-trust environments, air-gapped deployments, sovereign data strategies, full Azure Policy governance
+
+**Sources:**
+- [Configure Private Link](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/configure-private-link)
+- [Virtual Networks for Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks)
+
+---
+
+### Copilot Studio
+
+**VNet Support:** ⚠️ Gateway-based (does NOT execute in customer VNet)
+
+**Key Capabilities:**
+- **On-premises data gateway** (for on-premises systems)
+- **VNet data gateway** (GA, for Azure resources) — Microsoft-managed, supports private endpoints to Azure resources
+- Requires Managed Environment in Power Platform + VNet support enabled
+- External connectors inherit external system's network security posture
+
+**Limitations:**
+- Power Platform is a managed service (agent runtime NOT in customer VNet)
+- Not suitable for fully air-gapped environments without gateway setup
+
+**Ideal for:** Managed PaaS scenarios with Azure resource access via VNet gateway
+
+**Sources:**
+- [VNet Data Gateway](https://learn.microsoft.com/en-us/power-platform/admin/vnet-support-overview)
+- [Managed Environments](https://learn.microsoft.com/en-us/power-platform/admin/managed-environment-overview)
+
+---
+
+### M365 Agents SDK
+
+**VNet Support:** ✅ Full control (self-hosted)
+
+**Key Capabilities:**
+- When self-hosted in Azure: Full VNet integration, private endpoints, NSG controls
+- Customer controls all networking decisions
+- Supports air-gapped Azure deployments
+- Hosting platform determines network security (Azure App Service, Container Apps, AKS, on-premises)
+
+**Ideal for:** Organizations requiring custom network control, air-gapped support, or hybrid on-premises/cloud deployments
+
+**Sources:**
+- [M365 Agents SDK Overview](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview)
+
+---
+
+### M365 Copilot
+
+**VNet Support:** ❌ No custom VNet support
+
+**Key Capabilities:**
+- Fully managed SaaS (no VNet integration available)
+- Requires gateway architecture for private on-premises data access
+- Inherits M365 tenant network security
+
+**Ideal for:** Organizations accepting Microsoft-managed SaaS networking model
+
+**Sources:**
+- [M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+
+---
+
+### Network Isolation Decision Matrix
+
+| Technology | VNet Support | Private Endpoints | Air-Gapped | Gateway Required | Best For |
+|------------|-------------|-------------------|------------|------------------|----------|
+| **Azure AI Foundry** | ✅ Full | ✅ Yes | ✅ Yes | ❌ No | Zero-trust, air-gapped, sovereign data |
+| **Azure AI Agent Service** | ✅ Full | ✅ Yes | ✅ Yes | ❌ No | Managed PaaS with private networking |
+| **Copilot Studio** | ⚠️ Gateway-based | ⚠️ Via gateway | ❌ No | ✅ Yes | Managed PaaS with Azure resource access |
+| **M365 Agents SDK** | ✅ Self-hosted | ✅ Yes | ✅ Yes | ❌ No | Custom network control |
+| **M365 Copilot** | ❌ No | ❌ No | ❌ No | ✅ For on-prem | Managed SaaS only |
+
+---
+
 **Next:** [Feature Comparison](feature-comparison.md) - Side-by-side capability matrices

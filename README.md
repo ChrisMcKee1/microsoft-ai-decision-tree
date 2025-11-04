@@ -178,6 +178,19 @@ Begin with Scenarios to find use cases similar to yours, then explore referenced
 
 ---
 
+## Still Want the Simplified Version?
+
+After understanding the comprehensive framework above, if you prefer Microsoft's official high-level decision tree:
+
+![Microsoft AI Decision Tree](images/ai-decision-tree.svg)
+
+**Source:** [Azure Cloud Adoption Framework - AI Strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy)
+
+{: .warning }
+> **Why we recommend the full framework:** This simplified tree doesn't address critical enterprise considerations like governance requirements, data boundaries, network isolation, permissions models, action safety, scale/cost tradeoffs, and proactive capabilities. Real-world decisions require the systematic approach taught in this guide.
+
+---
+
 ## Credits & Foundations
 
 This framework integrates:

@@ -45,7 +45,7 @@ Before evaluating technology options, validate the use case through three dimens
 
 ---
 
-## Phase 2: Technology Groupings (Six Critical Questions)
+## Phase 2: Technology Groupings (Nine Critical Questions)
 
 Apply these questions **sequentially** after passing the BXT assessment. Each question creates **technology groupings** rather than jumping to specific recommendations. The groupings feed into Phase 3 for final selection.
 
@@ -124,6 +124,19 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 
 **How will you ground the AI in organizational knowledge?**
 
+{: .important }
+> **Critical Distinction**: Grounding ≠ Memory ≠ Analytics  
+> - **📋 Grounding (RAG)**: Just-in-time context retrieval per request (e.g., retrieve SharePoint docs)  
+> - **💾 Memory**: Stored conversation history across sessions (e.g., thread storage in Cosmos DB)  
+> - **📊 Analytics**: Logging interactions for review (e.g., Copilot Studio transcripts in Dataverse)  
+>
+> **Technology Behaviors**:  
+> - **M365 Copilot**: Grounding only (M365 content per request). NO admin-extractable per-user memory. Limited analytics (Purview-governed retention).  
+> - **Copilot Studio**: Grounding + Dataverse memory (variables persist). Full analytics (transcripts for admins, sessions, resolution rates).  
+> - **Azure AI Agent Service**: Grounding + BYO thread storage (customer owns Cosmos DB). Custom analytics (Azure Monitor, OpenTelemetry).  
+>
+> 💡 **Compliance Note**: Legal/audit teams will ask: "Where is conversation history stored? How long? Who can query it?" - Answer varies by technology.
+
 **Options:**
 - **M365 Graph** (SharePoint, OneDrive, Teams, third-party via connectors)
 - **Azure AI Search** (Large-scale vector + hybrid search)
@@ -181,6 +194,62 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 - **Hybrid** (M365 + Azure with proper security architecture)
 - **Cross-Cutting Governance** (Need centralized control across all AI deployments)
 
+**Key Data Boundary Considerations (Critical for Regulated Industries):**
+
+**"Where does my data go?"** — This is often the **first question** for healthcare/FSI/government organizations:
+
+1. **M365 Copilot** → **M365 Tenant Boundary ONLY**
+   - Prompts, responses, and data accessed through Microsoft Graph **do NOT leave M365 service boundary**
+   - Data is **NOT used to train foundation models**
+   - Uses Azure OpenAI (NOT OpenAI public services)
+   - Inherits M365 compliance: GDPR, HIPAA, ISO 27001, FedRAMP, EU Data Boundary
+   - **Ideal for:** Regulated orgs requiring strict tenant boundary with existing M365 compliance posture
+
+2. **Copilot Studio** → **Power Platform Boundary + External System Inheritance**
+   - Core conversational data stays within Power Platform environment geography
+   - **⚠️ CRITICAL CAVEAT:** Custom connectors/Power Automate flows calling **external systems inherit that system's compliance posture**
+   - **⚠️ CRITICAL CAVEAT:** Web search sends queries to **Bing consumer service** (leaves enterprise boundary, NOT covered by DPA)
+   - **Ideal for:** Low-code agent development where Power Platform governance is sufficient and external system calls are acceptable
+
+3. **Azure AI Foundry / Agent Service** → **Governed by YOUR Azure Landing Zone Controls**
+   - Region/resource group/subscription selection
+   - VNet isolation, private endpoints for ALL resources
+   - Customer-managed keys (CMK) optional
+   - Azure Policy integration, NSGs, managed identities
+   - **Ideal for:** Customers requiring VNet isolation, private endpoints, sovereign data strategies, full Azure Policy governance
+
+**Key Network Isolation Considerations (Critical for Zero-Trust/Air-Gapped Environments):**
+
+**"Can I block public internet access?"** — This is the **second critical question** for air-gapped, zero-trust, or highly regulated environments:
+
+| Technology | VNet Support | Private Endpoints | Air-Gapped | Gateway Required | Best For |
+|------------|-------------|-------------------|------------|------------------|----------|
+| **Azure AI Foundry / Agent Service** | ✅ Full | ✅ Yes | ✅ Yes | ❌ No | Zero-trust, air-gapped, no public egress |
+| **Copilot Studio** | ⚠️ Gateway-based | ⚠️ Via gateway | ❌ No | ✅ Yes | Managed PaaS with Azure resource access |
+| **M365 Agents SDK** | ✅ Self-hosted | ✅ Yes | ✅ Yes | ❌ No | Complete network control |
+| **M365 Copilot** | ❌ No | ❌ No | ❌ No | ✅ For on-prem | Managed SaaS only |
+
+💡 **See [Network Isolation Details](technologies.md#network-isolation-capabilities)** for architecture specifics, VNet integration patterns, and gateway configurations.
+
+**Key Permissions & Identity Considerations (Critical for Audit & Least Privilege):**
+
+**"Who can the agent act as?"** — This is the **third critical question** for audit, least privilege, and compliance:
+
+| Technology | Identity Model | User-Scoped? | Service Account Mode | Audit Complexity | Best For |
+|------------|----------------|-------------|----------------------|------------------|----------|
+| **M365 Copilot** | Always user identity | ✅ Guaranteed | ❌ Not supported | Low (automatic) | Zero-config user-scoped |
+| **Copilot Studio** | User OR service account | ⚠️ Configurable | ✅ Yes | Medium (document modes) | Flexible auth scenarios |
+| **Azure AI Foundry** | API key OR Entra ID | ⚠️ Design choice | ✅ Yes (app perms) | High (custom RBAC) | Custom enterprise design |
+| **M365 Agents SDK** | Delegated OR application | ⚠️ Developer implements | ✅ Yes (custom) | High (custom design) | Complete auth control |
+
+**Key Distinctions:**
+- **M365 Copilot:** "It only sees what I can see" = TRUE (architecturally guaranteed, zero exceptions)
+- **Copilot Studio:** Service accounts can access resources beyond individual user permissions (critical for compliance review)
+- **Azure AI Foundry:** Entra ID recommended over API keys (per-user RBAC, Conditional Access, MFA)
+- **M365 Agents SDK:** Developer documents auth patterns (delegated for user-scoped, application for tenant-wide automation)
+
+💡 **See [Implementation Patterns - Identity Architecture](implementation-patterns.md#pattern-6-identity--permissions-architecture)** for detailed configuration guidance, code examples, and audit logging strategies.
+
 **Resulting Groupings:**
 - **M365 Trust Boundary**: M365 Copilot, Copilot Studio (M365 channels), Graph Connectors
 - **Azure-Native**: Azure AI Foundry, Azure AI Agent Service, Azure Logic Apps
@@ -191,7 +260,123 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 
 ---
 
-### Question 6: Team Skills & Ownership
+## Question 6: What are your scale and cost requirements?
+
+**Understanding cost models and rate limits is critical: Pilot testing often succeeds, but org-wide rollout can hit throttling or unbounded cost exposure.**
+
+**Key Concepts:**
+
+**1. Cost Predictability (Fixed vs Variable):**
+
+**Fixed/Predictable Spend:**
+- **M365 Copilot:** Per-user licensing (predictable monthly cost, no usage spikes)
+- **Copilot Studio:** Prepaid capacity packs (fixed monthly spend)
+- **Best for:** Internal employees, budgeted deployments, finance-driven organizations
+
+**Variable/Usage-Based Spend:**
+- **Azure AI Foundry/Agent Service:** Per-token billing (cost scales with traffic)
+- **Copilot Studio:** Pay-as-you-go option (consumption-based)
+- **M365 Agents SDK:** Hosting + token costs (requires custom guardrails)
+- **Best for:** Customer-facing channels, unpredictable traffic, organizations with cost optimization capability
+
+**2. Rate Limit Architecture (Shared vs Dedicated):**
+
+**Shared Environment Quotas:**
+- **Copilot Studio:** Environment-level limits shared across all agents (can throttle at scale)
+- **Mitigation:** Purchase capacity packs, enable PAYG, separate high-volume agents into dedicated environments
+
+**Dedicated Deployment Quotas:**
+- **Azure AI Foundry:** Per-deployment TPM limits (regional quotas, request increases available)
+- **M365 Copilot:** Microsoft-managed scaling (no user-facing throttling)
+- **M365 Agents SDK:** Custom auto-scaling controls (customer designs rate limiting)
+
+**3. Internal vs External Use:**
+
+**Internal (Employees):**
+- M365 Copilot ideal (per-user licensing matches use case)
+- Copilot Studio suitable (environment quotas manageable)
+
+**External (Customers/Public):**
+- Azure AI Foundry recommended (with guardrails: intent classification, TPM limits, budget alerts)
+- M365 Agents SDK suitable (custom rate limiting)
+- M365 Copilot NOT designed for external use
+- Copilot Studio requires capacity planning for high-volume public scenarios
+
+**Resulting Groupings:**
+- **Predictable Spend:** M365 Copilot (per-user), Copilot Studio (prepaid)
+- **Variable Spend with Guardrails:** Azure AI Foundry (per-token + cost controls), Copilot Studio (PAYG)
+- **Custom Cost Control:** M365 Agents SDK (requires implementation)
+
+💡 **Cross-reference:** See [Evaluation Criteria](evaluation-criteria.md) - Scale & Performance, Cost & Licensing
+
+---
+
+### Question 7: Can the Agent Take Destructive Actions?
+
+**Does your agent need to execute actions (vs just draft/answer)? What level of risk is acceptable?**
+
+Understanding action safety is critical for regulated industries and any scenario where agent errors could have serious consequences (data deletion, resource provisioning, financial approvals).
+
+**Sub-questions:**
+1. What types of actions does the agent perform?
+   - **Read-only** (search, answer questions, draft content)
+   - **Write** (create tickets, send emails, update records)
+   - **Destructive** (delete data, disable resources, approve spend, provision access)
+
+2. Are destructive actions acceptable?
+   - **No** → Require user-in-the-loop design (user must approve all actions)
+   - **Yes, with approval** → Implement human approval workflows for high-risk actions
+   - **Yes, autonomous** → Enable autonomous execution with logging and review
+
+3. How are agent actions logged and audited?
+   - **Built-in audit logs** (M365 Purview, Azure Monitor)
+   - **Custom telemetry** (Application Insights, OpenTelemetry)
+   - **No logging** → NOT suitable for regulated industries
+
+**Technology Action Safety Profiles:**
+
+**M365 Copilot (Most Conservative):**
+- ✅ **User-in-the-loop always** (drafts content, user must execute)
+- ✅ Cannot directly take destructive actions (delete, approve, provision)
+- ✅ Built-in audit logs (Microsoft Purview)
+- **Best for:** Organizations requiring strictest safety posture, no autonomous execution
+
+**Copilot Studio (Configurable):**
+- ⚠️ **Actions can execute** (Power Automate flows, custom connectors)
+- ⚠️ Can perform destructive operations if configured (delete records, provision access, approve spend)
+- ⚠️ **NO built-in human approval** (must add "Start and wait for an approval" action in flows)
+- ✅ Content moderation blocks malicious prompts
+- ✅ Built-in audit logs (Purview + analytics)
+- **Best for:** Scenarios where actions are needed, but maker designs approval workflows explicitly
+
+**Azure AI Foundry / Agent Service (Autonomous Capable):**
+- ⚠️ **Tool calling with autonomous planning loops** (Logic Apps, Functions, OpenAPI, MCP)
+- ⚠️ Agents can reason, plan, and execute multi-step tasks without human oversight
+- ⚠️ **NO built-in human approval** (developer must implement)
+- ✅ OpenTelemetry tracing to reconstruct reasoning process
+- ✅ Azure Monitor logs all action executions
+- **Best for:** Scenarios requiring autonomous execution with custom human-in-the-loop design and tracing
+- **⚠️ Risk:** "Classic autonomous agent risk" - agent chains multiple steps, can make unintended decisions
+
+**M365 Agents SDK (Custom Design):**
+- ⚠️ **Full developer responsibility** (no built-in action safety)
+- ⚠️ Can integrate with any API (including destructive operations)
+- ⚠️ Developer must implement human approval workflows, action boundaries, and logging
+- **Best for:** Organizations with development resources to design custom action safety
+
+**Resulting Groupings:**
+- **User-in-the-loop always:** M365 Copilot (drafts only, user executes)
+- **Configurable execution with approval workflows:** Copilot Studio (maker designs approval steps)
+- **Autonomous execution with logging:** Azure AI Foundry/Agent Service (requires tracing + human-in-the-loop design)
+- **Custom design:** M365 Agents SDK (developer implements all guardrails)
+
+💡 **See [Implementation Patterns - Action Safety](implementation-patterns.md#pattern-7-action-safety-design-patterns)** for guardrail best practices, approval workflow designs, human-in-the-loop middleware patterns, and tracing configurations.
+
+💡 **Cross-reference:** See [Evaluation Criteria](evaluation-criteria.md) - Action Safety & Content Safety
+
+---
+
+### Question 8: Team Skills & Ownership
 
 **Who will build and maintain the AI solution?**
 
@@ -208,6 +393,36 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 - **Enterprise Integration**: Azure Logic Apps, API Management, Power Automate
 
 💡 **Cross-reference:** See [Evaluation Criteria](evaluation-criteria.md) - Skills Required
+
+---
+
+### Question 9: Does the Agent Need to Initiate Actions?
+
+**Will the agent only respond when users ask, or does it need to monitor systems and trigger actions autonomously?**
+
+Understanding reactive vs proactive capabilities is critical for event-driven scenarios (monitoring, alerts, automated workflows).
+
+**Reactive (User-Initiated Only):**
+- User asks question → Agent responds
+- Examples: "Ask the HR bot about vacation policy", "Search knowledge base for troubleshooting guide"
+- **Technologies:**
+  - **M365 Copilot:** User-initiated interactions only
+  - **Copilot Studio declarative agents:** User-initiated only
+
+**Proactive (Agent-Initiated):**
+- Agent monitors events → Agent triggers actions automatically
+- Examples: "Alert finance team when Azure costs exceed budget", "Create incident ticket when deployment fails", "Send daily summary report at 8 AM"
+- **Technologies:**
+  - **Copilot Studio custom engine agents:** Proactive with Power Automate triggers (scheduled, event-driven)
+  - **Azure Logic Apps:** Event-driven workflows (HTTP triggers, storage events, timers)
+  - **Azure AI Foundry/Agent Service:** Event triggers with Azure Functions, Logic Apps integration
+  - **M365 Agents SDK:** Custom event handling (developer implements triggers)
+
+**Resulting Groupings:**
+- **Reactive only:** M365 Copilot, Copilot Studio declarative agents
+- **Proactive capable:** Copilot Studio custom engine agents (Power Automate), Logic Apps (event-driven), Azure AI Foundry (Functions/triggers), M365 Agents SDK (custom)
+
+💡 **Cross-reference:** See [Agents for M365 Copilot](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview) - Declarative vs Custom Engine
 
 ---
 
@@ -349,7 +564,7 @@ After applying all criteria, document your selection:
 **Selected Technology:** [Your Choice]
 
 **Rationale:**
-- **Phase 2 Groupings:** [List groupings from 6 questions]
+- **Phase 2 Groupings:** [List groupings from 9 questions]
 - **Time to Market:** [Days/Weeks/Months + why this matters]
 - **Managed vs Self-Managed:** [Preference + reasoning]
 - **Complexity Level:** [Low/Medium/High + specific requirements]

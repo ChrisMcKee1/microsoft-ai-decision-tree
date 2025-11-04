@@ -226,13 +226,16 @@ bundle exec jekyll serve --incremental
    - Feasibility (Technology): Team skills, data governance, infrastructure
    - Decision Gate: All dimensions must score medium-high to proceed
 
-2. **Phase 2: Technology Groupings (6 Critical Questions)**
+2. **Phase 2: Technology Groupings (9 Critical Questions)**
    - Q1: User interaction pattern? (Conversational/Autonomous/API)
    - Q2: Build style & control level? (Low-code/Pro-code)
-   - Q3: Primary platform? (M365/Azure/Multi-channel)
-   - Q4: Data strategy & knowledge? (Data sources, grounding approach)
-   - Q5: Orchestration needs? (Single/Multi-agent, event-driven)
-   - Q6: Infrastructure preferences? (Managed PaaS/Self-hosted)
+   - Q3: Data strategy, knowledge, memory? (Grounding vs Memory vs Analytics distinction)
+   - Q4: Primary platform? (M365/Azure/Multi-channel)
+   - Q5: Compliance & governance requirements? (Data boundary, network isolation, permissions, action safety, proactive capabilities)
+   - Q6: Scale and cost requirements? (Fixed vs variable pricing, rate limits)
+   - Q7: Can the agent take destructive actions? (Read-only vs write vs delete)
+   - Q8: Team skills & ownership? (Makers/Developers/AI Engineers)
+   - Q9: Does the agent initiate actions? (Reactive only vs proactive/event-driven)
 
 3. **Phase 3: Technology Selection**
    - Compare shortlisted technologies

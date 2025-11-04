@@ -97,6 +97,33 @@ This page provides fast-lookup tables for common scenarios. For detailed decisio
 
 ---
 
+## Memory & Analytics by Technology
+
+{: .note }
+**Common Customer Confusion**: Grounding (RAG) ≠ Memory ≠ Analytics
+
+| Technology | 📋 Grounding (RAG) | 💾 Memory / Thread Storage | 📊 Analytics / Transcripts | Admin Access | Retention Control |
+|------------|-------------------|------------------------------|----------------------------|--------------|-------------------|
+| **M365 Copilot** | ✅ M365 content per request | ❌ NO per-user memory extractable by admins | ⚠️ Limited (Copilot activity history) | ⚠️ Purview-governed (not arbitrary reading) | ✅ Microsoft Purview policies |
+| **Copilot Studio** | ✅ M365 data, Dataverse, connectors | ⚠️ Dataverse variables (memory-like persistence, tenant data) | ✅ Full (sessions, handoffs, resolution rates, transcripts) | ✅ Admins can view/download transcripts | ✅ Configurable (default 30 days, bulk delete jobs) |
+| **Azure AI Agent Service** | ✅ Azure AI Search, Cosmos DB, Fabric, tools | ✅ BYO thread storage (customer owns Cosmos DB or Microsoft-managed) | ⚠️ Custom (Azure Monitor metrics, OpenTelemetry) | ✅ Customer controls RBAC | ✅ Customer defines (delete via API) |
+| **M365 Agents SDK** | ✅ Custom (developer implements) | ⚠️ Custom (developer implements thread storage) | ⚠️ Custom (Application Insights, custom logging) | ⚠️ Custom (developer implements) | ⚠️ Custom (developer implements) |
+
+**Key Compliance Questions:**
+- **Where is conversation history stored?** → M365 Copilot (user mailbox), Copilot Studio (Dataverse), Agent Service (customer Cosmos DB), SDK (custom)
+- **How long is it retained?** → M365 Copilot (Purview policies), Copilot Studio (30 days default), Agent Service (customer defines), SDK (custom)
+- **Who can query chat logs?** → M365 Copilot (eDiscovery only), Copilot Studio (admins with Transcript Viewer role), Agent Service (customer RBAC), SDK (custom)
+- **Can we scrub PII?** → Agent Service (customer responsible), Studio (admin deletes transcripts), M365 Copilot (user deletes activity history)
+
+**Sources:**
+- [M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy) (Updated: 2024-10-15)
+- [Copilot Studio Transcript Controls](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-transcript-controls) (Updated: 2024-09-25)
+- [Cosmos DB Agent Service Integration](https://learn.microsoft.com/en-us/azure/cosmos-db/gen-ai/azure-agent-service) (Updated: 2024-10-20)
+
+**Confidence Level:** High (all technologies GA)
+
+---
+
 ## Orchestration Complexity Decision Matrix
 
 | **Complexity Level** | **Characteristics** | **Recommended Technologies** |
