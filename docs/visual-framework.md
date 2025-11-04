@@ -30,7 +30,6 @@ Interactive decision trees to guide Microsoft AI technology selection.
 | **5. Budget & Timeline** | Cost and time-to-production paths | [Evaluation Criteria: Budget & Time](evaluation-criteria.md#3-budget-assessment) |
 | **6. Governance & Compliance** | Security and compliance requirements | [Evaluation Criteria: Governance](evaluation-criteria.md#5-governance--compliance) |
 | **7. Multi-Agent Orchestration** | Multi-agent patterns and frameworks | [Quick Reference: Orchestration Complexity](quick-reference.md#orchestration-complexity-decision-matrix) |
-| **8. Upgrade Paths** | Migration and enhancement options | [Capability Model: Layers 1-3](capability-model.md) - Technology progression |
 
 ---
 
@@ -55,9 +54,9 @@ flowchart TD
     Q4 -->|M365-centric| SDK[M365 Agents SDK]
     Q4 -->|Azure-centric| Foundry[Azure AI Foundry]
     
-    Auto_Path --> Q5{Need proactive<br/>capabilities?}
-    Q5 -->|No, reactive only| Studio_Declarative[Copilot Studio<br/>Declarative Agents]
-    Q5 -->|Yes, event-driven| Q6{Primary workflow type?}
+    Auto_Path --> Q5{Build approach?}
+    Q5 -->|Low-code| StudioAuto[Copilot Studio<br/>with Event Triggers]
+    Q5 -->|Pro-code| Q6{Primary workflow type?}
     
     Q6 -->|Enterprise integration| LogicApps[Azure Logic Apps<br/>AI Agent Workflows<br/><i>Preview</i>]
     Q6 -->|Custom orchestration| Foundry
@@ -68,7 +67,7 @@ flowchart TD
     
     M365 --> DataQ{Need custom data?}
     Studio --> DataQ
-    Studio_Declarative --> DataQ
+    StudioAuto --> DataQ
     SDK --> DataQ
     Foundry --> DataQ
     LogicApps --> DataQ
@@ -109,7 +108,7 @@ flowchart TD
     
     style M365 fill:#0078D4,color:#fff
     style Studio fill:#0078D4,color:#fff
-    style Studio_Declarative fill:#0078D4,color:#fff
+    style StudioAuto fill:#0078D4,color:#fff
     style SDK fill:#5C2D91,color:#fff
     style Foundry fill:#D83B01,color:#fff
     style LogicApps fill:#0078D4,color:#fff
@@ -125,14 +124,15 @@ flowchart TD
 | Technology | Action Safety | Proactive | Description |
 |------------|---------------|-----------|-------------|
 | **M365 Copilot** | 🔒 User-in-the-loop always | 🔄 Reactive only | Conversational chat in M365 apps [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/) |
-| **Copilot Studio** | ⚠️ Actions can execute (add approval workflows) | 🔄 Reactive (declarative) or Proactive (custom engine) | Low-code, 13+ channels [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) |
-| **M365 Agents SDK** | ⚠️ Custom action safety design | ✅ Proactive capable | Pro-code, 10+ channels, C#/JS/Python [(docs)](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview) |
+| **Copilot Studio** | ⚠️ Actions can execute (add approval workflows) | 🔄 Reactive (conversational) or **✅ Autonomous (event triggers)** | Low-code, 13+ channels [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) |
+| **M365 Agents SDK** | ⚠️ Custom action safety design | ✅ Proactive capable | Pro-code, 10+ channels, C#/JS/Python, BYO orchestrator [(docs)](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview) |
 | **Azure AI Foundry** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom UI deployment [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/use-web-app) |
 
 #### Autonomous Agents
 
 | Technology | Action Safety | Proactive | Description |
 |------------|---------------|-----------|-------------|
+| **Copilot Studio** (with event triggers) | ⚠️ Actions can execute | ✅ Autonomous (event-driven) | Event triggers: SharePoint, OneDrive, Planner, Recurrence [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about) |
 | **Logic Apps AI Agent Workflows** (Preview) | ⚠️ Autonomous execution | ✅ Proactive (event-driven) | 1,400+ connectors [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 | **Azure AI Foundry Agent Service** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom orchestration [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) |
 
@@ -170,6 +170,7 @@ flowchart TD
     
     Dev -->|M365 integration| DevM365[M365 Agents SDK]
     Dev -->|Azure services| DevAzure[Azure AI Foundry]
+    Dev -->|Multi-agent orchestration| DevOrch[Agent Framework<br/><i>Preview/Experimental</i>]
     Dev -->|Multi-platform| DevChoice{Skill level?}
     Dev -->|Autonomous agents| DevAuto{Event-driven?}
     
@@ -187,6 +188,7 @@ flowchart TD
     MakerPlus --> MakerPlusEnd([Studio + code])
     DevM365 --> DevM365End([Build with SDK])
     DevAzure --> DevAzureEnd([Build in Foundry])
+    DevOrch --> DevOrchEnd([Multi-agent workflows])
     DevStudio --> DevStudioEnd([Studio with code])
     DevSDK --> DevSDKEnd([Full code solution])
     DevLogic --> DevLogicEnd([Event-driven agent])
@@ -200,6 +202,7 @@ flowchart TD
     style MakerPlus fill:#0078D4,color:#fff
     style DevM365 fill:#5C2D91,color:#fff
     style DevAzure fill:#5C2D91,color:#fff
+    style DevOrch fill:#5C2D91,color:#fff
     style DevLogic fill:#0078D4,color:#fff
     style DevFoundry fill:#D83B01,color:#fff
     style DSFabric fill:#FFB900,color:#000
@@ -228,8 +231,9 @@ flowchart TD
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
-| **M365 Agents SDK** | Pro-code for M365-centric solutions, C#/JavaScript/Python, 10+ channels | [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-custom-engine-agent) |
+| **M365 Agents SDK** | Pro-code for M365-centric solutions, C#/JavaScript/Python, 10+ channels, BYO orchestrator | [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-custom-engine-agent) |
 | **Azure AI Foundry** | Pro-code for Azure-centric solutions, custom models, full control | [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) |
+| **Microsoft Agent Framework** (Preview/Experimental) | **Microsoft's investment direction** - Next-gen multi-agent orchestration framework (5 patterns: Sequential, Concurrent, Handoff, Group Chat, Magentic). **Use instead of Semantic Kernel** (maintenance mode). Works with M365 SDK or standalone. | [Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) |
 | **Copilot Studio + Custom Actions** | Mid-level developers, low-code with custom code extensibility | [Copilot Studio Extensibility](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview) |
 | **Logic Apps AI Agent Workflows** (Preview) | Event-driven autonomous agents, 1,400+ connectors | [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 
@@ -571,145 +575,35 @@ flowchart TD
 
 **Last Validated:** November 2025
 
-**M365 Copilot (GA)** - STRICT GOVERNANCE:
-- **🔒 Action Safety:** ✅ **User-in-the-loop design (always)**. M365 Copilot drafts content (emails, documents) but user must execute. Cannot directly take destructive actions (delete files, disable resources, approve spend). Most conservative safety posture. [Source: M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
-- **🔄 Proactive:** ❌ **Reactive only (user-initiated interactions)**. No event-driven triggers or autonomous monitoring.
-- **📋💾📊 Grounding / Memory / Analytics:** Grounding ONLY (M365 content per request). NO per-user memory extractable by admins. Limited analytics (Copilot activity history in user mailbox, Purview-governed retention). Admins use eDiscovery (NOT arbitrary reading). [Source: M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
-- **Data Residency:** M365 tenant boundary only. No data leaves M365 trust boundary. [Source: Data, Privacy, and Security for M365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
-- **No Training on Tenant Data:** Prompts, responses, and data accessed through Microsoft Graph are NOT used to train foundation LLMs. [Source: M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
-- **Built-in Governance:** Inherits all M365 Entra ID permissions, DLP policies, sensitivity labels, Conditional Access. No custom configuration required. [Source: Security for M365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
-- **Audit:** Microsoft Purview audit logs capture all interactions (prompts + responses). [Source: M365 Copilot Audit Logs](https://learn.microsoft.com/en-us/purview/audit-copilot)
-- **Compliance:** GDPR, HIPAA, ISO 27001, ISO 42001 (AI management systems), FedRAMP. [Source: M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy#meeting-regulatory-compliance-requirements)
-- **Network Isolation:** No custom VNet support (fully managed SaaS). For accessing on-premises data, requires gateway architecture (typically via Copilot Studio integration).
-- **Permissions Model:** ✅ **User-scoped execution (always)**. M365 Copilot runs with signed-in user's identity and presents only data the user can access. Honors existing M365 permissions (SharePoint, Teams, OneDrive). Respects sensitivity labels and encryption (checks EXTRACT usage right). **"It only sees what I can see" is architecturally guaranteed.** No option for service accounts. [Source: M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
-- **Action Safety:** ✅ **User-in-the-loop design (always)**. M365 Copilot drafts content (emails, documents) but user must execute. Cannot directly take destructive actions (delete files, disable resources, approve spend). Most conservative safety posture. [Source: M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
-- **Scale & Cost:** Per-user licensing ($30/user/month). No throttling (Microsoft handles scaling). Predictable spend for internal knowledge workers. Not suitable for high-volume external customer scenarios. [Source: M365 Copilot Licensing](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations)
-- **Positioning:** Ideal for regulated industries requiring strict M365 tenant boundary with existing M365 compliance posture. **Best choice when user-scoped permissions are critical.**
-- **Complexity:** LOW (fully managed, no configuration). **Cost:** $30/user/month.
+#### M365 Tenant Boundary Technologies
 
-**Copilot Studio (GA)** - MEDIUM-HIGH GOVERNANCE:
-- **🔒 Action Safety:** ⚠️ **Actions can execute** (Power Automate flows, custom connectors). Can perform destructive operations (delete records, provision access, approve spend) if configured. **Add human approval steps** in flows for high-risk actions. Content moderation blocks malicious prompts. [Source: Copilot Studio Actions](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-business-applications), [Content Moderation](https://learn.microsoft.com/en-us/troubleshoot/power-platform/copilot-studio/generative-answers/agent-response-filtered-by-responsible-ai)
-- **🔄 Proactive:** ✅ **Proactive capable** (custom engine agents with Power Automate triggers: scheduled, event-driven). Declarative agents are reactive only.
-- **📋💾📊 Grounding / Memory / Analytics:** Grounding + "memory-like persistence" via Dataverse variables (tenant data, auditors need location). FULL analytics (sessions, handoffs, resolution rates, triggered topics). Conversation transcripts saved to Dataverse `ConversationTranscript` table. Admins can view/download transcripts (critical for regulated review). Retention: Default 30 days, configurable. [Source: Transcript Controls](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-transcript-controls)
-- **Data Residency:** Configurable by Power Platform environment geography (Azure regions). [Source: Geographic Data Residency in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/geo-data-residency-security)
-- **RBAC:** Power Platform RBAC with Entra ID. Environment-level roles (admin, maker, end-user). [Source: Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance)
-- **DLP:** Power Platform DLP policies control 1P/3P connector usage (business vs non-business). [Source: DLP in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-data-loss-prevention)
-- **⚠️ CRITICAL: External Connector Compliance Inheritance:** When using custom connectors or Power Automate flows that call external, non-Microsoft systems (e.g., Salesforce, custom APIs), the **agent maker inherits the compliance posture of the external system**. Responsibility for external system data handling belongs to the customer. [Source: Copilot Studio Data Flows](https://learn.microsoft.com/en-us/microsoft-copilot-studio/geo-data-residency#data-flows-using-connectors)
-- **⚠️ CRITICAL: Web Search Boundary:** Enabling web search sends queries to Bing's consumer service. **Data leaves the enterprise boundary** and is NOT covered by the DPA (Data Protection Addendum). Queries are anonymous but governed by Microsoft Privacy Statement. **Admin control available** in Power Platform admin center to disable. [Source: Web Search Data Privacy](https://learn.microsoft.com/en-us/microsoft-copilot-studio/data-privacy-security-web-search)
-- **⚠️ CRITICAL: Network Architecture:** Copilot Studio does NOT run in customer VNet. For private resource access, requires **on-premises data gateway** (for on-prem systems like SAP/SQL) OR **VNet data gateway** (GA, for Azure resources with private endpoints). [Source: Virtual Network Support](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-network-isolation-vnet)
-- **⚠️ CRITICAL: Permissions Model — Dual Authentication Modes:** Connections can use **user authentication** (delegated permissions — agent acts on behalf of signed-in user, "it only sees what I can see" = TRUE) OR **agent author authentication** (application permissions — agent uses service account credentials, can access resources beyond individual user permissions). **Risk:** Service accounts with excessive permissions can give helpdesk bots tenant-wide power. Customers MUST understand this distinction for actions that write data (Dataverse, CRM, ticketing). [Source: Configure Connections](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-connections), [User Authentication](https://learn.microsoft.com/en-us/microsoft-copilot-studio/configure-enduser-authentication)
-- **Action Safety:** ⚠️ **Actions can execute** (Power Automate flows, custom connectors). Can perform destructive operations (delete records, provision access, approve spend) if configured. **Add human approval steps** in flows for high-risk actions. Content moderation blocks malicious prompts. [Source: Copilot Studio Actions](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-business-applications), [Content Moderation](https://learn.microsoft.com/en-us/troubleshoot/power-platform/copilot-studio/generative-answers/agent-response-filtered-by-responsible-ai)
-- **ALM:** Dev/test/prod environment management with deployment pipelines. [Source: Copilot Studio Experience](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-experience#full-experience-governance-principles)
-- **Audit:** Microsoft Purview audit logs + Copilot Studio analytics. [Source: Copilot Studio Logging](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-logging-copilot-studio)
-- **Compliance:** ISO 27001, SOC 1/2/3, GDPR, FedRAMP, HIPAA. [Source: Copilot Studio Compliance](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-certification)
-- **Scale & Cost:** Environment-level rate limits (8,000 RPM general, 50-100 RPM/1,000-2,000 RPH for gen AI based on capacity packs). **Critical for high-volume scenarios (call centers, public web)**: Quotas are SHARED across all agents in environment. Can hit throttling errors at scale. Solutions: Purchase capacity packs, enable pay-as-you-go ($0.01/credit). [Source: Copilot Studio Quotas](https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-quotas)
-- **Positioning:** Suitable for low-code agent development, but **external connectors, web search, network architecture, and authentication modes introduce boundary considerations**. Best for scenarios where Power Platform governance is sufficient, gateway-based private access is acceptable, and **auth model (user vs service account) is explicitly chosen**. **Not suitable for fully air-gapped environments without gateway setup.**
-- **Complexity:** MEDIUM (admin center configuration + connection auth selection). **Cost:** $200/month prepaid (25K credits) or $0.01/credit PAYG.
+| Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
+|------------|---------------|-----------|----------------------------------|------------------------|---------------|
+| **M365 Copilot** (GA) | ✅ User-in-the-loop (drafts only) | ❌ Reactive only | Grounding only (M365 Graph per-request), no extractable memory | M365 trust boundary, auto DLP/sensitivity labels, user-scoped permissions, Purview audit, no training on tenant data | [M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security) |
+| **Copilot Studio** (GA) | ⚠️ Actions execute (flows/connectors) | ✅ Autonomous (event triggers GA March 2025) | Grounding + Dataverse persistence (transcripts, variables), full analytics | Power Platform RBAC + DLP, environment-level governance, connector controls, ⚠️ web search leaves boundary, ⚠️ dual auth (user/service) | [Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance) |
 
-**Azure AI Foundry (GA)** - HIGH GOVERNANCE:
-- **🔒 Action Safety:** ⚠️ **Tool calling with autonomous planning loops**. Function calling enables agents to invoke tools/APIs (Logic Apps, Functions, OpenAPI). Multi-step reasoning can chain actions without human oversight. **Add human-in-the-loop for high-stakes actions**. Enable OpenTelemetry tracing to log and review action chains. [Source: Azure AI Agent Service Transparency Note](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note)
-- **🔄 Proactive:** ✅ **Proactive capable** (event triggers with Azure Functions, Logic Apps integration).
-- **📋💾📊 Grounding / Memory / Analytics:** Grounding + BYO thread storage (April 2025: Cosmos DB `enterprise_memory` database with `thread-message-store`, `system-thread-message-store`, `agent-entity-store` containers). Customer owns persistence (responsible for retention, PII scrubbing, export-on-request). Analytics: Azure Monitor metrics, OpenTelemetry tracing (customer implements). Legal will ask: "Where is chat history? How long? Who can query it?" [Source: Cosmos DB Integration](https://learn.microsoft.com/en-us/azure/cosmos-db/gen-ai/azure-agent-service)
-- **Data Residency:** Azure region selection. Data stored in selected geography. [Source: Azure AI Foundry Planning](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#securing-the-ai-foundry-environment)
-- **RBAC:** Azure RBAC with control plane (resource management) and data plane (model access) separation. Resource-level + project-level assignments. [Source: Azure AI Foundry Architecture](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture#security-driven-separation-of-concerns)
-- **Managed Identity:** Supported at both resource and project level for passwordless auth. [Source: Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#securing-the-ai-foundry-environment)
-- **Networking:** VNet integration, private endpoints, NSGs for traffic isolation. **Standard Setup with Private Networking supports full private networking, no public egress by default.** Private endpoints required for Storage, AI Search, Cosmos DB, and Foundry resource. [Source: Configure Private Link](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/configure-private-link), [Virtual Networks for Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks)
-- **Encryption:** Customer-managed keys (CMK) optional for strict compliance. [Source: CMK in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/encryption-keys-portal)
-- **Audit:** Azure Monitor + Log Analytics for detailed logging. [Source: Monitor Applications](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-applications)
-- **Governance:** Azure Policy for model deployment control, cost management, quotas. [Source: Built-in Policy Model Deployment](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/built-in-policy-model-deployment)
-- **Permissions Model:** **API key (simple integration) OR Microsoft Entra ID (recommended for production)**. API keys bypass user identity (no Conditional Access, MFA, or per-user attribution). Entra ID supports delegated permissions (user-scoped), application permissions (service principal), and managed identities (passwordless). **Use Entra ID for production workloads** requiring user attribution, least privilege RBAC, and audit trails. [Source: Authentication Options](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/authentication-options-ai-foundry)
-- **Action Safety:** ⚠️ **Tool calling with autonomous planning loops**. Function calling enables agents to invoke tools/APIs (Logic Apps, Functions, OpenAPI). Multi-step reasoning can chain actions without human oversight. **Add human-in-the-loop for high-stakes actions**. Enable OpenTelemetry tracing to log and review action chains. [Source: Azure AI Agent Service Transparency Note](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note)
-- **Scale & Cost:** TPM (Tokens-Per-Minute) quotas per region/model. Cost scales linearly with traffic (per-token billing). **Critical for public-facing channels**: Requires guardrails (intent classification, model routing, budget alerts). No hard limits (Azure Cost Management alerts are reactive). [Source: Azure AI Foundry Quota](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/quota), [Cost Management](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/manage-costs)
-- **Compliance:** ISO 27001, SOC 2, GDPR. [Source: Azure Compliance](https://learn.microsoft.com/en-us/azure/compliance/)
-- **Positioning:** **Governed by your Azure landing zone controls**. Ideal for customers requiring VNet isolation, private endpoints for all resources, sovereign data strategies, and full Azure Policy integration. **Supports fully air-gapped environments** (limitation: private MCP servers not supported). **Migrate to Entra ID for production** (per-user RBAC, managed identities, audit).
-- **Complexity:** HIGH (requires Azure infrastructure + networking knowledge). **Cost:** Consumption-based (varies by model usage).
+#### Azure Region Control Technologies
 
-**Azure AI Agent Service (GA May 2025)** - HIGH GOVERNANCE:
-- **🔒 Action Safety:** ⚠️ **Autonomous agent capabilities with action tools**. Supports tool calling (Logic Apps, Functions, Code Interpreter, OpenAPI, MCP). Agents can reason, plan, and execute multi-step tasks. **Implement human-in-the-loop for critical actions** (delete, approve spend). Use tracing to reconstruct reasoning. [Source: Agent Service Transparency Note](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note)
-- **🔄 Proactive:** ✅ **Proactive capable** (event triggers with Azure Functions, Logic Apps integration).
-- **Data Residency:** Same as Azure AI Foundry (Azure region selection). [Source: Agents Data Privacy](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/data-privacy-security)
-- **RBAC:** Full Azure RBAC at project + resource level. Granular access control. [Source: AI Agent Service Security Training](https://learn.microsoft.com/en-us/training/modules/intro-ai-agent-service-security-controls/3-azure-ai-agent-service-role-based-access-control)
-- **Networking:** VNet, private endpoints, BYO storage for threads/messages. **Standard Setup with Private Networking ensures no public egress by default.** Container injection allows platform APIs to communicate within customer VNet. Access via VPN Gateway, ExpressRoute, or Azure Bastion. [Source: Virtual Networks for Agents](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/virtual-networks)
-- **Managed Identity:** Supported at resource + project scopes. [Source: Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning)
-- **Action Safety:** ⚠️ **Autonomous agent capabilities with action tools**. Supports tool calling (Logic Apps, Functions, Code Interpreter, OpenAPI, MCP). Agents can reason, plan, and execute multi-step tasks. **Implement human-in-the-loop for critical actions** (delete, approve spend). Use tracing to reconstruct reasoning. [Source: Agent Service Transparency Note](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/transparency-note)
-- **Scale & Cost:** TPM quotas (same as Azure AI Foundry) + 100K message/thread max, 10K files/agent limit. Per-token + hosting consumption billing. [Source: Agent Service Quotas](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quotas-limits)
-- **Audit:** Azure Monitor metrics (project-scoped), Log Analytics. [Source: Azure AI Foundry Architecture](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture#security-driven-separation-of-concerns)
-- **Governance:** Azure Policy integration, TPM limits at deployment level. [Source: Azure AI Foundry Governance](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning#governance)
-- **Positioning:** **Governed by your Azure landing zone controls**. Managed PaaS runtime with full Azure networking and policy integration. Ideal for customers needing managed agent runtime with VNet isolation and BYO storage for complete data ownership. **Supports fully air-gapped environments** (same limitations as Foundry).
-- **Complexity:** HIGH (PaaS but requires Azure networking + RBAC config). **Cost:** Consumption-based (included in Azure AI Foundry).
+| Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
+|------------|---------------|-----------|----------------------------------|------------------------|---------------|
+| **Azure AI Foundry** (GA) | ⚠️ Tool calling with autonomous planning | ✅ Proactive (Azure Functions, Logic Apps) | Grounding + BYO thread storage (Cosmos DB), Azure Monitor + OpenTelemetry | Azure RBAC (control + data plane), VNet + private endpoints, managed identity, CMK optional, ⚠️ API key OR Entra ID (Entra recommended) | [Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning) |
+| **AI Agent Service** (GA May 2025) | ⚠️ Autonomous with action tools (Logic Apps, Functions, MCP) | ✅ Proactive (event triggers) | BYO thread storage (Cosmos DB), Azure Monitor project-scoped | Full RBAC (project + resource), VNet + private endpoints, BYO storage, no public egress by default, container injection for VNet | [Agent Service Security](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/data-privacy-security) |
+| **AI Builder** (GA) | Varies by model type | ❌ Reactive | Dataverse storage | Power Platform DLP, Dataverse RBAC, environment location | [AI Builder Governance](https://learn.microsoft.com/en-us/ai-builder/administer) |
 
-**AI Builder (GA)** - MEDIUM GOVERNANCE:
-- **Data Residency:** Power Platform environment location (geography). [Source: Power Platform Compliance](https://learn.microsoft.com/en-us/power-platform/guidance/adoption/compliance)
-- **RBAC:** Dataverse security roles (Environment Maker, System Customizer). [Source: AI Builder Roles](https://learn.microsoft.com/en-us/ai-builder/security)
-- **DLP:** Power Platform DLP policies (part of Dataverse connector). [Source: AI Builder DLP](https://learn.microsoft.com/en-us/ai-builder/administer#data-loss-prevention-dlp)
-- **Audit:** Power Platform audit logs. [Source: Power Platform Logging](https://learn.microsoft.com/en-us/power-platform/admin/logging-power-automate)
-- **Networking:** No custom networking (tenant-level controls only).
-- **Complexity:** LOW-MEDIUM (low-code, simpler than Azure). **Cost:** Copilot Studio Credits (consumption).
+#### Flexible Residency Technologies
 
-**Azure Logic Apps Standard (GA)** - HIGH GOVERNANCE:
-- **🔒 Action Safety:** ⚠️ **Autonomous execution** (workflows can execute actions automatically).
-- **🔄 Proactive:** ✅ **Proactive (event-driven)** (HTTP triggers, storage events, timers, 1,400+ connectors).
-- **Data Residency:** Azure region selection. [Source: Logic Apps Overview](https://learn.microsoft.com/en-us/azure/logic-apps/)
-- **RBAC:** Granular Azure RBAC with Entra ID. [Source: Logic Apps Security Baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#identity-management)
-- **Managed Identity:** Full support for authentication to Azure services. [Source: Logic Apps Managed Identity](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#identity-management)
-- **Networking:** VNet integration, private endpoints (Standard only). [Source: Power Automate Migration Comparison](https://learn.microsoft.com/en-us/azure/logic-apps/power-automate-migration#compare-capability-details)
-- **Encryption:** Data at rest + in transit. Customer-managed keys for ISE. [Source: Logic Apps Security](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
-- **Audit:** Azure security audit logs + diagnostic logs. [Source: Logic Apps Policy](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
-- **Customer Lockbox:** Supported for Microsoft support access control. [Source: Logic Apps Baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/logic-apps-security-baseline#privileged-access)
-- **Compliance:** FedRAMP High/Moderate, HIPAA, ISO 27001, SOC 1/2/3. [Source: Logic Apps Regulatory Compliance](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
-- **Complexity:** HIGH (pro-code, enterprise integration). **Cost:** Consumption ~$0.000125/action OR Standard ~$200/month.
+| Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
+|------------|---------------|-----------|----------------------------------|------------------------|---------------|
+| **Logic Apps Standard** (GA) | ⚠️ Autonomous execution (workflows) | ✅ Proactive (event-driven, 1,400+ connectors) | Workflow state + connector data | Granular Azure RBAC, VNet + private endpoints (Standard), managed identity, Customer Lockbox, FedRAMP/HIPAA/ISO 27001 | [Logic Apps Security](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy) |
+| **M365 Agents SDK** (GA) | ⚠️ Custom design (full developer responsibility) | ✅ Proactive (custom event handling) | Custom (developer implements) | Custom auth (MSAL, Entra ID), hosting platform RBAC, ⚠️ delegated OR application permissions, self-hosted = full network control | [M365 SDK Auth](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/microsoft-authentication-library-configuration-options) |
+| **Agent Framework** (Preview) | Inherits from host app | Inherits from host app | Inherits from host app | No built-in governance (library only), inherits from hosting platform | [Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) |
 
-**M365 Agents SDK (GA)** - CUSTOM GOVERNANCE:
-- **🔒 Action Safety:** ⚠️ **Custom design (full developer responsibility)**. SDK provides no built-in action safety. Can integrate with any API (including destructive operations). Developer must implement human approval workflows, action boundaries, and logging. [Source: Inferred from SDK architecture]
-- **🔄 Proactive:** ✅ **Proactive capable** (custom event handling, developer implements triggers).
-- **Authentication:** Bring your own (MSAL, Entra ID, OAuth 2.0, client cert, managed identity). [Source: M365 SDK Auth Configuration](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/microsoft-authentication-library-configuration-options)
-- **RBAC:** Custom implementation via hosting platform (Azure RBAC, Entra ID, custom).
-- **Data Residency:** Depends on hosting environment (Azure regions, on-prem, multi-cloud).
-- **Scale & Cost:** Customer controls auto-scaling (App Service, Container Apps, AKS). Cost = Hosting + token-based model usage (if using Azure OpenAI). Requires custom rate limiting middleware and budget guardrails. [Source: Inferred from architecture]
-- **Audit:** Custom telemetry implementation (Application Insights, custom logging).
-- **DLP:** Implement via hosting layer (no built-in SDK DLP).
-- **Network Isolation:** **Self-hosted bots = customer controls all networking.** Options: Azure App Service, Azure Container Apps, Azure Kubernetes Service. When self-hosted in Azure with private networking, supports VNet integration, private endpoints, and air-gapped configurations. Customer inherits responsibility for authentication, channel federation, and network security. [Source: Teams AI Library v2](https://learn.microsoft.com/en-us/microsoft-cloud/dev/copilot/isv-extensibility-story)
-- **Permissions Model:** **Custom authentication design required.** Entra ID app registration with **delegated permissions** (user-scoped, requires user login, "it only sees what I can see" = TRUE) OR **application permissions** (service principal, no user login, tenant-wide scope possible). OAuth 2.0 flows (authorization code, client credentials, implicit). Developer designs and wires auth, including Graph API permissions. **Audit/risk teams require documentation of auth patterns.** [Source: User Authorization](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/azure-bot-user-authorization-federated-credentials)
-- **Action Safety:** ⚠️ **Custom design (full developer responsibility)**. SDK provides no built-in action safety. Can integrate with any API (including destructive operations). Developer must implement human approval workflows, action boundaries, and logging. [Source: Inferred from SDK architecture]
-- **Compliance:** Inherits from hosting environment (Azure, on-prem compliance frameworks).
-- **Positioning:** **Full control = full responsibility.** Suitable for organizations requiring complete network control, custom authentication patterns (delegated OR application permissions), and air-gapped deployments (via self-hosted Azure or on-prem hosting). **Requires documented auth architecture for audit.**
-- **Complexity:** HIGH (pro-code, custom auth design, full governance responsibility). **Cost:** FREE SDK (costs from hosting: Azure App Service, Functions, AKS).
-
-**Microsoft Agent Framework (Preview)** - NO BUILT-IN GOVERNANCE:
-- **Governance:** No built-in governance (orchestration library only). [Source: Agent Framework Overview](https://learn.microsoft.com/en-us/agent-framework/)
-- **Authentication:** Inherits from hosting application (M365 Agents SDK or custom app).
-- **RBAC:** Application-level implementation (not framework-level).
-- **Audit:** Application-level logging (framework doesn't provide audit).
-- **Compliance:** Depends entirely on hosting platform.
-- **Complexity:** MEDIUM-HIGH (requires integration with hosting platform). **Cost:** FREE (open-source library).
-
-**Key Findings:**
-1. **M365 Copilot** = Strictest built-in governance, lowest complexity (fully managed).
-2. **Copilot Studio** = Balanced managed governance with admin controls (environment-level).
-3. **Azure AI Foundry + Agent Service** = Enterprise-grade governance but highest complexity (networking + RBAC expertise required).
-4. **AI Builder** = Power Platform governance (simpler than Azure, more than M365 Copilot).
-5. **Logic Apps** = Enterprise governance with workflow focus (Standard = VNet, Consumption = limited networking).
-6. **M365 Agents SDK** = Custom governance (flexible but requires full implementation).
-7. **Agent Framework** = No governance (library only, inherits from host).
-
-**Decision Criteria:**
-- **Data residency = M365 only** → M365 Copilot or Copilot Studio
-- **Data residency = Azure region** → Azure AI Foundry, Agent Service, Logic Apps
-- **Built-in DLP required** → M365 Copilot (automatic) or Copilot Studio (Power Platform DLP)
-- **VNet isolation required** → Azure AI Foundry, Agent Service, Logic Apps Standard
-- **Low complexity needed** → M365 Copilot, AI Builder
-- **Enterprise integration workflows** → Logic Apps Standard (1,400+ connectors + governance)
-- **Multi-channel custom agents** → M365 Agents SDK (custom governance implementation)
-
-**Documentation Sources:**
-- [M365 Copilot Privacy](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-privacy)
-- [M365 Copilot Security](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
-- [Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance)
-- [Azure AI Foundry Security](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/planning)
-- [AI Agent Service Security](https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/agents/data-privacy-security)
-- [AI Builder Governance](https://learn.microsoft.com/en-us/ai-builder/administer)
-- [Logic Apps Security](https://learn.microsoft.com/en-us/azure/logic-apps/security-controls-policy)
-- [M365 Agents SDK Auth](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/microsoft-authentication-library-configuration-options)
+**Key Decision Criteria:**
+- **M365 tenant boundary required** → M365 Copilot (strict) or Copilot Studio (custom agents)
+- **Azure region control + VNet isolation** → Azure AI Foundry or AI Agent Service
+- **Enterprise workflow automation** → Logic Apps Standard
+- **Custom multi-channel agents** → M365 Agents SDK (full control, full responsibility)
+- **Orchestration library only** → Agent Framework (no built-in governance)
 
 ---
 
@@ -758,99 +652,37 @@ flowchart TD
 
 ### Validation Summary: Multi-Agent Orchestration
 
-**Connected Agents / Sub-Agent Pattern:**
+**Last Validated:** November 2025
 
-- **Copilot Studio (Preview):** Connected agents feature supports other Copilot Studio agents + Fabric Data Agents in same environment. Child agents are lightweight sub-agents within main agent. Handoffs enable agent-to-agent transfer.
-- **Azure AI Foundry Agent Service (GA May 2025):** Connected agents feature allows main agent to delegate to purpose-built sub-agents using natural language routing. No custom orchestrator required.
-- **Fabric Data Agents (Preview):** Can participate as connected agent in Copilot Studio or integrate with Azure AI Agent Service. Consumed BY other agents for data grounding—NOT itself an orchestrator.
+#### Connected Agents / Sub-Agent Pattern
 
-**Agent Workflow Orchestration:**
+| Technology | Status | Capabilities | Documentation |
+|------------|--------|--------------|---------------|
+| **Copilot Studio** | Preview | Connected agents (Copilot Studio + Fabric Data Agents), child agents, handoffs | [Connected Agents](https://learn.microsoft.com/microsoft-copilot-studio/advanced-connected-agents) |
+| **Azure AI Foundry Agent Service** | GA May 2025 | Connected agents with natural language sub-agent delegation | [Connected Agents](https://learn.microsoft.com/azure/ai-services/agents/concepts/connected-agents) |
+| **Fabric Data Agents** | Preview | Consumed by other agents for data grounding (NOT orchestrator) | [Fabric Integration](https://learn.microsoft.com/fabric/data-activator/data-agent-copilot-studio-integration) |
 
-- **Microsoft Agent Framework (Preview/Experimental):** Provides Sequential, Concurrent, Handoff, and Magentic orchestration patterns. Available in C#, Python via Semantic Kernel. Under active development.
-- **Semantic Kernel:** Supports Sequential, Concurrent, Group Chat, Handoff, and Magentic orchestration patterns.
-- **M365 Agents SDK:** Integrates with Microsoft Agent Framework or Semantic Kernel for orchestration. "Bring your own orchestrator" model—does NOT have built-in Agent Framework.
-- **LangGraph:** Third-party framework (not Microsoft) providing state graph management for complex workflows.
+#### Agent Workflow Orchestration
 
-**Event-Driven Agents:**
+| Technology | Status | Orchestration Patterns | Documentation |
+|------------|--------|------------------------|---------------|
+| **Microsoft Agent Framework** | Preview/Experimental | **Microsoft's investment direction** - Sequential, Concurrent, Handoff, Magentic (C#, Python) | [Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) |
+| **Semantic Kernel** | Maintenance mode | Sequential, Concurrent, Group Chat, Handoff, Magentic (**use Agent Framework for new projects**) | [Semantic Kernel Agents](https://learn.microsoft.com/semantic-kernel/frameworks/agent/) |
+| **M365 Agents SDK** | GA | BYO orchestrator (integrate Agent Framework or third-party) | [M365 SDK](https://learn.microsoft.com/microsoft-365-copilot/extensibility/create-deploy-agents-sdk) |
+| **LangGraph** | Third-party | State graph management for complex workflows | Third-party framework |
 
-- **Logic Apps AI Agent Workflows (Preview):** Event triggers + MCP Server for enterprise system integration. Triggers SINGLE agent via events—NOT multi-agent orchestration.
-- **Azure Functions + Agent Service:** Event-driven invocation of single agents. Event routing, not multi-agent coordination.
-- **Event Grid + Foundry:** Event routing to agents. Routes events to trigger agents independently—NOT multi-agent orchestration.
+#### Event-Driven Agents (Single Agent Triggering)
 
-**Sources:**
+| Technology | Status | Event Handling | Documentation |
+|------------|--------|----------------|---------------|
+| **Logic Apps AI Agent Workflows** | Preview | Event triggers + MCP Server (triggers SINGLE agent, NOT multi-agent orchestration) | [Logic Apps Workflows](https://learn.microsoft.com/azure/logic-apps/create-run-ai-agent-workflow) |
+| **Azure Functions + Agent Service** | GA | Event-driven single agent invocation (event routing, NOT coordination) | [Agent Service](https://learn.microsoft.com/azure/ai-foundry/responsible-ai/agents/transparency-note) |
+| **Event Grid + Foundry** | GA | Event routing to trigger agents independently (NOT orchestration) | [Azure Event Grid](https://learn.microsoft.com/azure/event-grid/) |
 
-- [Build AI agents with Copilot Studio](https://learn.microsoft.com/microsoft-copilot-studio/copilot-ai-plugins) — Updated 2025-01-29
-- [Connect agents in Copilot Studio (Preview)](https://learn.microsoft.com/microsoft-copilot-studio/advanced-connected-agents) — Updated 2025-01-20
-- [Microsoft Agent Framework overview](https://learn.microsoft.com/semantic-kernel/frameworks/agent/agent-framework) — Updated 2024-12-18
-- [Connected agents in Azure AI Foundry](https://learn.microsoft.com/azure/ai-services/agents/concepts/connected-agents) — Updated 2025-04-30
-- [Add Fabric Data agent as connected agent (Preview)](https://learn.microsoft.com/fabric/data-activator/data-agent-copilot-studio-integration) — Updated 2025-01-30
-- [Semantic Kernel agents](https://learn.microsoft.com/semantic-kernel/frameworks/agent/) — Updated 2024-12-18
-- [Logic Apps AI Agent Workflows (Preview)](https://learn.microsoft.com/azure/logic-apps/create-run-ai-agent-workflow) — Updated 2025-01-15
-
----
-
-## Upgrade Paths
-
-```mermaid
-flowchart LR
-    M365[M365 Copilot<br/>Built-in AI] -->|Add custom data| Graph[+ Graph Connectors GA]
-    Graph -->|Need workflows| Studio[Migrate to<br/>Copilot Studio]
-    
-    Studio[Copilot Studio<br/>Low-code] -->|Connect Azure models| AzureModels[+ Azure AI Foundry models<br/>via connector]
-    Studio -->|Need code| Actions[+ Custom Actions]
-    Actions -->|Complex orchestration| SDK[Migrate to<br/>M365 SDK]
-    
-    SDK[M365 Agents SDK<br/>Pro-code M365] -->|Add Azure AI| Foundry[+ Azure AI<br/>Foundry]
-    SDK -->|Custom orchestration| Orchestrator[+ Orchestration framework<br/>Agent Framework Preview recommended,<br/>LangChain third-party alternative]
-    
-    Foundry[Azure AI Foundry<br/>Full Azure] -->|Fine-tune models| FineTune[+ Fine-tuned models]
-    Foundry -->|Custom models| CustomModels[+ Custom model deployments]
-    
-    style M365 fill:#0078D4,color:#fff
-    style Studio fill:#0078D4,color:#fff
-    style SDK fill:#5C2D91,color:#fff
-    style Foundry fill:#D83B01,color:#fff
-```
-
-### Validation Summary: Upgrade Paths
-
-**M365 Copilot Extensions:**
-
-- **Graph Connectors (GA Mar 2025):** Add enterprise data from external sources (Stack Overflow, Salesforce, GitHub, custom APIs). Works across M365 Copilot, Copilot Studio, and Microsoft Search. Can use without migrating to Copilot Studio.
-
-**Copilot Studio Enhancements:**
-
-- **Azure AI Foundry Model Connector:** Connect Azure AI Foundry deployed models (GPT-4o, Phi-3.5-vision, fine-tuned models) to Copilot Studio prompts via connector. Enables using custom or fine-tuned models without full migration.
-- **Custom Actions:** Extend agents with custom APIs and workflows. Bridge between low-code and pro-code development.
-
-**M365 Agents SDK Integration:**
-
-- **Azure AI Foundry:** Add Azure AI models, custom model deployments, and advanced AI services to M365 SDK agents. Provides AI infrastructure beyond M365 boundaries.
-- **Orchestration Frameworks:** M365 SDK supports bring-your-own-orchestrator model. Options include:
-  - **Semantic Kernel:** Microsoft framework with Agent Framework patterns (Preview/Experimental - Sequential, Concurrent, Handoff, Magentic)
-  - **LangChain:** Third-party orchestration framework
-  - **LangGraph:** Third-party state graph management (not Microsoft product)
-  - **Custom orchestration:** Build your own orchestrator
-
-**Azure AI Foundry Advanced Features:**
-
-- **Fine-Tuned Models:** Deploy and use fine-tuned custom models via serverless API deployments.
-- **Custom Model Deployments:** Deploy models from catalog (1900+ models from Microsoft, OpenAI, Meta, Hugging Face, partners).
-
-**Key Migration Insights:**
-
-- Graph Connectors can be added to M365 Copilot WITHOUT migrating to Copilot Studio (enhancement, not migration requirement)
-- M365 SDK is model- and orchestrator-agnostic - supports ANY AI stack via bring-your-own approach
-- Microsoft Agent Framework is orchestration pattern IN Semantic Kernel, not standalone Azure AI Foundry feature
-- LangGraph and LangChain are third-party frameworks (not Microsoft products) - supported via M365 SDK's flexible architecture
-
-**Sources:**
-
-- [Graph connectors for M365 Copilot](https://learn.microsoft.com/en-us/power-platform/release-plan/2024wave2/microsoft-copilot-studio/add-enterprise-data-new-graph-connections) — Updated 2024-11-06
-- [Bring your own model for prompts](https://learn.microsoft.com/en-us/ai-builder/byom-for-your-prompts) — Updated 2025-01-31
-- [M365 Agents SDK overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/create-deploy-agents-sdk) — Updated 2025-01-27
-- [Semantic Kernel and Agent Framework in Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/using-semantic-kernel-agent-framework) — Updated 2025-01-15
-- [Azure AI Foundry Models overview](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/foundry-models-overview) — Updated 2025-04-23
+**Key Distinctions:**
+- **Connected/Sub-Agent:** Agents collaborate or delegate to specialized sub-agents
+- **Workflow Orchestration:** Sequential/parallel/concurrent agent coordination patterns
+- **Event-Driven:** Single agent triggered by events (NOT multi-agent orchestration)
 
 ---
 
@@ -881,7 +713,6 @@ flowchart LR
 5. **Review Budget & Timeline** to set realistic expectations
 6. **Verify Governance Path** for compliance requirements
 7. **Explore Multi-Agent** if orchestration is needed
-8. **Plan Upgrade Paths** for evolution strategy
 
 ---
 

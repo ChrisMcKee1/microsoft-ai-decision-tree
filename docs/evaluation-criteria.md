@@ -185,8 +185,8 @@ Understanding where conversation data is stored and who can access it is **criti
 
 ## Decision Matrix
 
-| Situation | Start | Upgrade Path |
-|-----------|-------|--------------|
+| Situation | Start | Path |
+|-----------|-------|------|
 | Makers, low budget, M365 data | M365 + Graph Connectors | → Studio |
 | Makers, workflows | Studio + AI Builder | → Add BYOK |
 | Devs, multi-channel | M365 SDK + Studio | → Azure AI Foundry |

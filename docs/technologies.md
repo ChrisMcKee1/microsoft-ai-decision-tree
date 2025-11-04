@@ -28,18 +28,23 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Copilot Studio
-**Description:** Low-code to pro-code SaaS platform for building custom agents with managed governance, ALM, and multi-channel deployment. Custom engine agents GA (May 2025), BYOM from Azure AI Foundry (Preview), BYOK Azure AI Search (GA).  
+**Description:** Low-code to pro-code SaaS platform for building custom agents with managed governance, ALM, and multi-channel deployment. Supports both conversational (reactive) and autonomous (event-triggered) agents. Custom engine agents GA (May 2025), Event Triggers GA (March 2025), BYOM from Azure AI Foundry (Preview), BYOK Azure AI Search (GA).  
 **Official Docs:** [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
 
 **Key Features:**
 - Low-code to pro-code agent development
+- **Event Triggers (GA March 2025):** Autonomous agents that respond to events without user input (SharePoint, OneDrive, Planner, Recurrence)
 - Managed governance and ALM
 - Multi-channel deployment (M365, Teams, Web, Mobile)
 - BYOK (Bring Your Own Knowledge) - Azure AI Search integration (GA)
 - BYOM (Bring Your Own Model) - Azure AI Foundry integration (Preview)
 - Pay-as-you-go ($0.01/Copilot Credit) or prepaid packs
 
-**When to use:** Custom agents with managed infrastructure, fast time-to-value, low-code to pro-code flexibility
+**When to use:** Custom agents with managed infrastructure, fast time-to-value, low-code to pro-code flexibility, autonomous event-driven workflows
+
+**Sources:**
+- [Event Triggers Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about) (GA March 2025)
+- [Copilot Studio Fundamentals](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
 
 ---
 
@@ -140,18 +145,24 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Microsoft Agent Framework
-**Description:** Orchestration SDK for workflow-based multi-agent systems. Features: type-safe workflows (Executor/Edge patterns), built-in checkpointing for long-running/human-in-loop processes, orchestration patterns (Sequential/Concurrent/Handoff/Magentic). Works with M365 Agents SDK or standalone. Uses `IChatClient` abstraction.  
-**Status:** Public Preview (C#, Python)  
-**Official Docs:** [Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) | [GitHub](https://github.com/microsoft/agent-framework)
+**Description:** Microsoft's next-generation orchestration framework for building multi-agent workflows (replaces Semantic Kernel agents in maintenance mode). Features: 5 orchestration patterns (Sequential, Concurrent, Handoff, Group Chat, Magentic), runtime for agent lifecycle management, message routing between agents, human-in-the-loop support. Works with M365 Agents SDK (BYO orchestrator model) or standalone. **Microsoft's investment direction for multi-agent orchestration.**  
+**Status:** Preview/Experimental (C#, Python, Java) - **Active development, will GA soon**  
+**Official Docs:** [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/) | [Agent Orchestration](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-orchestration/)
 
 **Key Features:**
-- Type-safe workflows (Executor/Edge patterns)
-- Built-in checkpointing for long-running processes
-- Orchestration patterns: Sequential, Concurrent, Handoff, Magentic
-- `IChatClient` abstraction (model flexibility)
-- M365 Agents SDK integration or standalone use
+- **5 Orchestration Patterns:** Sequential (pipelines), Concurrent (parallel analysis), Handoff (dynamic routing), Group Chat (collaborative problem solving), Magentic (complex multi-agent tasks)
+- **Runtime:** Actor lifecycle management, message routing, independent orchestration executions
+- **Modular Components:** Specialized agents for specific tasks with collaboration support
+- **Human-in-the-Loop:** Human agents can participate in orchestration workflows
+- **M365 Agents SDK Integration:** Recommended orchestrator for M365 SDK (BYO model)
+- **Replaces Semantic Kernel Agents:** Semantic Kernel in maintenance mode (security patches only, no new features)
 
-**When to use:** Workflow orchestration with checkpointing, multi-agent collaboration, long-running processes, human-in-the-loop scenarios
+**When to use:** Multi-agent workflows requiring coordination, specialized task delegation, complex collaborative problem-solving, human-agent collaboration. **Use this instead of Semantic Kernel for new projects.**
+
+**Sources:**
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/)
+- [Agent Orchestration Patterns](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-orchestration/)
+- [Using with M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/using-semantic-kernel-agent-framework)
 
 ---
 
