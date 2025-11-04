@@ -724,6 +724,7 @@ flowchart TD
 ---
 
 ## Using This Guide
+{: .no_toc }
 
 **How to navigate:** Start with Complete Decision Flow for end-to-end guidance, or jump to specific sections: Persona-Based Flow (by role), Data Grounding (data architecture), Complexity Assessment (effort estimate), Budget & Timeline (cost/time), Governance Path (compliance), or Multi-Agent (orchestration).
 
@@ -732,6 +733,7 @@ flowchart TD
 ---
 
 ## Next Steps
+{: .no_toc }
 
 **Detailed comparisons:**  
 → [Feature Comparison](feature-comparison.md)
