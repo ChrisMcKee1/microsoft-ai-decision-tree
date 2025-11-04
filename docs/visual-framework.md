@@ -121,6 +121,7 @@ flowchart TD
 **Last Validated:** November 2025
 
 #### UI-Based Agents (GA unless noted)
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Description |
 |------------|---------------|-----------|-------------|
@@ -130,6 +131,7 @@ flowchart TD
 | **Azure AI Foundry** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom UI deployment [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/use-web-app) |
 
 #### Autonomous Agents
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Description |
 |------------|---------------|-----------|-------------|
@@ -138,6 +140,7 @@ flowchart TD
 | **Azure AI Foundry Agent Service** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom orchestration [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) |
 
 #### API/Headless Services (GA)
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Description |
 |------------|---------------|-----------|-------------|
@@ -145,6 +148,7 @@ flowchart TD
 | **Azure AI Foundry** | ⚠️ Autonomous planning loops | ✅ Proactive capable | REST API deployment [(docs)](https://learn.microsoft.com/en-us/rest/api/aifoundry/) |
 
 #### Vector Databases
+{: .no_toc }
 
 | Technology | Status | Capabilities |
 |------------|--------|--------------|
@@ -217,12 +221,14 @@ flowchart TD
 **Last Validated:** November 3, 2025
 
 #### End User (GA)
+{: .no_toc }
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
 | **M365 Copilot** | Built-in AI in M365 apps, no setup required | [M365 Copilot](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/) |
 
 #### Business Maker (GA)
+{: .no_toc }
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
@@ -230,6 +236,7 @@ flowchart TD
 | **Copilot Studio + Custom Actions** | Low-code with occasional developer support for custom connectors/flows | [Custom Actions](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview) |
 
 #### Developer (GA unless noted)
+{: .no_toc }
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
@@ -240,6 +247,7 @@ flowchart TD
 | **Logic Apps AI Agent Workflows** (Preview) | Event-driven autonomous agents, 1,400+ connectors | [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 
 #### Data Scientist/Analyst
+{: .no_toc }
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
@@ -247,6 +255,7 @@ flowchart TD
 | **Azure AI Foundry** | ML/custom models, full AI/ML pipeline control | [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) |
 
 #### Integration Specialist
+{: .no_toc }
 
 | Technology | Description | Documentation |
 |------------|-------------|---------------|
@@ -339,12 +348,14 @@ flowchart TD
 **Last Validated:** November 3, 2025
 
 #### M365 Data Sources (GA)
+{: .no_toc }
 
 | Technology | Capabilities | Documentation |
 |------------|--------------|---------------|
 | **Microsoft Graph Connectors** | M365 data sources (SharePoint, OneDrive, Teams) | [Graph Connectors Overview](https://learn.microsoft.com/en-us/microsoftsearch/connectors-overview) |
 
 #### Document Processing - File Search (GA)
+{: .no_toc }
 
 | Technology | Capabilities | Documentation |
 |------------|--------------|---------------|
@@ -352,18 +363,21 @@ flowchart TD
 | **Copilot Studio Knowledge Base** | File upload from local/OneDrive/SharePoint. Supports .doc, .docx, .ppt, .pptx, .pdf, .xls, .xlsx, .txt, .md, .html, .csv, .xml. Max 512 MB per file, up to 500 files per agent. Automatic chunking and vectorization into Dataverse with semantic indexing. OneDrive/SharePoint: Auto-sync (updates reflected automatically) vs Upload: Static files. SharePoint: User-scoped permissions (only files user has access to). | [Copilot Studio Knowledge](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-unstructured-data) \| [File Upload](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-file-upload) \| [SharePoint Files](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-unstructured-data) |
 
 #### Document Processing - Production Scale (GA)
+{: .no_toc }
 
 | Technology | Capabilities | Documentation |
 |------------|--------------|---------------|
 | **Azure AI Search** | Document indexing, full-text search, vector search, hybrid queries, custom chunking strategies (fixed-size, variable-size, Document Layout skill). Requires manual setup of indexers, skillsets, chunking strategy. Production-scale scenarios with millions of documents. | [AI Search Overview](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) \| [Chunking Strategies](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) |
 
 #### Document Processing - Multimodal (Preview)
+{: .no_toc }
 
 | Technology | Capabilities | Documentation |
 |------------|--------------|---------------|
 | **Azure AI Content Understanding** | Multimodal processing (documents/images/audio/video), RAG-ready Markdown output, AI Search custom skill integration, built-in chunking, standard/pro modes. API version: 2025-05-01-preview. | [Content Understanding Overview](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) \| [Multimodal Search](https://learn.microsoft.com/en-us/azure/search/multimodal-search-overview) |
 
 #### Structured Databases - Vector Search (GA)
+{: .no_toc }
 
 | Technology | Status | Capabilities | Documentation |
 |------------|--------|--------------|---------------|
@@ -372,6 +386,7 @@ flowchart TD
 | **SQL Server 2025 VECTOR** | Preview RC1 | Native VECTOR data type, float32 (1,998 dims)/float16 (3,996 dims) | [SQL Server Vector](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type) |
 
 #### Analytics Platform (GA with Preview features)
+{: .no_toc }
 
 | Technology | Status | Capabilities | Documentation |
 |------------|--------|--------------|---------------|
@@ -379,12 +394,14 @@ flowchart TD
 | **Fabric Data Agents** | Preview | Analytics data grounding (warehouses, lakehouses, Power BI semantic models, KQL databases), Copilot Studio connected agents, Azure AI Agent Service integration | [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) \| [Copilot Studio Integration](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-microsoft-copilot-studio) |
 
 #### MCP Integration (Preview)
+{: .no_toc }
 
 | Technology | Capabilities | Documentation |
 |------------|--------------|---------------|
 | **Logic Apps MCP Server** | Standard logic apps as remote MCP servers, 1,400+ connectors, OAuth 2.0 auth, Streamable HTTP/SSE transports | [Logic Apps MCP Server](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) \| [API Center Integration](https://learn.microsoft.com/en-us/azure/logic-apps/create-mcp-server-api-center) |
 
 #### When to Use File Search vs Azure AI Search
+{: .no_toc }
 
 | Solution | Use When | Cost |
 |----------|----------|------|
@@ -482,6 +499,7 @@ flowchart TD
 **Last Validated:** November 3, 2025
 
 #### M365-Only ($0 AI infrastructure add'l)
+{: .no_toc }
 
 | Solution | Monthly Cost | Documentation |
 |----------|--------------|---------------|
@@ -490,6 +508,7 @@ flowchart TD
 | **Declarative Agents** | $0 or PAYG | Instruction-based or public-web grounded = $0; shared tenant data = PAYG [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot) |
 
 #### Starter ($200-500/mo)
+{: .no_toc }
 
 | Solution | Monthly Cost | Documentation |
 |----------|--------------|---------------|
@@ -498,6 +517,7 @@ flowchart TD
 | **Logic Apps AI Workflows** (Preview) | $200-400/mo (typical) | Consumption pricing, event-driven agents [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 
 #### Growth ($1K-5K/mo)
+{: .no_toc }
 
 | Solution | Monthly Cost | Documentation |
 |----------|--------------|---------------|
@@ -506,6 +526,7 @@ flowchart TD
 | **Azure AI Foundry Starter** | $1-5K/mo estimate | PAYG tokens + AI Search Basic (~$75/mo) [(OpenAI pricing)](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) \| [(AI Search pricing)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions) |
 
 #### Enterprise ($5K+/mo)
+{: .no_toc }
 
 | Solution | Monthly Cost | Documentation |
 |----------|--------------|---------------|
@@ -514,6 +535,7 @@ flowchart TD
 | **Foundry PTU + Premium** | $30K+/mo | PTU reservations (50+ PTUs minimum) + AI Search S2/S3 [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding#hourly-usage) |
 
 #### Timeline Estimates
+{: .no_toc }
 
 | Timeline | Use Case | Example Scenario |
 |----------|----------|------------------|
@@ -524,6 +546,7 @@ flowchart TD
 | **6+ Months** | Enterprise-scale with PTU, fine-tuning, advanced patterns | |
 
 #### Cost Calculation Notes
+{: .no_toc }
 
 - M365 per-user costs ($30/user/month) NOT included in bands - these are AI infrastructure costs only
 - Estimates assume moderate usage (not high-scale production)
@@ -531,6 +554,7 @@ flowchart TD
 - PTU (Provisioned Throughput Units) require Azure Reservations for cost optimization
 
 #### Sources
+{: .no_toc }
 
 - [Copilot Studio Licensing](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing) (Updated: 2025)
 - [M365 Copilot Cost Considerations](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations) (Updated: 2025)
@@ -582,6 +606,7 @@ flowchart TD
 **Last Validated:** November 2025
 
 #### M365 Tenant Boundary Technologies
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
 |------------|---------------|-----------|----------------------------------|------------------------|---------------|
@@ -589,6 +614,7 @@ flowchart TD
 | **Copilot Studio** (GA) | ⚠️ Actions execute (flows/connectors) | ✅ Autonomous (event triggers GA March 2025) | Grounding + Dataverse persistence (transcripts, variables), full analytics | Power Platform RBAC + DLP, environment-level governance, connector controls, ⚠️ web search leaves boundary, ⚠️ dual auth (user/service) | [Copilot Studio Security](https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance) |
 
 #### Azure Region Control Technologies
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
 |------------|---------------|-----------|----------------------------------|------------------------|---------------|
@@ -597,6 +623,7 @@ flowchart TD
 | **AI Builder** (GA) | Varies by model type | ❌ Reactive | Dataverse storage | Power Platform DLP, Dataverse RBAC, environment location | [AI Builder Governance](https://learn.microsoft.com/en-us/ai-builder/administer) |
 
 #### Flexible Residency Technologies
+{: .no_toc }
 
 | Technology | Action Safety | Proactive | Data Grounding/Memory/Analytics | Key Governance Features | Documentation |
 |------------|---------------|-----------|----------------------------------|------------------------|---------------|
@@ -662,6 +689,7 @@ flowchart TD
 **Last Validated:** November 2025
 
 #### Connected Agents / Sub-Agent Pattern
+{: .no_toc }
 
 | Technology | Status | Capabilities | Documentation |
 |------------|--------|--------------|---------------|
@@ -670,6 +698,7 @@ flowchart TD
 | **Fabric Data Agents** | Preview | Consumed by other agents for data grounding (NOT orchestrator) | [Fabric Integration](https://learn.microsoft.com/fabric/data-activator/data-agent-copilot-studio-integration) |
 
 #### Agent Workflow Orchestration
+{: .no_toc }
 
 | Technology | Status | Orchestration Patterns | Documentation |
 |------------|--------|------------------------|---------------|
@@ -679,6 +708,7 @@ flowchart TD
 | **LangGraph** | Third-party | State graph management for complex workflows | Third-party framework |
 
 #### Event-Driven Agents (Single Agent Triggering)
+{: .no_toc }
 
 | Technology | Status | Event Handling | Documentation |
 |------------|--------|----------------|---------------|
