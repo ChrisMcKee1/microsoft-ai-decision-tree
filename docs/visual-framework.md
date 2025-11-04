@@ -19,64 +19,6 @@ Interactive decision trees to guide Microsoft AI technology selection.
 
 ---
 
-## About This Visual Framework
-
-These diagrams provide **visual representations** of the [Decision Framework](decision-framework.md) methodology, helping you navigate Microsoft's AI portfolio through interactive flowcharts.
-
-### Optimal Learning Path
-
-Follow this sequence through the documentation for the best learning experience:
-
-```mermaid
-%%{init: {'theme':'dark', 'themeVariables': {'fontSize':'16px'}}}%%
-flowchart LR
-    Start([Start Here]) --> CM[📚 Capability Model<br/>Five-Layer Architecture]
-    CM --> DF[🎯 Decision Framework<br/>BXT Methodology]
-    DF --> SC[💼 Scenarios<br/>Real-World Examples]
-    SC --> VF[📊 Visual Framework<br/>Interactive Diagrams]
-    VF --> EC[✅ Evaluation Criteria<br/>Assess Requirements]
-    EC --> IP[🏗️ Implementation Patterns<br/>Build Guidance]
-    IP --> TECH[🔧 Technologies<br/>Technical Deep Dive]
-    TECH --> FC[📋 Feature Comparison<br/>Side-by-Side Matrices]
-    
-    %% Reference materials (not in main flow)
-    FC -.-> QR[⚡ Quick Reference]
-    FC -.-> RES[🔗 Resources]
-    FC -.-> GLOSS[📖 Glossary]
-    
-    style Start fill:#4CAF50,stroke:#2E7D32,color:#fff
-    style VF fill:#2196F3,stroke:#1565C0,color:#fff
-    style QR fill:#9E9E9E,stroke:#616161,color:#fff
-    style RES fill:#9E9E9E,stroke:#616161,color:#fff
-    style GLOSS fill:#9E9E9E,stroke:#616161,color:#fff
-    
-    classDef mainPath fill:#1976D2,stroke:#0D47A1,color:#fff
-    class CM,DF,SC,EC,IP,TECH,FC mainPath
-```
-
-**📌 Main Learning Path** (blue): Foundation → Context → Application → Assessment → Execution → Reference  
-**📎 Reference Materials** (gray, dotted): Quick Reference, Resources, Glossary - use as needed, not part of sequential flow
-
-### How This Connects to the Complete Framework
-
-| **You Are Here** | **This Provides** | **Complements** |
-|------------------|-------------------|-----------------|
-| **Visual Framework** | Decision tree diagrams | [Decision Framework](decision-framework.md) - Written methodology (BXT + 9 Questions) |
-| | Technology selection paths | [Scenarios](scenarios.md) - Real-world examples with step-by-step guidance |
-| | Complexity/budget/governance views | [Evaluation Criteria](evaluation-criteria.md) - Assessment frameworks and checklists |
-| | Multi-agent orchestration patterns | [Quick Reference](quick-reference.md) - Fast-lookup tables for common needs |
-| | Upgrade path visualization | [Capability Model](capability-model.md) - Five architectural layers |
-
-### Navigation Guide
-
-**🎯 If you're a visual learner:** Start here with the diagrams  
-**📖 If you prefer written guidance:** Start with [Decision Framework](decision-framework.md)  
-**🔍 If you need fast answers:** Jump to [Quick Reference](quick-reference.md)  
-**💼 If you have a specific use case:** See [Scenarios](scenarios.md)  
-**🏗️ If you need architecture context:** Review [Capability Model](capability-model.md)
-
----
-
 ## Diagram Index
 
 | Diagram | Purpose | Maps To Framework |
@@ -178,26 +120,36 @@ flowchart TD
 
 **Last Validated:** November 2025
 
-**Validated Technologies:**
+#### UI-Based Agents (GA unless noted)
 
-*UI-Based Agents (GA unless noted):*
-- **M365 Copilot:** 🔒 User-in-the-loop always | 🔄 Reactive only | Conversational chat in M365 apps [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
-- **Copilot Studio:** ⚠️ Actions can execute (add approval workflows) | 🔄 Reactive (declarative) or Proactive (custom engine) | Low-code, 13+ channels [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
-- **M365 Agents SDK:** ⚠️ Custom action safety design | ✅ Proactive capable | Pro-code, 10+ channels, C#/JS/Python [(docs)](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview)
-- **Azure AI Foundry:** ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom UI deployment [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/use-web-app)
+| Technology | Action Safety | Proactive | Description |
+|------------|---------------|-----------|-------------|
+| **M365 Copilot** | 🔒 User-in-the-loop always | 🔄 Reactive only | Conversational chat in M365 apps [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/) |
+| **Copilot Studio** | ⚠️ Actions can execute (add approval workflows) | 🔄 Reactive (declarative) or Proactive (custom engine) | Low-code, 13+ channels [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) |
+| **M365 Agents SDK** | ⚠️ Custom action safety design | ✅ Proactive capable | Pro-code, 10+ channels, C#/JS/Python [(docs)](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview) |
+| **Azure AI Foundry** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom UI deployment [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/use-web-app) |
 
-*Autonomous Agents:*
-- **Logic Apps AI Agent Workflows (Preview):** ⚠️ Autonomous execution | ✅ Proactive (event-driven) | 1,400+ connectors [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
-- **Azure AI Foundry Agent Service:** ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom orchestration [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview)
+#### Autonomous Agents
 
-*API/Headless Services (GA):*
-- **Azure AI Agent Service:** ⚠️ Autonomous planning loops | ✅ Proactive capable | REST API, managed PaaS [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart)
-- **Azure AI Foundry:** ⚠️ Autonomous planning loops | ✅ Proactive capable | REST API deployment [(docs)](https://learn.microsoft.com/en-us/rest/api/aifoundry/)
+| Technology | Action Safety | Proactive | Description |
+|------------|---------------|-----------|-------------|
+| **Logic Apps AI Agent Workflows** (Preview) | ⚠️ Autonomous execution | ✅ Proactive (event-driven) | 1,400+ connectors [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
+| **Azure AI Foundry Agent Service** | ⚠️ Autonomous planning loops | ✅ Proactive capable | Custom orchestration [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) |
 
-*Vector Databases:*
-- **Cosmos DB (GA):** IVF, HNSW, DiskANN algorithms [(docs)](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search)
-- **PostgreSQL pgvector (GA):** Extension 0.7.0 [(docs)](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector)
-- **SQL Server 2025 VECTOR (Preview):** Native type, float32/float16 [(docs)](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type)
+#### API/Headless Services (GA)
+
+| Technology | Action Safety | Proactive | Description |
+|------------|---------------|-----------|-------------|
+| **Azure AI Agent Service** | ⚠️ Autonomous planning loops | ✅ Proactive capable | REST API, managed PaaS [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart) |
+| **Azure AI Foundry** | ⚠️ Autonomous planning loops | ✅ Proactive capable | REST API deployment [(docs)](https://learn.microsoft.com/en-us/rest/api/aifoundry/) |
+
+#### Vector Databases
+
+| Technology | Status | Capabilities |
+|------------|--------|--------------|
+| **Cosmos DB** | GA | IVF, HNSW, DiskANN algorithms [(docs)](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search) |
+| **PostgreSQL pgvector** | GA | Extension 0.7.0 [(docs)](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector) |
+| **SQL Server 2025 VECTOR** | Preview | Native type, float32/float16 [(docs)](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type) |
 
 ---
 
@@ -259,27 +211,40 @@ flowchart TD
 
 **Last Validated:** November 3, 2025
 
-**Persona-to-Technology Mappings:**
+#### End User (GA)
 
-*End User (GA):*
-- **M365 Copilot:** Built-in AI in M365 apps, no setup required - [M365 Copilot](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
+| Technology | Description | Documentation |
+|------------|-------------|---------------|
+| **M365 Copilot** | Built-in AI in M365 apps, no setup required | [M365 Copilot](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/) |
 
-*Business Maker (GA):*
-- **Copilot Studio:** Low-code platform, no dev support needed - [Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
-- **Copilot Studio + Custom Actions:** Low-code with occasional developer support for custom connectors/flows - [Custom Actions](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview)
+#### Business Maker (GA)
 
-*Developer (GA unless noted):*
-- **M365 Agents SDK:** Pro-code for M365-centric solutions, C#/JavaScript/Python, 10+ channels - [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-custom-engine-agent)
-- **Azure AI Foundry:** Pro-code for Azure-centric solutions, custom models, full control - [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry)
-- **Copilot Studio + Custom Actions:** Mid-level developers, low-code with custom code extensibility - [Copilot Studio Extensibility](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview)
-- **Logic Apps AI Agent Workflows (Preview):** Event-driven autonomous agents, 1,400+ connectors - [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
+| Technology | Description | Documentation |
+|------------|-------------|---------------|
+| **Copilot Studio** | Low-code platform, no dev support needed | [Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) |
+| **Copilot Studio + Custom Actions** | Low-code with occasional developer support for custom connectors/flows | [Custom Actions](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview) |
 
-*Data Scientist/Analyst:*
-- **Fabric Data Agents (Preview):** Analytics/BI focus, Python SDK, evaluation capabilities, Power BI/semantic models - [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) | [Python SDK](https://learn.microsoft.com/en-us/fabric/data-science/evaluate-data-agent)
-- **Azure AI Foundry (GA):** ML/custom models, full AI/ML pipeline control - [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry)
+#### Developer (GA unless noted)
 
-*Integration Specialist:*
-- **Logic Apps AI Agent Workflows (Preview):** Enterprise integration focus, 1,400+ connectors, workflow automation - [Logic Apps Overview](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview) | [AI Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
+| Technology | Description | Documentation |
+|------------|-------------|---------------|
+| **M365 Agents SDK** | Pro-code for M365-centric solutions, C#/JavaScript/Python, 10+ channels | [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-custom-engine-agent) |
+| **Azure AI Foundry** | Pro-code for Azure-centric solutions, custom models, full control | [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) |
+| **Copilot Studio + Custom Actions** | Mid-level developers, low-code with custom code extensibility | [Copilot Studio Extensibility](https://learn.microsoft.com/en-us/microsoft-copilot-studio/copilot-plugins-overview) |
+| **Logic Apps AI Agent Workflows** (Preview) | Event-driven autonomous agents, 1,400+ connectors | [Logic Apps Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
+
+#### Data Scientist/Analyst
+
+| Technology | Description | Documentation |
+|------------|-------------|---------------|
+| **Fabric Data Agents** (Preview) | Analytics/BI focus, Python SDK, evaluation capabilities, Power BI/semantic models | [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) \| [Python SDK](https://learn.microsoft.com/en-us/fabric/data-science/evaluate-data-agent) |
+| **Azure AI Foundry** | ML/custom models, full AI/ML pipeline control | [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry) |
+
+#### Integration Specialist
+
+| Technology | Description | Documentation |
+|------------|-------------|---------------|
+| **Logic Apps AI Agent Workflows** (Preview) | Enterprise integration focus, 1,400+ connectors, workflow automation | [Logic Apps Overview](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview) \| [AI Agent Workflows](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 
 ---
 
@@ -366,36 +331,58 @@ flowchart TD
 
 **Last Validated:** November 3, 2025
 
-**Validated Technologies:**
+#### M365 Data Sources (GA)
 
-*M365 Data Sources (GA):*
-- **Microsoft Graph Connectors:** M365 data sources (SharePoint, OneDrive, Teams) - [Graph Connectors Overview](https://learn.microsoft.com/en-us/microsoftsearch/connectors-overview)
+| Technology | Capabilities | Documentation |
+|------------|--------------|---------------|
+| **Microsoft Graph Connectors** | M365 data sources (SharePoint, OneDrive, Teams) | [Graph Connectors Overview](https://learn.microsoft.com/en-us/microsoftsearch/connectors-overview) |
 
-*Document Processing - File Search (GA):*
-- **Azure AI Agent Service File Search Tool:** Built-in file search with automatic parsing, chunking (800 tokens/400 overlap), embedding (text-embedding-3-large), keyword + semantic search, reranking. Supports up to 10,000 files per vector store (max 512 MB/file). Two modes: Basic (Microsoft-managed) vs Standard (BYO Azure AI Search + Blob Storage). Supported formats: .doc, .docx, .pdf, .pptx, .py, .md, .txt, .json, .html, .java, .cs, .cpp, and more. Service handles entire ingestion automatically. - [Agent Service File Search](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/file-search)
-- **Copilot Studio Knowledge Base:** File upload from local/OneDrive/SharePoint. Supports .doc, .docx, .ppt, .pptx, .pdf, .xls, .xlsx, .txt, .md, .html, .csv, .xml. Max 512 MB per file, up to 500 files per agent. Automatic chunking and vectorization into Dataverse with semantic indexing. OneDrive/SharePoint: Auto-sync (updates reflected automatically) vs Upload: Static files. SharePoint: User-scoped permissions (only files user has access to). - [Copilot Studio Knowledge](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-unstructured-data) | [File Upload](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-file-upload) | [SharePoint Files](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-unstructured-data)
+#### Document Processing - File Search (GA)
 
-*Document Processing - Production Scale (GA):*
-- **Azure AI Search:** Document indexing, full-text search, vector search, hybrid queries, custom chunking strategies (fixed-size, variable-size, Document Layout skill). Requires manual setup of indexers, skillsets, chunking strategy. Production-scale scenarios with millions of documents. - [AI Search Overview](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) | [Chunking Strategies](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)
+| Technology | Capabilities | Documentation |
+|------------|--------------|---------------|
+| **Azure AI Agent Service File Search Tool** | Built-in file search with automatic parsing, chunking (800 tokens/400 overlap), embedding (text-embedding-3-large), keyword + semantic search, reranking. Supports up to 10,000 files per vector store (max 512 MB/file). Two modes: Basic (Microsoft-managed) vs Standard (BYO Azure AI Search + Blob Storage). Supported formats: .doc, .docx, .pdf, .pptx, .py, .md, .txt, .json, .html, .java, .cs, .cpp, and more. Service handles entire ingestion automatically. | [Agent Service File Search](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/file-search) |
+| **Copilot Studio Knowledge Base** | File upload from local/OneDrive/SharePoint. Supports .doc, .docx, .ppt, .pptx, .pdf, .xls, .xlsx, .txt, .md, .html, .csv, .xml. Max 512 MB per file, up to 500 files per agent. Automatic chunking and vectorization into Dataverse with semantic indexing. OneDrive/SharePoint: Auto-sync (updates reflected automatically) vs Upload: Static files. SharePoint: User-scoped permissions (only files user has access to). | [Copilot Studio Knowledge](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-unstructured-data) \| [File Upload](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-file-upload) \| [SharePoint Files](https://learn.microsoft.com/en-us/microsoft-copilot-studio/knowledge-add-unstructured-data) |
 
-*Document Processing - Multimodal (Preview):*
-- **Azure AI Content Understanding:** Multimodal processing (documents/images/audio/video), RAG-ready Markdown output, AI Search custom skill integration, built-in chunking, standard/pro modes. API version: 2025-05-01-preview. - [Content Understanding Overview](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) | [Multimodal Search](https://learn.microsoft.com/en-us/azure/search/multimodal-search-overview)
+#### Document Processing - Production Scale (GA)
 
-*Structured Databases - Vector Search (GA):*
-- **Cosmos DB Vector Search:** IVF/HNSW/DiskANN algorithms, NoSQL & MongoDB vCore APIs - [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database)
-- **PostgreSQL pgvector:** Extension version 0.7.0, HNSW/IVF indexes - [PostgreSQL Vector Search](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector)
-- **SQL Server 2025 VECTOR (Preview RC1):** Native VECTOR data type, float32 (1,998 dims)/float16 (3,996 dims) - [SQL Server Vector](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type)
+| Technology | Capabilities | Documentation |
+|------------|--------------|---------------|
+| **Azure AI Search** | Document indexing, full-text search, vector search, hybrid queries, custom chunking strategies (fixed-size, variable-size, Document Layout skill). Requires manual setup of indexers, skillsets, chunking strategy. Production-scale scenarios with millions of documents. | [AI Search Overview](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) \| [Chunking Strategies](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) |
 
-*Analytics Platform (GA with Preview features):*
-- **Microsoft Fabric Platform (GA):** Direct knowledge source access via Lakehouse (Delta tables, Spark), Warehouse (T-SQL), OneLake (ADLS Gen2 APIs), KQL databases. Azure AI Foundry integration for RAG - [Fabric Overview](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) | [AI Foundry Fabric Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq)
-- **Fabric Data Agents (Preview):** Analytics data grounding (warehouses, lakehouses, Power BI semantic models, KQL databases), Copilot Studio connected agents, Azure AI Agent Service integration - [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) | [Copilot Studio Integration](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-microsoft-copilot-studio)
+#### Document Processing - Multimodal (Preview)
 
-*MCP Integration (Preview):*
-- **Logic Apps MCP Server:** Standard logic apps as remote MCP servers, 1,400+ connectors, OAuth 2.0 auth, Streamable HTTP/SSE transports - [Logic Apps MCP Server](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) | [API Center Integration](https://learn.microsoft.com/en-us/azure/logic-apps/create-mcp-server-api-center)
+| Technology | Capabilities | Documentation |
+|------------|--------------|---------------|
+| **Azure AI Content Understanding** | Multimodal processing (documents/images/audio/video), RAG-ready Markdown output, AI Search custom skill integration, built-in chunking, standard/pro modes. API version: 2025-05-01-preview. | [Content Understanding Overview](https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview) \| [Multimodal Search](https://learn.microsoft.com/en-us/azure/search/multimodal-search-overview) |
 
-**When to Use File Search vs Azure AI Search:**
-- **File Search (Agent Service/Copilot Studio):** Up to 10,000 files, simple setup (no manual indexer/chunking config), automatic embedding, suitable for smaller document sets, internal knowledge bases, rapid prototyping. Cost: Included in Agent Service consumption or Copilot Studio credits.
-- **Azure AI Search:** Production scale (millions of documents), custom chunking strategies required, advanced features (analyzers, scoring profiles, faceting), complex indexing pipelines, enterprise search. Cost: Dedicated AI Search tier (Basic ~$75/mo to S3 ~$3K/mo).
+#### Structured Databases - Vector Search (GA)
+
+| Technology | Status | Capabilities | Documentation |
+|------------|--------|--------------|---------------|
+| **Cosmos DB Vector Search** | GA | IVF/HNSW/DiskANN algorithms, NoSQL & MongoDB vCore APIs | [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database) |
+| **PostgreSQL pgvector** | GA | Extension version 0.7.0, HNSW/IVF indexes | [PostgreSQL Vector Search](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector) |
+| **SQL Server 2025 VECTOR** | Preview RC1 | Native VECTOR data type, float32 (1,998 dims)/float16 (3,996 dims) | [SQL Server Vector](https://learn.microsoft.com/en-us/sql/t-sql/data-types/vector-data-type) |
+
+#### Analytics Platform (GA with Preview features)
+
+| Technology | Status | Capabilities | Documentation |
+|------------|--------|--------------|---------------|
+| **Microsoft Fabric Platform** | GA | Direct knowledge source access via Lakehouse (Delta tables, Spark), Warehouse (T-SQL), OneLake (ADLS Gen2 APIs), KQL databases. Azure AI Foundry integration for RAG | [Fabric Overview](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview) \| [AI Foundry Fabric Integration](https://learn.microsoft.com/en-us/azure/ai-foundry/faq) |
+| **Fabric Data Agents** | Preview | Analytics data grounding (warehouses, lakehouses, Power BI semantic models, KQL databases), Copilot Studio connected agents, Azure AI Agent Service integration | [Fabric Data Agents](https://learn.microsoft.com/en-us/fabric/data-science/concept-data-agent) \| [Copilot Studio Integration](https://learn.microsoft.com/en-us/fabric/data-science/data-agent-microsoft-copilot-studio) |
+
+#### MCP Integration (Preview)
+
+| Technology | Capabilities | Documentation |
+|------------|--------------|---------------|
+| **Logic Apps MCP Server** | Standard logic apps as remote MCP servers, 1,400+ connectors, OAuth 2.0 auth, Streamable HTTP/SSE transports | [Logic Apps MCP Server](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) \| [API Center Integration](https://learn.microsoft.com/en-us/azure/logic-apps/create-mcp-server-api-center) |
+
+#### When to Use File Search vs Azure AI Search
+
+| Solution | Use When | Cost |
+|----------|----------|------|
+| **File Search (Agent Service/Copilot Studio)** | Up to 10,000 files, simple setup (no manual indexer/chunking config), automatic embedding, suitable for smaller document sets, internal knowledge bases, rapid prototyping | Included in Agent Service consumption or Copilot Studio credits |
+| **Azure AI Search** | Production scale (millions of documents), custom chunking strategies required, advanced features (analyzers, scoring profiles, faceting), complex indexing pipelines, enterprise search | Dedicated AI Search tier (Basic ~$75/mo to S3 ~$3K/mo) |
 
 ---
 
@@ -486,42 +473,57 @@ flowchart TD
 
 **Last Validated:** November 3, 2025
 
-**Budget Band Rationale:**
+#### M365-Only ($0 AI infrastructure add'l)
 
-*M365-Only ($0 AI infrastructure add'l):*
-- **M365 Copilot Chat:** Included with M365 subscription, web-grounded chat and instruction-based agents [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#licensing-options-for-microsoft-365-copilot)
-- **M365 Copilot + Graph Connectors:** $30/user/month M365 Copilot license, Graph Connectors included at no extra charge [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-use-rights-included-with-microsoft-365-copilot-license)
-- **Declarative Agents:** Instruction-based or public-web grounded = $0; shared tenant data = PAYG [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot)
+| Solution | Monthly Cost | Documentation |
+|----------|--------------|---------------|
+| **M365 Copilot Chat** | Included with M365 subscription | Web-grounded chat and instruction-based agents [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#licensing-options-for-microsoft-365-copilot) |
+| **M365 Copilot + Graph Connectors** | $30/user/month M365 Copilot license | Graph Connectors included at no extra charge [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-use-rights-included-with-microsoft-365-copilot-license) |
+| **Declarative Agents** | $0 or PAYG | Instruction-based or public-web grounded = $0; shared tenant data = PAYG [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot) |
 
-*Starter ($200-500/mo):*
-- **Copilot Studio PAYG:** $0.01 per Copilot Credit, typical usage $200-500/mo for starter scenarios [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-pay-as-you-go)
-- **AI Builder:** Included in Power Platform, document processing (invoices, receipts, contracts) [(docs)](https://learn.microsoft.com/en-us/ai-builder/overview)
-- **Logic Apps AI Workflows (Preview):** Consumption ~$200-400/mo for typical workflows, event-driven agents [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts)
+#### Starter ($200-500/mo)
 
-*Growth ($1K-5K/mo):*
-- **Copilot Studio Capacity Packs:** $200/month per 25,000 credits prepaid [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-prepaid-copilot-credits-subscription)
-- **M365 SDK + Azure:** SDK free; Azure hosting (App Service ~$100-300/mo) + Azure OpenAI PAYG (~$500-2K/mo tokens) [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot)
-- **Azure AI Foundry Starter:** PAYG tokens + AI Search Basic (~$75/mo) = $1-5K/mo estimate [(docs)](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) | [(AI Search pricing)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions)
+| Solution | Monthly Cost | Documentation |
+|----------|--------------|---------------|
+| **Copilot Studio PAYG** | $200-500/mo (typical) | $0.01 per Copilot Credit [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-pay-as-you-go) |
+| **AI Builder** | Included in Power Platform | Document processing (invoices, receipts, contracts) [(docs)](https://learn.microsoft.com/en-us/ai-builder/overview) |
+| **Logic Apps AI Workflows** (Preview) | $200-400/mo (typical) | Consumption pricing, event-driven agents [(docs)](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) |
 
-*Enterprise ($5K+/mo):*
-- **Foundry Serverless:** PAYG tokens at scale + AI Search Standard S1 (~$250/mo) = $5-15K/mo [(docs)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions)
-- **Foundry + Agent Service:** Managed orchestration PaaS + AI Search S2 (~$1K/mo) = $10-30K/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview)
-- **Foundry PTU + Premium:** PTU reservations (50+ PTUs minimum) + AI Search S2/S3 = $30K+/mo [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding#hourly-usage)
+#### Growth ($1K-5K/mo)
 
-**Timeline Estimates:**
-- Days: M365 built-in features, no development [(scenarios)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview)
-- 1-2 Weeks: Low-code platforms (Copilot Studio, Logic Apps) [(HR Knowledge Base scenario)](../scenarios.md)
-- 1-3 Months: Custom agents with SDKs, moderate complexity [(Customer Support scenario)](../scenarios.md)
-- 3-6 Months: Azure AI Foundry custom solutions, complex orchestration [(evaluation-criteria)](../evaluation-criteria.md#4-time-to-production)
-- 6+ Months: Enterprise-scale with PTU, fine-tuning, advanced patterns
+| Solution | Monthly Cost | Documentation |
+|----------|--------------|---------------|
+| **Copilot Studio Capacity Packs** | $200/month per 25,000 credits | Prepaid [(docs)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing#copilot-studio-prepaid-copilot-credits-subscription) |
+| **M365 SDK + Azure** | $600-2.3K/mo | SDK free; Azure hosting (App Service ~$100-300/mo) + Azure OpenAI PAYG (~$500-2K/mo tokens) [(docs)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations#agents-in-copilot) |
+| **Azure AI Foundry Starter** | $1-5K/mo estimate | PAYG tokens + AI Search Basic (~$75/mo) [(OpenAI pricing)](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) \| [(AI Search pricing)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions) |
 
-**Cost Calculation Notes:**
+#### Enterprise ($5K+/mo)
+
+| Solution | Monthly Cost | Documentation |
+|----------|--------------|---------------|
+| **Foundry Serverless** | $5-15K/mo | PAYG tokens at scale + AI Search Standard S1 (~$250/mo) [(docs)](https://learn.microsoft.com/en-us/azure/search/search-sku-tier#tier-descriptions) |
+| **Foundry + Agent Service** | $10-30K/mo | Managed orchestration PaaS + AI Search S2 (~$1K/mo) [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) |
+| **Foundry PTU + Premium** | $30K+/mo | PTU reservations (50+ PTUs minimum) + AI Search S2/S3 [(docs)](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-throughput-onboarding#hourly-usage) |
+
+#### Timeline Estimates
+
+| Timeline | Use Case | Example Scenario |
+|----------|----------|------------------|
+| **Days** | M365 built-in features, no development | [(scenarios)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview) |
+| **1-2 Weeks** | Low-code platforms (Copilot Studio, Logic Apps) | [(HR Knowledge Base scenario)](../scenarios.md) |
+| **1-3 Months** | Custom agents with SDKs, moderate complexity | [(Customer Support scenario)](../scenarios.md) |
+| **3-6 Months** | Azure AI Foundry custom solutions, complex orchestration | [(evaluation-criteria)](../evaluation-criteria.md#4-time-to-production) |
+| **6+ Months** | Enterprise-scale with PTU, fine-tuning, advanced patterns | |
+
+#### Cost Calculation Notes
+
 - M365 per-user costs ($30/user/month) NOT included in bands - these are AI infrastructure costs only
 - Estimates assume moderate usage (not high-scale production)
 - Azure consumption highly variable based on tokens, requests, storage
 - PTU (Provisioned Throughput Units) require Azure Reservations for cost optimization
 
-**Sources:**
+#### Sources
+
 - [Copilot Studio Licensing](https://learn.microsoft.com/en-us/microsoft-copilot-studio/billing-licensing) (Updated: 2025)
 - [M365 Copilot Cost Considerations](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/cost-considerations) (Updated: 2025)
 - [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) (Updated: 2025)
