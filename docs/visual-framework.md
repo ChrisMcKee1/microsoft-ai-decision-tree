@@ -723,33 +723,11 @@ flowchart TD
 
 ---
 
-## Legend
+## Using This Guide
 
-### Decision Nodes
+**How to navigate:** Start with Complete Decision Flow for end-to-end guidance, or jump to specific sections: Persona-Based Flow (by role), Data Grounding (data architecture), Complexity Assessment (effort estimate), Budget & Timeline (cost/time), Governance Path (compliance), or Multi-Agent (orchestration).
 
-- 🔷 **Diamond:** Decision point requiring evaluation
-- 🟦 **Rectangle:** Technology recommendation
-- 🔵 **Circle:** Start/End point
-
-### Colors
-
-- **Blue (#0078D4):** Microsoft primary technologies
-- **Purple (#5C2D91):** Developer-focused solutions
-- **Green (#107C10):** Low complexity / fast path
-- **Orange (#FFB900):** Medium complexity
-- **Red (#D83B01):** High complexity / enterprise
-
----
-
-## How to Use These Diagrams
-
-1. **Start with Complete Decision Flow** for full end-to-end guidance
-2. **Use Persona-Based Flow** if you know your role
-3. **Jump to Data Grounding** if data architecture is your concern
-4. **Check Complexity Assessment** to estimate effort
-5. **Review Budget & Timeline** to set realistic expectations
-6. **Verify Governance Path** for compliance requirements
-7. **Explore Multi-Agent** if orchestration is needed
+**Diagram conventions:** Diamonds = decisions, Rectangles = technologies, Circles = start/end. **Colors:** Blue = Microsoft core, Purple = developer tools, Green = low complexity, Orange = medium complexity, Red = high complexity/enterprise.
 
 ---
 
