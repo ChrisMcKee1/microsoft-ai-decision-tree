@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # AGENTS.md - Codex Persistent Guidance
 
 This file provides persistent guidance to AI coding assistants (like Codex CLI, GitHub Copilot, etc.) about how to work with the Microsoft AI Decision Tree project.
