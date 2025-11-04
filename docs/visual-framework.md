@@ -15,7 +15,7 @@ Interactive decision trees to guide Microsoft AI technology selection.
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc toc_levels="2..2"}
+{:toc}
 
 ---
 
@@ -116,6 +116,7 @@ flowchart TD
 ```
 
 ### Validation Summary
+{: .no_toc }
 
 **Last Validated:** November 2025
 
@@ -211,6 +212,7 @@ flowchart TD
 ```
 
 ### Validation Summary - Persona-Based Flow
+{: .no_toc }
 
 **Last Validated:** November 3, 2025
 
@@ -332,6 +334,7 @@ flowchart TD
 ```
 
 ### Validation Summary - Data Grounding Decision
+{: .no_toc }
 
 **Last Validated:** November 3, 2025
 
@@ -474,6 +477,7 @@ flowchart TD
 ```
 
 ### Validation Summary - Budget & Timeline Tradeoffs
+{: .no_toc }
 
 **Last Validated:** November 3, 2025
 
@@ -573,6 +577,7 @@ flowchart TD
 ```
 
 ### Validation Summary: Governance & Compliance Path
+{: .no_toc }
 
 **Last Validated:** November 2025
 
@@ -652,6 +657,7 @@ flowchart TD
 ```
 
 ### Validation Summary: Multi-Agent Orchestration
+{: .no_toc }
 
 **Last Validated:** November 2025
 
