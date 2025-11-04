@@ -15,7 +15,7 @@ Interactive decision trees to guide Microsoft AI technology selection.
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc toc_levels="2"}
+{:toc toc_levels="2..2"}
 
 ---
 
