@@ -99,7 +99,7 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 >
 > | Term | What It Actually Means | Who Should Use It |
 > |------|------------------------|-------------------|
-> | **Low-Code** | Less code to write, visual/declarative approach, managed platform (e.g., Copilot Studio, Power Platform) | **Makers AND Developers** — Use when speed matters and custom orchestration isn't needed |
+> | **Low-Code** | Less code to write, visual/declarative approach, managed platform (e.g., Copilot Studio, Power Platform) | **Makers AND Developers** — Use when **speed to market** matters and custom orchestration isn't needed |
 > | **Pro-Code** | Write code in programming languages (C#, Python, JavaScript), full control, custom orchestration | **Developers only** — Use when you need custom logic beyond low-code capabilities |
 >
 > **✅ Correct Thinking:**
@@ -117,6 +117,36 @@ Apply these questions **sequentially** after passing the BXT assessment. Each qu
 > 2. **Time to market** — Days/weeks (low-code) vs Months (pro-code)?
 > 3. **Control requirements** — Managed governance OK vs Need custom orchestration?
 > 4. **Team skills** — Expands options (devs can use both) vs Limits options (makers use low-code only)
+
+**Understanding the Low-Code vs Pro-Code Trade-Off:**
+
+Both approaches are optimized for different scenarios:
+
+| Consideration | Low-Code (Copilot Studio) Strength | Pro-Code (Azure AI Foundry) Strength |
+|---------------|-----------------------------------|--------------------------------------|
+| **Time to Market** | Days to weeks (visual tools, managed platform) | Weeks to months (custom code required) |
+| **Connector Ecosystem** | 1,400+ built-in connectors and triggers (Power Platform) | Custom API integrations (full control) |
+| **Operational Overhead** | Minimal (SaaS, Microsoft-managed) | Higher (infrastructure management) |
+| **Latency Requirements** | Suitable for <1s response scenarios | Optimized for <100ms scenarios |
+| **Governance** | Built-in (Power Platform Admin) | Custom implementation (you control it) |
+| **Customization** | Guided flexibility (connector ecosystem) | Full control (any architecture pattern) |
+
+**When Low-Code Makes Sense:**
+- Speed to market is critical (weeks not months)
+- Leveraging Power Platform's 1,400+ connectors and triggers
+- Prefer managed infrastructure over self-hosted
+- Need built-in governance and compliance
+- Team includes makers and developers
+
+**When Pro-Code Makes Sense:**
+- Latency-sensitive applications (<100ms response requirements)
+- Need full architectural control beyond platform capabilities
+- Complex custom orchestration patterns
+- Custom integrations outside connector ecosystem
+- Team is developer-focused with infrastructure expertise
+
+**The "It Depends" Decision:**
+Many organizations use BOTH - Copilot Studio for rapid deployment with rich connector integration, Azure AI Foundry for performance-critical custom applications. Choose based on your specific requirements, not general "best" recommendations.
 
 ---
 

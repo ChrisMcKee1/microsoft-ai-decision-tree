@@ -28,23 +28,44 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Copilot Studio
-**Description:** Low-code to pro-code SaaS platform for building custom agents with managed governance, ALM, and multi-channel deployment. Supports both conversational (reactive) and autonomous (event-triggered) agents. Custom engine agents GA (May 2025), Event Triggers GA (March 2025), BYOM from Azure AI Foundry (Preview), BYOK Azure AI Search (GA).  
+**Description:** Low-code to pro-code SaaS platform for building custom agents with managed governance, ALM, and multi-channel deployment. Supports both conversational (reactive) and autonomous (event-triggered) agents. Custom engine agents and Event Triggers now GA, BYOM from Azure AI Foundry (Preview), BYOK Azure AI Search (GA).  
 **Official Docs:** [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
 
 **Key Features:**
 - Low-code to pro-code agent development
-- **Event Triggers (GA March 2025):** Autonomous agents that respond to events without user input (SharePoint, OneDrive, Planner, Recurrence)
+- **1,400+ Power Platform connectors and triggers:** Seamless integration with Microsoft and third-party services
+- **Event Triggers (GA):** Autonomous agents that respond to events without user input (SharePoint, OneDrive, Planner, Recurrence)
 - Managed governance and ALM
 - Multi-channel deployment (M365, Teams, Web, Mobile)
 - BYOK (Bring Your Own Knowledge) - Azure AI Search integration (GA)
 - BYOM (Bring Your Own Model) - Azure AI Foundry integration (Preview)
 - Pay-as-you-go ($0.01/Copilot Credit) or prepaid packs
 
-**When to use:** Custom agents with managed infrastructure, fast time-to-value, low-code to pro-code flexibility, autonomous event-driven workflows
+**Performance Characteristics:**
+- **Optimized for:** Speed to market, managed operations, built-in governance, connector ecosystem integration
+- **Managed orchestration layer:** Provides convenience (ALM, multi-channel, governance) with managed SaaS infrastructure
+- **Power Automate integration:** 120-second timeout for flows; HTTP Request node offers lower latency for simple calls
+- **Latency profile:** Suitable for <1s response scenarios; for <100ms requirements, consider Azure AI Foundry
+
+**Context Window (GPT-5 Preview):**
+- **GPT-5 chat/reasoning:** Up to 400k tokens (model capacity)
+- **Effective context:** Varies based on agent configuration, orchestration features, and system variables
+- **Trade-off:** Managed platform convenience vs full model context (Foundry provides full context but requires infrastructure management)
+
+**When Copilot Studio is the Right Tool:**
+- Speed to market is priority (days/weeks delivery)
+- Leveraging Power Platform's 1,400+ built-in connectors and triggers
+- Prefer Microsoft-managed infrastructure
+- Need built-in Power Platform governance
+- Multi-channel deployment (Teams, Web, Mobile, M365)
+- Team includes makers and developers
 
 **Sources:**
-- [Event Triggers Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about) (GA March 2025)
+- [Event Triggers Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about)
 - [Copilot Studio Fundamentals](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
+- [Optimize Latency in CPS](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/optimize-minimize-latency)
+- [AI Builder Model Selection](https://learn.microsoft.com/en-us/ai-builder/prompt-modelsettings)
+- [Integration Options](https://learn.microsoft.com/en-us/power-platform/well-architected/intelligent-application/integrations)
 
 ---
 
@@ -60,12 +81,37 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 - RAG (Retrieval-Augmented Generation) patterns
 - Azure consumption pricing
 
-**When to use:** Custom AI applications, full control over models and infrastructure, advanced evaluations
+**Performance Characteristics:**
+- **Optimized for:** Latency-sensitive applications, full architectural control, custom implementations
+- **Direct model API access:** Minimal orchestration overhead for sub-100ms response scenarios
+- **Custom optimization:** Full control over caching, batching, PTU provisioning, infrastructure
+- **Latency profile:** Suitable for real-time, high-throughput scenarios; requires performance tuning expertise
+
+**Context Window (GPT-5):**
+- **GPT-5-codex/pro:** 400k tokens (272k input, 128k output)
+- **GPT-5-chat:** 128k tokens
+- **Full model context:** No SaaS orchestration layer consumption
+- **Trade-off:** Full context available but requires self-managed infrastructure and deployment
+
+**When Azure AI Foundry is the Right Tool:**
+- Latency-sensitive applications (<100ms response requirements)
+- Need full control over architecture and optimization
+- Custom AI patterns beyond platform capabilities
+- Custom integrations outside standard connector ecosystem
+- Team has Azure infrastructure and AI engineering expertise
+- High-throughput scenarios requiring PTU provisioning
+
+**Sources:**
+- [Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-studio/)
+- [Performance and Latency Guide](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/latency)
+- [GPT-5 Quotas and Limits](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/quotas-limits#gpt-5-series)
+- [Model Choice Guide](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/model-choice-guide)
+- [Foundry Models - GPT-5](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure#gpt-5)
 
 ---
 
 ### Azure AI Agent Service
-**Description:** Managed PaaS for agent orchestration, skills management, and runtime infrastructure within Azure AI Foundry. GA (May 2025). Supports connected agents (multi-agent systems), MCP tools, full RBAC + VNet + BYO storage.  
+**Description:** Managed PaaS for agent orchestration, skills management, and runtime infrastructure within Azure AI Foundry. Supports connected agents (multi-agent systems), MCP tools, full RBAC + VNet + BYO storage.  
 **Official Docs:** [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
 
 **Key Features:**

@@ -30,7 +30,13 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 | **Checkpointing** | N/A | No | Custom | **Yes (built-in)** | No | Via orchestrator | **State management** |
 | **AI Agent Workflows** | N/A | Via agent flows | Via Agent Service | N/A | ✅ Yes | N/A | **✅ Yes (Preview)** |
 | **MCP Server** | N/A | ❌ No | ⚠️ Custom | N/A | ⚠️ Custom | N/A | **✅ Yes (Preview)** |
+| **Optimized For** | Productivity at scale | Speed to market + connectors | Latency & control | Workflow orchestration | Managed agents | Pro-code flexibility | Enterprise integration |
+| **Latency Profile** | <1s (M365 apps) | <1s (managed platform) | <100ms (direct API) | Workflow processing | <100ms (direct API) | <1s (M365 integration) | Workflow processing |
+| **Context Window (GPT-5)** | N/A | 400k (managed)^1^ | 400k (full access) | Depends on orchestrator | 400k (full access) | Depends on orchestrator | N/A |
+| **Infrastructure Model** | Microsoft-managed | SaaS (managed) | PaaS (self-managed) | SDK (self-managed) | PaaS (self-managed) | SDK (self-managed) | PaaS (self-managed) |
 | **Best For** | Broad productivity | Custom agents | Custom AI apps | **Workflow orchestration** | Managed agents | Pro-code extensions | **Enterprise integration + AI** |
+
+^1^ Copilot Studio: Managed orchestration provides convenience (governance, ALM, multi-channel, 1,400+ connectors) with some context consumed by platform features. Azure AI Foundry: Full model context available with self-managed infrastructure. Both approaches serve different optimization goals.
 
 **Sources:**
 - [M365 Copilot Capabilities](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-overview)

@@ -147,37 +147,88 @@ Understanding where conversation data is stored and who can access it is **criti
 
 ### 7. Scale & Performance
 
-| Scale | Users | Requests/Day | Approach |
-|-------|-------|--------------|----------|
-| **Small** | <100 | <1K | M365 Copilot, Studio |
-| **Medium** | 100-1K | 1K-50K | Studio, AI Search Basic |
-| **Large** | 1K-10K | 50K-500K | Azure AI Foundry, Standard |
-| **Enterprise** | 10K+ | 500K+ | Foundry, Premium, CDN |
+**Understanding Performance Trade-Offs:**
 
-#### Critical Considerations - Rate Limits & Cost Models
+Performance optimization varies by platform and use case. Choose based on your priorities:
 
-**Microsoft 365 Copilot:**
-- ✅ **No throttling** (Microsoft-managed scaling)
-- ✅ **Predictable spend** ($30/user/month)
-- ❌ **Not suitable** for external customer scenarios (licensing model)
+| Dimension | Copilot Studio | Azure AI Foundry | Decision Driver |
+|-----------|----------------|------------------|-----------------|
+| **Development Velocity** | Days to weeks (low-code platform) | Weeks to months (custom code) | Speed to market vs full customization |
+| **Connector Ecosystem** | 1,400+ Power Platform connectors | Custom API integrations | Pre-built integrations vs custom control |
+| **Runtime Latency** | <1s (managed orchestration) | <100ms (direct API access) | Response time requirements |
+| **Operational Overhead** | Low (Microsoft-managed SaaS) | Higher (self-managed PaaS) | Operational preferences |
+| **Context Window** | 400k (platform-managed)^1^ | 400k (full model access) | Context vs convenience trade-off |
+| **Throughput Scaling** | RPM-based (message billing) | PTU-based (provisioned capacity) | Cost model preferences |
+
+^1^ Effective context in Copilot Studio varies by configuration; full model context available in Azure AI Foundry with infrastructure management responsibility.
+
+**Scenario-Based Selection:**
+
+**Choose Copilot Studio when:**
+
+- Speed to market is critical (rapid iteration, quick delivery)
+- Leveraging Power Platform's 1,400+ built-in connectors and triggers
+- Prefer managed infrastructure (SaaS convenience)
+- Response times <1s are acceptable
+- Built-in governance and ALM are priorities
+- Team includes makers and developers
+
+**Choose Azure AI Foundry when:**
+
+- Latency <100ms is required (real-time applications)
+- Need full architectural control and optimization
+- High-throughput scenarios (PTU provisioning)
+- Custom patterns beyond platform capabilities
+- Custom integrations outside standard connector ecosystem
+- Team has Azure and AI engineering expertise
+
+**Complementary Use:**
+
+Many organizations use both platforms - Copilot Studio for rapid deployment with rich connector integration, Azure AI Foundry for performance-critical custom applications. The platforms serve complementary needs, not competitive choices.
+
+#### Scale Planning by User Volume
+
+| Scale | Users | Requests/Day | Copilot Studio Fit | Azure AI Foundry Fit |
+|-------|-------|--------------|-------------------|---------------------|
+| **Small** | <100 | <1K | ✅ Ideal (rapid deployment) | ⚠️ May be over-engineered |
+| **Medium** | 100-1K | 1K-50K | ✅ Strong (with capacity planning) | ✅ Strong (with cost optimization) |
+| **Large** | 1K-10K | 50K-500K | ⚠️ Monitor quotas carefully | ✅ Ideal (PTU provisioning) |
+| **Enterprise** | 10K+ | 500K+ | ⚠️ Requires premium capacity | ✅ Ideal (enterprise scale) |
+
+#### Rate Limits & Cost Model Trade-Offs
 
 **Copilot Studio:**
-- ⚠️ **Environment-level quotas** (8,000 RPM general, 50-100 RPM gen AI based on capacity packs)
-- ⚠️ **Shared across all agents** in environment (can hit throttling errors at scale)
-- ✅ **Suitable for call centers/web** with adequate capacity planning
-- **Cost:** Prepaid ($200/mo 25K credits) or PAYG ($0.01/credit)
+
+- **Environment-level quotas:** 8,000 RPM general, 50-100 RPM gen AI (based on capacity packs)
+- **Shared across agents:** All agents in environment share quota pool
+- **Cost predictability:** Prepaid packs ($200/mo for 25K credits) or PAYG ($0.01/credit)
+- **Best for:** Predictable workloads, call centers, internal use cases with capacity planning
 
 **Azure AI Foundry / Agent Service:**
-- ⚠️ **TPM quotas** per region/model (can request increases)
-- ⚠️ **Cost scales linearly with traffic** (per-token billing, no hard limits)
-- ✅ **Best for public-facing channels** with guardrails (intent classification, model routing, budget alerts)
-- **Cost:** Variable per-token, requires cost optimization strategies
+
+- **TPM quotas:** Per region/model (request increases available)
+- **Variable cost:** Per-token billing scales with traffic
+- **Cost optimization:** Model routing, PTU reservations, caching strategies
+- **Best for:** Variable traffic patterns, public-facing channels with guardrails
 
 **M365 Agents SDK:**
-- ⚠️ **Customer controls auto-scaling** (requires custom rate limiting middleware)
-- ⚠️ **Cost:** Hosting + token-based (if using Azure OpenAI)
-- ✅ **Full control over scaling** and cost optimization
-- **Best for:** Custom traffic management requirements
+
+- **Custom auto-scaling:** Developer controls rate limiting and scaling logic
+- **Flexible cost:** Hosting + token-based (if using Azure OpenAI)
+- **Full control:** Custom traffic management and optimization
+- **Best for:** Complex custom requirements, existing Azure infrastructure
+
+**Sources:**
+
+- [Optimize Latency in CPS](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/optimize-minimize-latency)
+- [Performance and Latency - Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/latency)
+- [AI Builder Model Selection](https://learn.microsoft.com/en-us/ai-builder/prompt-modelsettings)
+- [Integration Trade-offs](https://learn.microsoft.com/en-us/power-platform/well-architected/intelligent-application/integrations)
+- [Copilot Studio Quotas](https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-quotas)
+
+**Last Updated:** 2025-11-05
+
+---
 
 💡 **Cross-reference:** See [Decision Framework Q6](decision-framework.md#question-6-what-are-your-scale-and-cost-requirements)
 
