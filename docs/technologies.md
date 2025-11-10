@@ -28,23 +28,38 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Copilot Studio
-**Description:** Low-code to pro-code SaaS platform for building custom agents with managed governance, ALM, and multi-channel deployment. Supports both conversational (reactive) and autonomous (event-triggered) agents. Custom engine agents and Event Triggers now GA, BYOM from Azure AI Foundry (Preview), BYOK Azure AI Search (GA).  
-**Official Docs:** [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
+**Description:** Graphical, low-code platform for building agents and agent flows with managed governance, ALM, and multi-channel deployment. Supports declarative agents (extend M365 Copilot) and custom engine agents (bring your own orchestration). Available as both standalone web app and Teams app.  
+**Official Docs:** [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)  
+**Implementation Guide:** [aka.ms/CopilotStudioImplementationGuide](https://aka.ms/CopilotStudioImplementationGuide)
 
 **Key Features:**
-- Low-code to pro-code agent development
-- **1,400+ Power Platform connectors and triggers:** Seamless integration with Microsoft and third-party services
-- **Event Triggers (GA):** Autonomous agents that respond to events without user input (SharePoint, OneDrive, Planner, Recurrence)
-- Managed governance and ALM
-- Multi-channel deployment (M365, Teams, Web, Mobile)
-- BYOK (Bring Your Own Knowledge) - Azure AI Search integration (GA)
-- BYOM (Bring Your Own Model) - Azure AI Foundry integration (Preview)
-- Pay-as-you-go ($0.01/Copilot Credit) or prepaid packs
+- **Low-code to pro-code agent development:** No-code (Copilot Studio Lite), low-code (full experience), or pro-code integration
+- **1,400+ Power Platform connectors:** Seamless Microsoft and third-party service integration
+- **Event Triggers (GA):** Autonomous agents responding to SharePoint, OneDrive, Planner, Recurrence events
+- **Declarative agents:** Extend M365 Copilot with instructions, knowledge, actions (individual/departmental use)
+- **Custom engine agents (GA):** Full control over orchestration, models, and workflows (complex scenarios, group collaboration, multi-channel)
+- **Multi-channel deployment:** M365 Copilot, Teams, Web, Mobile, Facebook, WhatsApp (via Azure Bot Service)
+- **BYOK (GA):** Azure AI Search integration, SharePoint/OneDrive (security-trimmed), Graph Connectors
+- **BYOM (Preview):** Azure AI Foundry model integration
+- Managed ALM via Power Platform solutions (in-product pipelines, Azure DevOps, GitHub Actions)
+
+**NLU (Natural Language Understanding) Options:**
+- **Generative AI Orchestration (Default):** LLM-driven multi-intent recognition, automatic topic/action selection, slot-filling, unified responses combining topics + actions + knowledge (up to ~128 triggerable items, ~5 chained messages per item)
+- **Classic Orchestration (NLU):** Original NLU for simpler needs; 5-20 trigger phrases per topic, RegEx/List entities, no entity annotations required (⚠️ latency increases with excess training data)
+- **Classic Orchestration (NLU+):** High-precision enterprise option; large-scale topics/entities, extensive training samples, entity annotations, precompiled model for consistent performance (⚠️ requires Dynamics 365 Contact Center license for voice/chat channels)
+- **Azure CLU Integration:** Link existing Azure Conversational Language Understanding models for advanced entity extraction, more languages (requires Azure subscription + manual model synchronization)
+
+**Topic & Orchestration Architecture:**
+- **Topics:** Conversational thread portions authored on visual canvas with nodes (send message, ask question, conditional logic)
+- **Generative Orchestration:** Agent selects best combination of topics/actions/knowledge at runtime based on descriptions and user queries
+- **Classic Orchestration:** Trigger phrases drive topic selection via NLU, deterministic conversation flows
+- **Multi-Agent Systems (Preview):** Child agents (lightweight, embedded) and connected agents (independent, reusable across solutions, Fabric data agents supported)
+- **Autonomous Agents:** Event-driven triggers (SharePoint file changes, Planner task updates, recurrence schedules) with proactive actions
 
 **Performance Characteristics:**
 - **Optimized for:** Speed to market, managed operations, built-in governance, connector ecosystem integration
 - **Managed orchestration layer:** Provides convenience (ALM, multi-channel, governance) with managed SaaS infrastructure
-- **Power Automate integration:** 120-second timeout for flows; HTTP Request node offers lower latency for simple calls
+- **Power Automate integration:** 120-second flow execution limit, 100-second return requirement to Copilot Studio; HTTP Request node offers lower latency for simple calls
 - **Latency profile:** Suitable for <1s response scenarios; for <100ms requirements, consider Azure AI Foundry
 
 **Context Window (GPT-5 Preview):**
@@ -52,20 +67,35 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 - **Effective context:** Varies based on agent configuration, orchestration features, and system variables
 - **Trade-off:** Managed platform convenience vs full model context (Foundry provides full context but requires infrastructure management)
 
+**Knowledge Sources (BYOK):**
+- **Internal:** SharePoint/OneDrive (security-trimmed), Dataverse tables, Documents (uploaded to Dataverse), Graph Connectors, Azure AI Search
+- **External:** Public websites (Bing-indexed), Web Search (Grounding with Bing Search), Bing Custom Search
+- **Generative Answers:** Combines knowledge sources with LLM responses, citations, moderation
+
+**Multi-Channel Deployment:**
+- **M365:** Teams, M365 Copilot, SharePoint
+- **Web/Mobile:** Custom website, demo website, mobile apps
+- **Social/Messaging:** Facebook, WhatsApp, SMS
+- **Contact Center:** Dynamics 365 Omnichannel (live chat hand-off to agents), voice IVR integration
+- **Other:** Azure Bot Service channels (Slack, Telegram, etc.)
+
+**Licensing:**
+- **Prepaid capacity:** Copilot Credit packs (predictable high-volume, pooled tenant-wide)
+- **Pay-as-you-go:** $0.01/Copilot Credit (Azure subscription, consumption-based)
+- **Quotas:** 8,000 RPM (general messages), 50-100+ RPM (gen AI, scales with message packs)
+
 **When Copilot Studio is the Right Tool:**
-- Speed to market is priority (days/weeks delivery)
-- Leveraging Power Platform's 1,400+ built-in connectors and triggers
-- Prefer Microsoft-managed infrastructure
-- Need built-in Power Platform governance
-- Multi-channel deployment (Teams, Web, Mobile, M365)
-- Team includes makers and developers
+- **Declarative agents:** Individual/team productivity in M365 context, faster implementation (days), user workflows within M365 apps (SharePoint, OneDrive, Teams via @mentions)
+- **Custom engine agents:** Complex workflows with custom orchestration, specific business logic, group collaboration in Teams channels, multi-system integrations, proactive messaging/event-driven workflows, multi-channel deployment (beyond M365), migrating existing conversational bots
+- Leveraging Power Platform's 1,400+ connectors and event triggers
+- Prefer Microsoft-managed infrastructure and built-in governance
+- Team includes makers and developers; no deep AI/ML expertise required
 
 **Sources:**
-- [Event Triggers Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about)
-- [Copilot Studio Fundamentals](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio)
-- [Optimize Latency in CPS](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/optimize-minimize-latency)
-- [AI Builder Model Selection](https://learn.microsoft.com/en-us/ai-builder/prompt-modelsettings)
-- [Integration Options](https://learn.microsoft.com/en-us/power-platform/well-architected/intelligent-application/integrations)
+- [Copilot Studio Fundamentals](https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (Updated: 2024-10-15)
+- [Agents for Microsoft 365 Copilot](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agents-overview) (Updated: 2024-11-05)
+- [Implementation Guide](https://aka.ms/CopilotStudioImplementationGuide) (PDF Version 2.0)
+- [Event Triggers Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about) (Updated: 2024-09-20)
 
 ---
 
@@ -111,18 +141,41 @@ This section provides a comprehensive overview of Microsoft's AI technology stac
 ---
 
 ### Azure AI Agent Service
-**Description:** Managed PaaS for agent orchestration, skills management, and runtime infrastructure within Azure AI Foundry. Supports connected agents (multi-agent systems), MCP tools, full RBAC + VNet + BYO storage.  
+**Description:** Managed PaaS for agent orchestration, skills management, and runtime infrastructure within Azure AI Foundry. Supports connected agents (multi-agent systems), 12+ built-in tools, full RBAC + VNet + BYO storage.  
 **Official Docs:** [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/)
 
 **Key Features:**
 - Managed agent runtime infrastructure
-- Skills/tool calling management
-- Memory and state management
 - Connected agents (multi-agent systems)
-- MCP (Model Context Protocol) tool support
+- Memory and state management
 - Full RBAC, VNet, private endpoints
 
-**When to use:** Managed agent orchestration at PaaS layer, scalable agent infrastructure, multi-agent systems
+**Built-in Tools (Knowledge):**
+- **Azure AI Search:** Ground agents with indexed data, chat with your data
+- **File Search:** RAG with proprietary documents (Azure Blob Storage, local files). Uses vector stores (up to 10,000 files), automatic chunking/embedding (text-embedding-3-large), hybrid search (keyword + semantic), reranking
+- **Grounding with Bing Search:** Access real-time web information
+- **Grounding with Bing Custom Search (Preview):** Enhanced responses with selected web domains
+- **Microsoft Fabric (Preview):** Integrate with Fabric Data Agents for data analysis capabilities
+- **SharePoint (Preview):** Chat with private SharePoint documents, OBO authentication for security-trimmed access, leverages M365 Copilot API built-in indexing
+- **Licensed Data:** Proprietary data via licensed API keys (TripAdvisor, Morningstar, LexisNexis, LEGALFLY, etc.)
+
+**Built-in Tools (Action):**
+- **Function Calling:** Custom stateless functions
+- **Azure Functions:** Intelligent, event-driven serverless code execution
+- **Azure Logic Apps:** 1,400+ connector-based workflows
+- **Code Interpreter:** Write and run Python code in sandboxed environment (data handling, visuals)
+- **OpenAPI 3.0 Specified Tool:** Connect to external APIs via OpenAPI spec
+- **Model Context Protocol (Preview):** Access tools hosted on existing MCP endpoints
+- **Deep Research (Preview):** Multi-step web-based research with o3-deep-research model + Bing Search
+- **Browser Automation (Preview):** Real-world browser tasks via natural language with Playwright Workspaces
+- **Computer Use (Preview):** UI interaction via specialized computer-use-preview model, interprets raw pixel screenshots, virtual keyboard/mouse control
+- **Image Generation (Preview):** Generate and edit images as part of conversations and multi-step workflows
+
+**Agent Setup Options:**
+- **Basic Setup:** Microsoft-managed search and storage (files stored in MS-managed storage, vector stores in MS-managed search)
+- **Standard Setup:** BYO Azure AI Search + Blob Storage (files in your Blob, vector stores in your AI Search), private networking, no public egress by default
+
+**When to use:** Managed agent orchestration at PaaS layer, scalable agent infrastructure, multi-agent systems, comprehensive built-in tool ecosystem, prefer Azure-managed RAG infrastructure
 
 ---
 

@@ -204,13 +204,28 @@ Many organizations use BOTH - Copilot Studio for rapid deployment with rich conn
 - **Multi-Agent** (Agent collaboration, handoffs, specialized agents)
 - **Custom Logic** (Complex decision trees, business rules)
 
+**Copilot Studio NLU Options Context:**
+- **Generative AI Orchestration (Default):** Best for minimal setup, comfortable with AI-driven conversation orchestration, multi-intent recognition (up to ~128 triggerable topics/actions)
+- **Classic NLU:** Simpler programmable design, 5-20 trigger phrases per topic, RegEx/List entities
+- **Classic NLU+:** High accuracy enterprise applications, large topic/entity sets, extensive training samples (requires Dynamics 365 Contact Center license for voice/chat)
+- **Azure CLU:** Azure-managed advanced entity extraction, more languages (requires Azure subscription, manual sync)
+
+**Topic Architecture:**
+- **Generative Orchestration:** AI selects best combination of topics/actions/knowledge at runtime based on descriptions
+- **Classic Orchestration:** Trigger phrases drive deterministic topic selection via NLU matching
+
 **Resulting Groupings:**
-- **Declarative/Simple**: Copilot Studio declarative agents, M365 Copilot built-in agents
-- **Workflow-Based**: Microsoft Agent Framework, Azure Logic Apps, Copilot Studio Agent Flows
-- **Multi-Agent Systems**: Azure AI Agent Service (connected agents), Copilot Studio (child + connected agents)
+- **Declarative/Simple**: Copilot Studio declarative agents (generative orchestration), M365 Copilot built-in agents
+- **Workflow-Based**: Microsoft Agent Framework, Azure Logic Apps, Copilot Studio Agent Flows (classic orchestration with deterministic flows)
+- **Multi-Agent Systems**: Azure AI Agent Service (connected agents), Copilot Studio (child + connected agents - Preview)
 - **Custom Orchestration**: M365 Agents SDK + Agent Framework, Azure AI Foundry custom
 
 💡 **Cross-reference:** See [Feature Comparison](feature-comparison.md) - Workflow Orchestration Platform Comparison
+
+**Sources:**
+- [Natural Language Understanding (NLU) Overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/nlu-overview) (Updated: 2024)
+- [Create and Edit Topics](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-create-edit-topics) (Updated: 2024)
+- [Add Other Agents (Preview)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-add-other-agents) (Updated: 2024)
 
 ---
 
@@ -316,7 +331,7 @@ Many organizations use BOTH - Copilot Studio for rapid deployment with rich conn
 - **Mitigation:** Purchase capacity packs, enable PAYG, separate high-volume agents into dedicated environments
 
 **Dedicated Deployment Quotas:**
-- **Azure AI Foundry:** Per-deployment TPM limits (regional quotas, request increases available)
+- **Azure AI Foundry:** Per-deployment tokens per minute (TPM) limits (regional quotas, request increases available)
 - **M365 Copilot:** Microsoft-managed scaling (no user-facing throttling)
 - **M365 Agents SDK:** Custom auto-scaling controls (customer designs rate limiting)
 

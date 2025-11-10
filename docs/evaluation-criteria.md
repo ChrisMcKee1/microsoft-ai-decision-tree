@@ -93,8 +93,8 @@ Use this framework to evaluate your organization's readiness and requirements be
 
 **Critical Considerations - Data Boundary:**
 - **M365 Copilot:** Data NEVER leaves M365 tenant boundary. No training on tenant data. Inherits M365 compliance (GDPR, HIPAA, FedRAMP).
-- **Copilot Studio:** ⚠️ External connectors (custom APIs, non-Microsoft systems) **inherit external system's compliance posture**. Web search leaves enterprise boundary (NOT covered by DPA).
-- **Azure AI Foundry/Agent Service:** Full Azure controls (VNet, private endpoints, CMK, Azure Policy). Governed by YOUR Azure landing zone.
+- **Copilot Studio:** ⚠️ External connectors (custom APIs, non-Microsoft systems) **inherit external system's compliance posture**. Web search leaves enterprise boundary (NOT covered by DPA). Compliance certifications: HIPAA, FedRAMP, SOC, ISO, PCI DSS. Power Platform DLP policies (environment/tenant-level) control connector access, custom connector endpoints (pattern matching), autonomous agent triggers.
+- **Azure AI Foundry/Agent Service:** Full Azure controls (VNet, private endpoints, CMK, Azure Policy). Governed by YOUR Azure landing zone. Content Safety service provides configurable filtering (Hate, Violence, Sexual, Self-Harm at Low/Medium/High severity), groundedness detection, prompt shields (jailbreak/indirect attacks).
 
 **Critical Considerations - Network Isolation:**
 - **Azure AI Foundry/Agent Service:** ✅ Full private networking support. Standard Setup with Private Networking = no public egress by default. Supports air-gapped environments.
@@ -158,7 +158,7 @@ Performance optimization varies by platform and use case. Choose based on your p
 | **Runtime Latency** | <1s (managed orchestration) | <100ms (direct API access) | Response time requirements |
 | **Operational Overhead** | Low (Microsoft-managed SaaS) | Higher (self-managed PaaS) | Operational preferences |
 | **Context Window** | 400k (platform-managed)^1^ | 400k (full model access) | Context vs convenience trade-off |
-| **Throughput Scaling** | RPM-based (message billing) | PTU-based (provisioned capacity) | Cost model preferences |
+| **Throughput Scaling** | Requests per minute (RPM)-based (message billing) | Tokens per minute (TPM)-based (provisioned capacity) | Cost model preferences |
 
 ^1^ Effective context in Copilot Studio varies by configuration; full model context available in Azure AI Foundry with infrastructure management responsibility.
 
@@ -172,12 +172,14 @@ Performance optimization varies by platform and use case. Choose based on your p
 - Response times <1s are acceptable
 - Built-in governance and ALM are priorities
 - Team includes makers and developers
+- **Testing:** [Power CAT Copilot Studio Kit](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/kit-overview) for automated agent validation (response match, topic match, generative answers, multi-turn scenarios)
 
 **Choose Azure AI Foundry when:**
 
 - Latency <100ms is required (real-time applications)
 - Need full architectural control and optimization
 - High-throughput scenarios (PTU provisioning)
+- **Testing:** [Prompt flow evaluations](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/evaluate-generative-ai-app) with built-in metrics (groundedness, relevance, coherence) or custom evaluators
 - Custom patterns beyond platform capabilities
 - Custom integrations outside standard connector ecosystem
 - Team has Azure and AI engineering expertise
@@ -199,16 +201,21 @@ Many organizations use both platforms - Copilot Studio for rapid deployment with
 
 **Copilot Studio:**
 
-- **Environment-level quotas:** 8,000 RPM general, 50-100 RPM gen AI (based on capacity packs)
+- **Environment-level quotas:**
+  - General messages: 8,000 requests per minute (RPM) per Dataverse environment
+  - Generative AI: 50-100+ RPM / 1,000-2,000+ requests per hour (RPH) (scales with capacity packs: 50 RPM/1K RPH for 1-10 packs, up to 100 RPM/2K RPH for 51+ packs or PAYG)
 - **Shared across agents:** All agents in environment share quota pool
-- **Cost predictability:** Prepaid packs ($200/mo for 25K credits) or PAYG ($0.01/credit)
+- **Channel limits:** Channels include Teams, Web (Direct Line), Mobile, WhatsApp, Facebook, Azure Bot Service channels
+- **Power Platform requests:** 250K/24h for standard subscription (flows triggered by agents)
+- **Cost predictability:** Prepaid packs or PAYG ($0.01/Copilot Credit)
+- **Increase limits:** Contact Support for rate limit increases (PAYG environments only)
 - **Best for:** Predictable workloads, call centers, internal use cases with capacity planning
 
 **Azure AI Foundry / Agent Service:**
 
-- **TPM quotas:** Per region/model (request increases available)
+- **Tokens per minute (TPM) quotas:** Per region/model (request increases available)
 - **Variable cost:** Per-token billing scales with traffic
-- **Cost optimization:** Model routing, PTU reservations, caching strategies
+- **Cost optimization:** Model routing, provisioned throughput units (PTU) reservations, caching strategies
 - **Best for:** Variable traffic patterns, public-facing channels with guardrails
 
 **M365 Agents SDK:**
@@ -220,11 +227,11 @@ Many organizations use both platforms - Copilot Studio for rapid deployment with
 
 **Sources:**
 
-- [Optimize Latency in CPS](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/optimize-minimize-latency)
-- [Performance and Latency - Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/latency)
-- [AI Builder Model Selection](https://learn.microsoft.com/en-us/ai-builder/prompt-modelsettings)
-- [Integration Trade-offs](https://learn.microsoft.com/en-us/power-platform/well-architected/intelligent-application/integrations)
-- [Copilot Studio Quotas](https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-quotas)
+- [Copilot Studio Quotas and Limits](https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-quotas) (Updated: 2024-11-01)
+- [Resolve Throttling Errors](https://learn.microsoft.com/en-us/troubleshoot/power-platform/copilot-studio/licensing/throttling-errors-agents) (Updated: 2024-10-15)
+- [Optimize Latency in CPS](https://learn.microsoft.com/en-us/microsoft-copilot-studio/guidance/optimize-minimize-latency) (Updated: 2024-09-20)
+- [Performance and Latency - Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/latency) (Updated: 2024-10-22)
+- [Power Platform Request Limits](https://learn.microsoft.com/en-us/power-platform/admin/api-request-limits-allocations) (Updated: 2024-10-18)
 
 **Last Updated:** 2025-11-05
 
