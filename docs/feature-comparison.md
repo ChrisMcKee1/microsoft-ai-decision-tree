@@ -28,26 +28,29 @@ Detailed side-by-side comparisons of Microsoft AI technologies. For decision gui
 | **Skill Level** | End user | Maker to developer | Developer/engineer | Developer (C#/Python) | Developer/engineer | Developer | **Developer** |
 | **Orchestration** | Built-in | Built-in | Custom | **Workflow-based (Executor/Edge)** | Managed orchestration | BYO orchestrator | **Visual workflow** |
 | **Checkpointing** | N/A | No | Custom | **Yes (built-in)** | No | Via orchestrator | **State management** |
-| **AI Agent Workflows** | N/A | Via agent flows | Via Agent Service | N/A | ✅ Yes | N/A | **✅ Yes (Preview)** |
-| **MCP Server** | N/A | ❌ No | ⚠️ Custom | N/A | ⚠️ Custom | N/A | **✅ Yes (Preview)** |
+| **AI Agent Workflows** | N/A | Via agent flows | Via Agent Service[^aafs-triggers] | N/A | ✅ Yes | N/A | **✅ Yes (Preview)**[^logicapps-agents] |
+| **MCP Server** | N/A | ❌ No | ✅ Yes (MCP tool)[^aafs-mcp] | N/A | ⚠️ Custom | N/A | **✅ Yes (Preview)**[^logicapps-mcp] |
 | **Optimized For** | Productivity at scale | Speed to market + connectors | Latency & control | Workflow orchestration | Managed agents | Pro-code flexibility | Enterprise integration |
 | **Latency Profile** | <1s (M365 apps) | <1s (managed platform) | <100ms (direct API) | Workflow processing | <100ms (direct API) | <1s (M365 integration) | Workflow processing |
-| **Context Window (GPT-5)** | N/A | 400k (managed)^1^ | 400k (full access) | Depends on orchestrator | 400k (full access) | Depends on orchestrator | N/A |
 | **Infrastructure Model** | Microsoft-managed | SaaS (managed) | PaaS (self-managed) | SDK (self-managed) | PaaS (self-managed) | SDK (self-managed) | PaaS (self-managed) |
 | **Best For** | Broad productivity | Custom agents | Custom AI apps | **Workflow orchestration** | Managed agents | Pro-code extensions | **Enterprise integration + AI** |
 
-^1^ Copilot Studio: Managed orchestration provides convenience (governance, ALM, multi-channel, 1,400+ connectors) with some context consumed by platform features. Azure AI Foundry: Full model context available with self-managed infrastructure. Both approaches serve different optimization goals.
+[^aafs-triggers]: *What's new in Azure AI Foundry Agent Service*, Microsoft Learn. May 2025 GA update includes Azure Logic Apps triggers for agents.
+[^logicapps-agents]: *Workflows with AI agents and models in Azure Logic Apps (Preview)*, Microsoft Learn. Retrieved: 2025-11-10.
+[^aafs-mcp]: *What's new in Azure AI Foundry Agent Service*, Microsoft Learn. June 2025 update announces the MCP tool.
+[^logicapps-mcp]: *Set up Standard logic apps as remote MCP servers (Preview)*, Microsoft Learn. Retrieved: 2025-11-10.
 
 **Sources:**
-- [M365 Copilot Capabilities](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-overview)
-- [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
-- [Azure AI Foundry Overview](https://learn.microsoft.com/en-us/azure/ai-services/)
-- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-framework)
-- [Azure AI Agent Service](https://learn.microsoft.com/en-us/azure/ai-services/agents/overview)
-- [M365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/dev/m365-agents-sdk/overview)
-- [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/)
+- [Microsoft 365 Copilot overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-overview) (Retrieved: 2025-11-10)
+- [Copilot Studio overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/overview-what-is-copilot-studio) (Retrieved: 2025-11-10)
+- [Azure AI Foundry Agent Service overview](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) (Updated: 2025-05-29)
+- [Microsoft Agent Framework workflows overview](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/overview) (Updated: 2025-09-12)
+- [Azure AI Agent Service docs](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) (Updated: 2025-05-29)
+- [M365 Agents SDK overview](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview) (Updated: 2025-09-23)
+- [Logic Apps agent workflows concepts](https://learn.microsoft.com/en-us/azure/logic-apps/agent-workflows-concepts) (Retrieved: 2025-11-10)
+- [Logic Apps MCP server guidance](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) (Retrieved: 2025-11-10)
 
-**Last Updated:** 2024-10-30
+**Last Updated:** 2025-11-10
 **Confidence Level:** High (all sources official Microsoft documentation)
 
 ---

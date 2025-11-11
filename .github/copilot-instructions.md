@@ -1,3 +1,7 @@
+---
+description: Overall guidelines about the project.
+applyTo: '**'
+---
 # Microsoft AI Decision Tree - Copilot Instructions
 
 ## Project Overview

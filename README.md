@@ -112,7 +112,7 @@ For experienced users who need fast recommendations:
 
 ### "I need something in production next week"
 
-→ **[M365 Copilot](docs/technologies.md#microsoft-365-copilot)** (zero setup) or **[Copilot Studio](docs/technologies.md#copilot-studio)** (templates available)
+→ **[M365 Copilot](docs/technologies.md#microsoft-365-copilot)** (fastest end-user experience once IT completes [tenant readiness and licensing](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-setup)) or **[Copilot Studio](docs/technologies.md#copilot-studio)** (templates available)
 
 ### "I have makers but no developers"
 

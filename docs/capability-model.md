@@ -19,7 +19,7 @@ Ready-to-use AI experiences for immediate productivity.
 |---------|-------------|---------------|
 | **Microsoft 365 Copilot** | Integrated assistant across Word, Excel, Teams, Outlook with tenant security | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/) |
 | **Built-in Agents** | Researcher, Analyst, Visual Creator, Prompt Coach, Idea Coach, Writing Coach | [Docs](https://learn.microsoft.com/en-us/training/modules/explore-prebuilt-microsoft-365-copilot-agents/) |
-| **Agent Store** | Discover, acquire, and manage prebuilt agents in M365 apps | Available in-app (June 2025) |
+| **Agent Store** | Discover, acquire, and manage Copilot agents through the in-app Microsoft 365 store (Word and PowerPoint; Excel coming) | [Release notes](https://learn.microsoft.com/en-us/copilot/microsoft-365/release-notes) |
 
 **When to use:** Broad productivity gains, existing M365 licenses, no custom development needed
 
@@ -31,7 +31,7 @@ Extend M365 Copilot with organizational knowledge and actions.
 
 | Extension Type | Description | Documentation |
 |----------------|-------------|---------------|
-| **Copilot Connectors (formerly Graph Connectors)** | Index external data into Microsoft Graph for Copilot discovery | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-extensibility) |
+ | **Copilot connectors (formerly Microsoft Graph connectors)** | Ingest external content into Microsoft Graph so Copilot and Microsoft Search can discover, summarize, and cite it | [Docs](https://learn.microsoft.com/en-us/graph/connecting-external-content-experiences) |
 | **API Plugins** | Enable declarative agents in Microsoft 365 Copilot to interact with REST APIs that have an OpenAPI description | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/overview-api-plugins) |
 | **Teams Message Extensions** | Extend Copilot with Teams-based actions | [Docs](https://learn.microsoft.com/en-us/microsoftteams/platform/messaging-extensions/what-are-messaging-extensions) |
 | **Declarative Agents** | Configure agents with instructions, knowledge sources, and actions | [Docs](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/build-declarative-agents) |
@@ -47,10 +47,10 @@ Platforms for building agents with varying levels of control and complexity.
 | Technology | Description | Key Capabilities | Documentation |
 |------------|-------------|------------------|---------------|
 | **Copilot Studio** | Low-code to pro-code SaaS for custom agents | Managed governance, multi-channel, BYOM/BYOK | [Docs](https://learn.microsoft.com/en-us/microsoft-copilot-studio/) |
-| **Microsoft Agent Framework** | Orchestration SDK combining Semantic Kernel + AutoGen (Preview/Experimental) | Sequential, concurrent, handoff, magentic patterns; checkpointing, workflows, multi-agent orchestration | [Docs](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/ai.projects.agent-readme) |
-| **M365 Agents SDK** | Pro-code framework for multi-channel agents | BYO orchestrator (Agent Framework recommended, LangChain third-party) | [Docs](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/) |
-| **Azure AI Foundry** | Code-first platform for AI models, RAG, evaluations | Works with or without Agent Service | [Docs](https://learn.microsoft.com/en-us/azure/ai-studio/) |
-| **Azure AI Agent Service** | Managed PaaS for agent orchestration | Skills, memory, runtime infrastructure | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/agents/) |
+| **Microsoft Agent Framework** | Successor to Semantic Kernel and AutoGen that unifies agent and workflow development (Public Preview) | Multi-agent workflows (sequential, concurrent, handoff, Magentic), thread-based state, MCP and tool integration | [Docs](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview) |
+| **M365 Agents SDK** | Full-stack SDK for publishing custom engine agents across Microsoft 365 Copilot, Teams, web, and custom apps | Channel adapters, conversation state, orchestrator-agnostic (Agent Framework, Semantic Kernel, LangChain) | [Docs](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview) |
+| **Azure AI Foundry** | Unified development environment for model catalog, prompt flow, evaluations, and agent runtime | Integrates with Azure AI Agent Service or standalone workflows for RAG and custom copilots | [Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/) |
+| **Azure AI Agent Service** | Managed runtime for building, hosting, and scaling agent experiences | Built-in memory management, tool calling, secure connectors, catalog samples | [Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview) |
 | **LangChain Ecosystem (Third-party)** | OSS framework for LLM applications (Python/JS) | **LangChain**: Azure integrations, prompt flow; **LangGraph**: agent workflows, state management; **LangSmith**: tracing & observability | [LangChain Docs](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-integrate-with-langchain) \| [LangGraph Docs](https://learn.microsoft.com/en-us/azure/developer/javascript/ai/langchain-agent-on-azure) \| [LangSmith Docs](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-agents-sdk) |
 
 **When to use:** Custom business logic, multi-channel requirements, complex orchestration, Azure-native infrastructure
@@ -72,7 +72,7 @@ Foundational services that power agents across all platforms.
 | **AI Builder** | Comprehensive prebuilt & custom AI models for Power Platform | Document processing (invoices, receipts, contracts), GPT text generation, sentiment analysis, entity extraction, vision (object detection, OCR), predictions | [Docs](https://learn.microsoft.com/en-us/ai-builder/) |
 | **Copilot Studio Agent Flows** | Native automation workflows within Copilot Studio | Deterministic automation for agents; natural language or visual designer; billed via Copilot Studio capacity | [Docs](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview) |
 | **Azure Document Intelligence** | Prebuilt and custom document models | OCR and document understanding | [Docs](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) |
-| **Azure Logic Apps** | Pro-developer workflow automation for enterprise integration and AI agents | AI agent workflows (autonomous/conversational), MCP server for exposing workflows as AI tools, 1,400+ connectors, DevOps integration | [Docs](https://learn.microsoft.com/en-us/azure/logic-apps/) |
+| **Azure Logic Apps** | Enterprise workflow automation with 1,400+ connectors | Expose Standard logic apps as remote MCP servers for agent tools, integrate with enterprise systems, monitor via Application Insights | [Docs](https://learn.microsoft.com/en-us/azure/logic-apps/set-up-model-context-protocol-server-standard) |
 | **Azure Cosmos DB** | Globally distributed NoSQL database with AI capabilities | Vector search (IVF, HNSW, DiskANN), AI agent memory system, integrated vector database | [Docs](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search) |
 | **Azure Database for PostgreSQL** | Fully managed PostgreSQL with AI extensions | azure_ai extension (OpenAI + Cognitive Services), pgvector for vector search, in-database embeddings | [Docs](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/generative-ai-azure-overview) |
 | **SQL Server 2025 (Preview)** | Enterprise database with native AI capabilities | VECTOR data type (float32/float16), vector functions & indexes (DiskANN), external AI model management, Copilot in SSMS | [Docs](https://learn.microsoft.com/en-us/sql/sql-server/what-s-new-in-sql-server-2025) |

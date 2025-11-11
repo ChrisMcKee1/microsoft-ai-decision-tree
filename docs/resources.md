@@ -5,8 +5,6 @@ nav_order: 11
 description: Key takeaways and resources by role
 ---
 
-# Resources & Next Steps
-
 {: .note }
 This page provides role-based action plans and key takeaways from the Microsoft AI Decision Tree framework.
 
@@ -19,11 +17,12 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 3. **Match governance approach to your needs**: M365 tenant-integrated (ready to use, fast) vs Azure workload-tailored (precise control for specific requirements)
 4. **Plan for scale**: Start simple, architect for growth
 5. **Leverage integration**: Technologies work together, not in isolation
-6. **Prioritize governance**: Especially for M365 Copilot extensions
-7. **Think beyond agents**: Connectors, plugins, and extensibility matter
-8. **Budget appropriately**: Understand per-user vs. consumption models
-9. **Iterate and learn**: Start small, measure, expand
-10. **Stay current**: Capabilities evolving rapidly, especially in preview
+6. **Prioritize governance**: Especially for Microsoft 365 Copilot extensions and custom agents
+7. **Adopt staged security blueprints**: Use Microsoft Purview deployment models to secure agent data and interactions
+8. **Think beyond agents**: Connectors, plugins, and extensibility matter
+9. **Budget appropriately**: Understand per-user vs. consumption models
+10. **Iterate and learn**: Start small, measure, expand
+11. **Stay current**: Capabilities evolving rapidly, especially in preview
 
 ---
 
@@ -38,8 +37,10 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 5. Consider governance and compliance early
 
 **Key Resources:**
-- [Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-services/)
+
+- [What's new in Azure AI Foundry Agent Service](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/whats-new#october-2025)
 - [M365 Copilot Extensibility Overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
+- [Secure and govern Microsoft 365 Copilot agents (Purview blueprint)](https://learn.microsoft.com/en-us/purview/deploymentmodels/depmod-sc-agents-deployment)
 - [Cloud Adoption Framework for AI](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/)
 
 ---
@@ -53,11 +54,13 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 5. Understand evaluation frameworks
 
 **Key Resources:**
-- [Azure AI Foundry Getting Started](https://learn.microsoft.com/en-us/azure/ai-services/agents/quickstart)
+
+- [Azure AI Foundry Agent Service quickstart](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart)
+- [AI Foundry Visual Studio Code extension](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/vs-code-agents?context=/azure/ai-services/agents/context/context)
 - [M365 Agents SDK Toolkit](https://marketplace.visualstudio.com/items?itemName=msft-vscode-m365-agents.vscode-m365-agents)
-- [Microsoft Agent Framework Documentation](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-framework)
-- [Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
-- [LangChain Azure Integration](https://learn.microsoft.com/en-us/azure/developer/python/get-started-app-chat-template)
+- [Microsoft Agent Framework documentation](https://learn.microsoft.com/en-us/azure/ai-services/agents/concepts/agent-framework)
+- [Semantic Kernel documentation](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
+- [Agentic retrieval quickstart for Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-get-started-agentic-retrieval)
 
 ---
 
@@ -70,9 +73,11 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 5. Collaborate with IT on governance
 
 **Key Resources:**
-- [Copilot Studio Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
-- [Copilot Studio Learning Paths](https://learn.microsoft.com/en-us/training/browse/?products=microsoft-copilot-studio)
-- [Power Platform Community](https://powerusers.microsoft.com/)
+
+- [What's new in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new#october-2025)
+- [Copilot Studio documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
+- [Copilot Studio learning paths](https://learn.microsoft.com/en-us/training/browse/?products=microsoft-copilot-studio)
+- [Power Platform community](https://powerusers.microsoft.com/)
 
 ---
 
@@ -85,9 +90,11 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 5. Implement monitoring and usage tracking
 
 **Key Resources:**
-- [M365 Copilot Admin Guide](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-setup)
-- [Integrated Apps Management](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/test-and-deploy-microsoft-365-apps)
-- [Graph Connectors Administration](https://learn.microsoft.com/en-us/microsoftsearch/configure-connector)
+
+- [Security for Microsoft 365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+- [M365 Copilot admin guide](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-setup)
+- [Integrated apps management](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/test-and-deploy-microsoft-365-apps)
+- [Graph connectors administration](https://learn.microsoft.com/en-us/microsoftsearch/configure-connector)
 
 ---
 
@@ -96,19 +103,22 @@ This page provides role-based action plans and key takeaways from the Microsoft 
 ### Core Platforms
 
 - **Microsoft 365 Copilot**
-  - [Extensibility Overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
-  - [Adoption Resources](https://adoption.microsoft.com/en-us/copilot/)
-  - [Privacy and Security](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-privacy)
+  - [Extensibility overview](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
+  - [Adoption resources](https://adoption.microsoft.com/en-us/copilot/)
+  - [Security posture](https://learn.microsoft.com/en-us/copilot/microsoft-365/microsoft-365-copilot-ai-security)
+  - [Privacy and data safeguards](https://learn.microsoft.com/en-us/microsoft-365-copilot/microsoft-365-copilot-privacy)
 
 - **Azure AI Foundry**
-  - [Documentation Hub](https://learn.microsoft.com/en-us/azure/ai-services/)
-  - [Azure OpenAI Service](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
-  - [Azure AI Search](https://learn.microsoft.com/en-us/azure/search/)
+  - [What's new in Azure AI Foundry Agent Service](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/whats-new#october-2025)
+  - [Agent Service quickstart](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart)
+  - [Azure OpenAI Service overview](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
+  - [Azure AI Search service](https://learn.microsoft.com/en-us/azure/search/)
 
 - **Copilot Studio**
-  - [Product Documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
-  - [Declarative Agents](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-declarative-agents)
-  - [Custom Engine Agents](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-custom-engine-agent)
+  - [What's new in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/whats-new#october-2025)
+  - [Declarative agents](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-declarative-agents)
+  - [Custom engine agents](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/copilot-studio-custom-engine-agent)
+  - [Copilot Studio documentation](https://learn.microsoft.com/en-us/microsoft-copilot-studio/)
 
 ### SDKs & Frameworks
 
@@ -136,13 +146,14 @@ This page provides role-based action plans and key takeaways from the Microsoft 
   - [Graph API Reference](https://learn.microsoft.com/en-us/graph/overview)
 
 - **Azure AI Search**
-  - [RAG Patterns](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
-  - [Vector Search](https://learn.microsoft.com/en-us/azure/search/vector-search-overview)
+  - [Agentic retrieval (preview)](https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-overview)
+  - [RAG patterns](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+  - [Vector search](https://learn.microsoft.com/en-us/azure/search/vector-search-overview)
 
 - **AI-Capable Databases**
   - [Cosmos DB Vector Search](https://learn.microsoft.com/en-us/azure/cosmos-db/vector-search)
   - [Azure Database for PostgreSQL - Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/generative-ai-overview)
-  - [SQL Server 2025 Vector Support](https://learn.microsoft.com/en-us/sql/relational-databases/vectors/vectors-sql-server)
+  - [SQL Server 2025 vector search](https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors?view=sql-server-ver17)
 
 ---
 

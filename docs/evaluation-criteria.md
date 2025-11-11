@@ -115,8 +115,9 @@ Use this framework to evaluate your organization's readiness and requirements be
 - **M365 Agents SDK:** ⚠️ Custom design (developer responsibility). No built-in action safety or approval. **Implement custom guardrails.** Content safety depends on implementation.
 
 **Critical Considerations - Proactive Capabilities (Question 9):**
-- **Reactive only:** M365 Copilot, Copilot Studio declarative agents (user-initiated interactions only)
-- **Proactive capable:** Copilot Studio custom engine agents (Power Automate triggers), Logic Apps (event-driven), Azure AI Foundry (Functions/triggers), M365 Agents SDK (custom)
+
+- **Reactive only:** M365 Copilot, Copilot Studio declarative agents (user-initiated interactions only).[^m365reactive-ec][^copilotstudioevent-ec]
+- **Proactive capable:** Copilot Studio custom engine agents (Power Automate triggers), Logic Apps (event-driven), Azure AI Foundry (Functions/triggers), M365 Agents SDK (custom event listeners).[^copilotstudioevent-ec][^logicappstrigger-ec][^agentservicega-ec][^agentssdk-ec]
 
 ---
 
@@ -233,7 +234,7 @@ Many organizations use both platforms - Copilot Studio for rapid deployment with
 - [Performance and Latency - Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/latency) (Updated: 2024-10-22)
 - [Power Platform Request Limits](https://learn.microsoft.com/en-us/power-platform/admin/api-request-limits-allocations) (Updated: 2024-10-18)
 
-**Last Updated:** 2025-11-05
+**Last Updated:** 2025-11-10
 
 ---
 
@@ -303,5 +304,11 @@ Many organizations use both platforms - Copilot Studio for rapid deployment with
 
 ---
 
-**Last Updated:** November 2025  
+**Last Updated:** November 10, 2025  
 **Next:** [Implementation Patterns](implementation-patterns.md) - Learn common patterns and best practices
+
+[^m365reactive-ec]: *Privacy and protections*, Microsoft Learn. Updated 2025-08-15.
+[^copilotstudioevent-ec]: *Create automated copilots triggered by events*, Microsoft Learn. GA 2025-03-24.
+[^logicappstrigger-ec]: *Trigger an agent by using Logic Apps (preview)*, Microsoft Learn. Updated 2025-06-30.
+[^agentservicega-ec]: *What's new in Azure AI Foundry Agent Service*, Microsoft Learn. Updated 2025-05-15.
+[^agentssdk-ec]: *Bring your agents into Microsoft 365 Copilot*, Microsoft Learn. Updated 2025-09-12.
