@@ -1,4 +1,11 @@
-# ⚠️ Repository Archived
+---
+layout: default
+title: Repository Archived
+nav_order: 1
+permalink: /
+---
+
+## ⚠️ Repository Archived
 
 **This repository has been moved to the official Microsoft organization.**
 
@@ -40,6 +47,7 @@ Visit the new repository to:
 The **Microsoft AI Decision Framework** is a comprehensive guide for navigating Microsoft's AI technology portfolio (M365 Copilot, Copilot Studio, Azure AI Foundry, Agent Service, SDKs, and more) and making informed, evidence-based technology selection decisions.
 
 **Key Features:**
+
 - Five-Layer Capability Model for understanding Microsoft's AI ecosystem
 - BXT Decision Framework for systematic technology evaluation
 - Interactive Mermaid decision trees for visual technology selection
